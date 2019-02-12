@@ -35,6 +35,16 @@ app.get("/auth/logout", (req, res) => {
  });
 
 //BUCKET LIST ENDPOINTS
+
+//Returns bucket list of the user on sessions
 app.get('/bucketlist', bucketController.getBucketList);
+
+//Creates a new bucket list item 
+//Returns bucket list of the user on sessions
+app.post('/bucketlist', bucketController.addBucketListItem);
+
+//Updates a bucket list item
+//Returns bucket list of the user on sessions
+app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
 //ENDPOINTS

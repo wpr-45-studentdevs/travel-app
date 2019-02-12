@@ -28,9 +28,6 @@ massive(CONNECTION_STRING).then(db => {
 //AUTH ENDPOINTS
 app.post('/auth/register', authController.register) //register
 app.post('/auth/login', authController.login) //login
-app.get("/auth/logout", (req, res) => {
-   req.session.destroy();
-   res.redirect(SERVER_LOGOUT);
- });
+app.get('/auth/logout', authController.logout) //logout
 
 //ENDPOINTS

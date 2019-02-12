@@ -34,11 +34,17 @@ module.exports = {
       res.status(200).send({ message: `${req.session.user.user_display_name} is logged in`, userData: req.session.user, loggedIn: true })
    },
 
-   userData: async(req, res) => {
+   userData: async (req, res) => {
       if(req.session.user) {
          res.status(200).send(req.session.user)
       } else {
          res.status(401).send('Please log in')
       }
    },
+
+   logout: async (req, res) => {
+      req.session.destroy();
+      res.status(200).send({message: 'User logged out.'})
+   },
+
 }

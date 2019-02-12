@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./Header.scss";
 import SimpleMenu from './UserButton'
+import Logo from '../../'
 
 export class Header extends Component {
   render() {

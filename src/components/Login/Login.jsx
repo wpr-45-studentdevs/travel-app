@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import '../Register/Register.scss'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../Register/Register.scss';
 import LandingNav from '../LandingNav/LandingNav';
 
 export default class Login extends Component {
@@ -28,6 +29,7 @@ export default class Login extends Component {
               <input placeholder='password' type="password" />
             </div>
             <br />
+            <Link to='/'><button>Back</button></Link>
             <button>Login</button>
           </div>
         </div>

@@ -22,7 +22,9 @@ export default class Register extends Component {
     } else if(confirm.length < 1) {
       alert('Please confirm your password')
     } else {
-      const res = axios.post(`/auth/register`, { email, password, displayName, bio })
+      const res = await axios.post(`/auth/register`, { email, password, displayName, bio })
+      alert(res.data.message)
+      this.props.history.push('/dashboard')
     }
   }
 

@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import './MyTrips.scss'
+import React, { Component } from "react";
+import "./MyTrips.scss";
+import Header from "../Header/Header";
+import SideNav from "../SideNav/SideNav";
 
 export default class MyTrips extends Component {
-
   state = {
     trips: [
       {
@@ -24,7 +25,7 @@ export default class MyTrips extends Component {
         budget: '$1000'
       }
     ]
-  }
+  };
   render() {
     let tripToDisplay = this.state.trips.map((trip, i) => {
       let activities = trip.activities.map((activity, i) => {
@@ -43,7 +44,7 @@ export default class MyTrips extends Component {
           <img src={trip.photos[0]} alt="mainphoto" />
           </div>
           <h3>{trip.title}</h3>
-          <div className='listFlex'>
+          <div className="listFlex">
             <div>
               <h4>Activities:</h4>
               <ul>
@@ -59,21 +60,30 @@ export default class MyTrips extends Component {
             <br />
           </div>
           <h4>Budget: {trip.budget}</h4>
-
         </div>
         //photo will be either main photo chosen-> will need updated table
         // or just random photo/ first photo
         //budget will be calculated total
-      )
-    })
+      );
+    });
     return (
       <div>
-        <h1>My Trips</h1>
-        <br />
-        <div className='tripDisplay'>
-          {tripToDisplay}
+        <Header />
+        <div className="body">
+          <div className="side-nav">
+            <SideNav />
+          </div>
+          <div className="content">
+            <div className="content-window">
+              <h1>My Trips</h1>
+              <br />
+              <div className="tripDisplay">{tripToDisplay}</div>
+            </div>
+          </div>
         </div>
       </div>
-    )
+    );
   }
 }
+
+//

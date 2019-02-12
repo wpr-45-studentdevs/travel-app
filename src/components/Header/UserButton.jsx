@@ -3,6 +3,10 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import './UserButton.scss'
+import { Link } from 'react-router-dom';
+const serverLogout = process.env.REACT_APP_SERVER_LOGOUT;
+
+
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,7 +33,7 @@ function SimpleMenu() {
           <Menu id='Menu'  anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
             <MenuItem id='menuItem' onClick={handleClose}>Profile</MenuItem>
             <MenuItem id='menuItem' onClick={handleClose}>Change Profile Picture</MenuItem>
-            <MenuItem id='menuItem' onClick={handleClose}>Logout</MenuItem>
+            <MenuItem id='menuItem' onClick={handleClose}><Link to='/' href={serverLogout}>Logout</Link></MenuItem>
           </Menu>
       </div>
     </div>

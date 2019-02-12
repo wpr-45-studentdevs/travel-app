@@ -8,7 +8,6 @@ export default class Dashboard extends Component {
       return (
          <div>
             <Header/>
-            <h1>Dashboard</h1>
             <div className='header'>
                {/* Main Header */}
             </div>

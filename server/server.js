@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authController = require('./controllers/authController');
+const bucketController = require('./controllers/bucketController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET } = process.env;
 
@@ -30,5 +31,8 @@ app.post('/auth/register', authController.register) //register
 app.post('/auth/login', authController.login) //login
 // app.get('/auth/logout', authController.logout) //logout
 
+
+//BUCKET LIST ENDPOINTS
+app.get('/bucketlist', bucketController.getBucketList);
 
 //ENDPOINTS

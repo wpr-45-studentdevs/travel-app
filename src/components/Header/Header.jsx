@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './Header.scss'
 
-export default function Header() {
-   return (
-      <div>
-
+export class Header extends Component {
+  render() {
+    return (
+      <div className='Header'>
+        <div id='mainHead'>
+           <h1>Travel-App</h1>
+           <div className='userButtons'>
+              <h3 id='dropdown' >Profile</h3>
+              <h3 id='dropdown' >Logout</h3>
+              <h3 id='dropdown' >username</h3>
+              <h3 id='dropdown' >dropdown</h3>
+           </div>
+        </div>
       </div>
-   )
+    )
+  }
 }
+
+export default Header

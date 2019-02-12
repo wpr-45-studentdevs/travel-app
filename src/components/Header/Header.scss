@@ -1,0 +1,27 @@
+.Header{
+    background:white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+}
+h1 {
+    margin-left: 1%;
+}
+ #mainHead{
+    width: 97%;
+    display: flex;
+    font-size: 1em;
+    border-bottom: solid 1px lightgray
+ }
+
+ .userButtons{
+    margin-left: 80%;
+    display: flex;
+    align-items: flex-end;
+}
+
+#dropdown{
+    margin: .3rem
+}

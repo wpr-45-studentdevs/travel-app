@@ -1,13 +1,31 @@
-import React, { Component } from 'react'
-import './Register.scss'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import './Register.scss';
 import LandingNav from '../LandingNav/LandingNav';
 
 export default class Register extends Component {
   state = {
     email: '',
     password: '',
-    confirm: ''
+    confirm: '',
+    displayName: '',
+    bio: '',
   }
+
+  register = async () => {
+    const { email, password, confirm, displayName, bio } = this.state;
+    if(password !== confirm) {
+      alert('Passwords do not match. Please re-enter password')
+    } else if(password.length < 1) {
+      alert('Please enter a password')
+    } else if(confirm.length < 1) {
+      alert('Please confirm your password')
+    } else {
+      const res = axios.post(`/auth/register`, { email, password, displayName, bio })
+    }
+  }
+
   render() {
     return (
       <>
@@ -18,22 +36,53 @@ export default class Register extends Component {
             <div>
               Email:
         <br />
-              <input placeholder='email' type="text" />
+              <input 
+                type="text"
+                placeholder='email'
+                onChange={(e) => this.setState({ email: e.target.value})} 
+              />
             </div>
             <br />
             <div>
               Password:
         <br />
-              <input placeholder='password' type="password" />
+              <input 
+                type="password" 
+                placeholder='password'
+                onChange={(e) => this.setState({ password: e.target.value})}
+              />
             </div>
             <br />
             <div>
               Confirm Password:
         <br />
-              <input type="password" />
+              <input 
+                type="password"
+                placeholder='confirm password'
+                onChange={(e) => this.setState({ confirm: e.target.value})}
+              />
             </div>
             <br />
-            <button>Register</button>
+            <div>
+              Display Name:
+        <br />
+              <input 
+                type="text"
+                placeholder='Display Name'
+                onChange={(e) => this.setState({ displayName: e.target.value})} 
+              />
+            </div>
+            <div>
+              Bio:
+        <br />
+              <input 
+                type="text"
+                placeholder='What do you want people to know about you?'
+                onChange={(e) => this.setState({ bio: e.target.value})} 
+              />
+            </div>
+            <Link to='/'><button>Back</button></Link>
+            <button onClick={this.register}>Register</button>
           </div>
         </div>
       </>

@@ -29,6 +29,7 @@ massive(CONNECTION_STRING).then(db => {
 app.post('/auth/register', authController.register) //register
 app.post('/auth/login', authController.login) //login
 // app.get('/auth/logout', authController.logout) //logout
+// app.get('/api/userData', mainController.userData) // getting the user data off of session.
 
 
 //ENDPOINTS

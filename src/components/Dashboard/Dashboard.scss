@@ -1,0 +1,28 @@
+@import '../../styles.scss';
+
+.body {
+   display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+   align-content: stretch;
+   background-color: $primary-background-color;
+}
+
+.content {
+   width: 100vw;
+   display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.content-window {
+   height: 80vh;
+   width: 60vw;
+   background-color: $secondary-background-color;
+   border-radius: .5em
+}

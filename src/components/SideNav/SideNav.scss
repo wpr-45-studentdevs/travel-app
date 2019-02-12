@@ -1,0 +1,29 @@
+@import '../../styles.scss';
+
+.side-nav{
+   background-color: $secondary-background-color;
+   height: 100vh;
+   width: 15vw;
+      ul {
+         display: flex;
+         flex-direction: column;
+         flex-wrap: nowrap;
+         justify-content: flex-start;
+         align-items: flex-start;
+         align-content: stretch;
+         padding-left: 20px;
+         font-size: 22px;
+            li {
+               margin-top: 10px;
+               list-style-type: none;
+            }
+            a {
+               text-decoration: none;
+               color: black;
+            }
+      }
+}
+
+.add-trip-button:hover {
+   cursor: pointer;
+}

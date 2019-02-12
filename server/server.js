@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
+const tripCtrl = require('./controllers/tripController')
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET } = process.env;
 
@@ -29,3 +30,16 @@ massive(CONNECTION_STRING).then(db => {
 
 
 //ENDPOINTS
+
+
+//individual user's trips
+app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
+
+app.get('/api/activities/:trip_id', tripCtrl.getActivities)
+
+app.get('/api/locations/:trip_id', tripCtrl.getLocations)
+
+app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
+
+app.get('/api/budget/:trip_id', tripCtrl.getBudget)
+

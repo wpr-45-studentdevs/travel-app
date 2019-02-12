@@ -17,6 +17,8 @@ export default class Register extends Component {
     const { email, password, confirm, displayName, bio } = this.state;
     if(password !== confirm) {
       alert('Passwords do not match. Please re-enter password')
+    } else if(email.length < 1) {
+      alert('Please enter your email.')
     } else if(password.length < 1) {
       alert('Please enter a password')
     } else if(confirm.length < 1) {

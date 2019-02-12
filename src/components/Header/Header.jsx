@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "./Header.scss";
-import SimpleMenu from './UserButton'
+import UserMenu from '../Header/UserButton/UserButton';
 import Logo from '../../'
 
 export class Header extends Component {
@@ -8,10 +8,11 @@ export class Header extends Component {
     return (
       <div className="Header">
         <div id="mainHead">
+        <img src = {Logo} className='logo'/>
           <h1>Kanoo</h1>
         <div id='headerSpace'></div>
           <div className="userButtons">
-            <SimpleMenu/>
+            <UserMenu/>
           </div>
         </div>
       </div>

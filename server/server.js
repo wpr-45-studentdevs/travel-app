@@ -5,7 +5,7 @@ const session = require('express-session');
 const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
 
-const { CONNECTION_STRING, SERVER_PORT, SECRET } = process.env;
+const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
 const app = express();
 
@@ -29,10 +29,7 @@ massive(CONNECTION_STRING).then(db => {
 //AUTH ENDPOINTS
 app.post('/auth/register', authController.register) //register
 app.post('/auth/login', authController.login) //login
-app.get("/auth/logout", (req, res) => {
-   req.session.destroy();
-   res.redirect(SERVER_LOGOUT);
- });
+app.get('/auth/logout', authController.logout) //logout
 
 //BUCKET LIST ENDPOINTS
 

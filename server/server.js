@@ -4,7 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const authController = require('./controllers/authController');
 
-const { CONNECTION_STRING, SERVER_PORT, SECRET } = process.env;
+const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
 const app = express();
 
@@ -30,7 +30,6 @@ app.post('/auth/register', authController.register) //register
 app.post('/auth/login', authController.login) //login
 app.get("/auth/logout", (req, res) => {
    req.session.destroy();
-   res.redirect(SERVER_LOGOUT);
  });
 
 //ENDPOINTS

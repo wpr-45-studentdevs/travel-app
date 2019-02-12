@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import SideNav from '../SideNav/SideNav';
 import './BucketList.scss';
+import Header from '../Header/Header';
 
 export default class BucketList extends Component {
    render() {
       return (
          <div>
             <div className='header'>
-               {/* Main Header */}
+            <Header/>
             </div>
             <div className='body'>
                <div className='side-nav'>

@@ -8,9 +8,6 @@ export default class Dashboard extends Component {
       return (
          <div>
             <Header/>
-            <div className='header'>
-               {/* Main Header */}
-            </div>
             <div className='body'>
                <div className='side-nav'>
                   < SideNav />

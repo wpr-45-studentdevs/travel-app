@@ -8,8 +8,8 @@ export default class MyTrips extends Component {
       {
         photos: ['https://d3hne3c382ip58.cloudfront.net/resized/750x420/4-days-3-nights-amazing-tanzania-safari-experience-tour-2-31090_1510029029.JPG'],
         title: 'Southern Africa',
-        activities: ['safari'],
-        locations: ['tanzania'],
+        activities: ['safari', 'get chased by a cheetah', 'blessed the reigns'],
+        locations: ['tanzania', 'zimbabwe'],
         dates: '5/20/19 - 6/3/19',
         budget: '$3000'
 
@@ -18,8 +18,8 @@ export default class MyTrips extends Component {
       {
         photos: ['https://www.barcelo.com/pinandtravel/wp-content/uploads/2018/04/Apertura1-3-1170x532.jpg'],
         title: 'Mexico',
-        activities: ['swim in a cenote'],
-        locations: ['yacatan peninsula'],
+        activities: ['swim in a cenote', 'experience a strong undertow'],
+        locations: ['yacatan peninsula', 'chichen itza'],
         dates: '6/20/19 - 7/3/19',
         budget: '$1000'
       }
@@ -27,8 +27,18 @@ export default class MyTrips extends Component {
   }
   render() {
     let tripToDisplay = this.state.trips.map((trip, i) => {
+      let activities = trip.activities.map((activity, i) => {
+        return (
+          <li key={i}>{activity}</li>
+        )
+      })
+      let locations = trip.locations.map((location, i) => {
+        return (
+          <li key={i}>{location}</li>
+        )
+      })
       return (
-        <div className='tripCard'>
+        <div key={i} className='tripCard'>
           <div className='mainPhoto'>
           <img src={trip.photos[0]} alt="mainphoto" />
           </div>
@@ -37,13 +47,13 @@ export default class MyTrips extends Component {
             <div>
               <h4>Activities:</h4>
               <ul>
-                <li>{trip.activities[0]}</li>
+                {activities}
               </ul>
             </div>
             <div>
               <h4>Locations:</h4>
               <ul>
-                <li>{trip.locations[0]}</li>
+                {locations}
               </ul>
             </div>
             <br />
@@ -53,8 +63,6 @@ export default class MyTrips extends Component {
         </div>
         //photo will be either main photo chosen-> will need updated table
         // or just random photo/ first photo
-        //activities need to be mapped
-        //locations need to be mapped
         //budget will be calculated total
       )
     })

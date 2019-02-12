@@ -16,7 +16,12 @@ img {
 
 .tripCard {
   background-color: antiquewhite;
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
+ul {
+  text-align: start;
 }
 
 .tripDisplay {

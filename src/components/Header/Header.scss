@@ -1,30 +1,36 @@
 
 .Header{
-    background: rgb(22, 22, 22);
-    color: lightgray;
+    background: whitesmoke;
+    color: rgb(117, 117, 117);
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10rem;
+    height: 7rem;
 }
 h1 {
     margin-left: 1%;
 }
+.logo{
+    height: 75px;
+    opacity: .7;
+}
 #headerSpace{
-    width: 85%
+    width: 95%
 }
  #mainHead{
-    background: rgb(22, 22, 22);
+    background: whitesmoke;
     width: 97vw;
     display: flex;
     font-size: 1em;
-    border-bottom: solid .1px rgb(44, 44, 44)
+    border-bottom: solid .1px lightgray
  }
 
  .userButtons{
     display: flex;
     align-items: flex-end;
+    margin-bottom: 5px;
+    color: white;
 }
 
 #dropdown{

@@ -1,0 +1,25 @@
+.mainPhoto {
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+}
+
+img {
+  height: 300px;
+  margin: auto;
+}
+
+.listFlex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tripCard {
+  background-color: antiquewhite;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+ul {
+  text-align: start;
+}

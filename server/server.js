@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
+const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
 
@@ -27,8 +28,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 //AUTH ENDPOINTS
-app.post('/auth/register', authController.register) //register
+app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
+app.get('/api/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
 //BUCKET LIST ENDPOINTS
@@ -45,3 +47,16 @@ app.post('/bucketlist', bucketController.addBucketListItem);
 app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
 //ENDPOINTS
+
+
+//individual user's trips
+app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
+
+app.get('/api/activities/:trip_id', tripCtrl.getActivities)
+
+app.get('/api/locations/:trip_id', tripCtrl.getLocations)
+
+app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
+
+app.get('/api/budget/:trip_id', tripCtrl.getBudget)
+

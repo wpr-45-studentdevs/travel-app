@@ -28,8 +28,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 //AUTH ENDPOINTS
-app.post('/auth/register', authController.register) //register
+app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
+app.get('/api/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
 //BUCKET LIST ENDPOINTS

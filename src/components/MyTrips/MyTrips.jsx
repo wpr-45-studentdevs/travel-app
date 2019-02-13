@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import "./MyTrips.scss";
 import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";

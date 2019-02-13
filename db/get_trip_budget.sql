@@ -1,3 +1,3 @@
 SELECT *
-FROM trip_budget
+FROM budget
 WHERE trip_id = 2;

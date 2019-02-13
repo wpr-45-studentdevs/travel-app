@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const authController = require('./controllers/authController');
+const tripController = require('./controllers/tripController')
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
@@ -31,3 +32,4 @@ app.post('/auth/login', authController.login) //login
 app.get('/auth/logout', authController.logout) //logout
 
 //ENDPOINTS
+app.get('/trips/getAllPublic', tripController.getAllPublicTrips)

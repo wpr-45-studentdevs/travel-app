@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import "./Header.scss";
 import UserMenu from '../Header/UserButton/UserButton';
-import Logo from '../../'
+// import Logo from '../../logo.png'
+import Logo from '../../images/kanoo_logo1.svg'
 
 export class Header extends Component {
   render() {

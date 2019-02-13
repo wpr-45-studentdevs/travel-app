@@ -1,5 +1,7 @@
 const initialState = {
-   user: {},
+      user: {
+            user_id: 1
+      },
 }
 
 //ACTION TYPES
@@ -7,18 +9,18 @@ const GET_USER_DATA = 'GET_USER_DATA'
 
 //ACTION CREATORS
 export function getUserData(userData) {
-   return {
-      type: GET_USER_DATA,
-      payload: userData
-   }
+      return {
+            type: GET_USER_DATA,
+            payload: userData
+      }
 }
 
 //REDUCER
 export default function reducer(state = initialState, action) {
-   switch(action.type) {
-      case GET_USER_DATA: 
-         return {...state, user: action.payload}
-      default:
-         return state
-   }
+      switch (action.type) {
+            case GET_USER_DATA:
+                  return { ...state, user: action.payload }
+            default:
+                  return state
+      }
 }

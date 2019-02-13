@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import "./MyTrips.scss";
 import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";
@@ -55,6 +56,9 @@ export default class MyTrips extends Component {
             <br />
           </div>
           <h4>Budget: {trip.budget}</h4>
+          <Link to='/budget' >
+            <button>Budget</button>
+          </Link>
         </div>
         //photo will be either main photo chosen-> will need updated table
         // or just random photo/ first photo

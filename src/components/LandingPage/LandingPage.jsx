@@ -31,6 +31,8 @@ export default class LandingPage extends Component {
                      <img className="carousel-img" src="https://vignette.wikia.nocookie.net/christmasspecials/images/d/d6/Mr.Krabs.jpg/revision/latest?cb=20101201062252" alt=""/>
                   </div>
                </Slider>
+
+               
             </div>
 
          </>

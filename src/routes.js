@@ -8,6 +8,7 @@ import MyTrips from './components/MyTrips/MyTrips';
 import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
 import Budget from './components/Budget/Budget';
+import TripDetails from './components/TripDetails/TripDetails';
 
 
 export default (
@@ -18,6 +19,7 @@ export default (
       <Route component={Dashboard} path='/dashboard' ></Route>
       <Route component={Profile} path='/profile' ></Route>
       <Route component={MyTrips} path='/my-trips' ></Route>
+      <Route component={TripDetails} path='/trip-details' ></Route>
       <Route component={BucketList} path='/bucket-list' ></Route>
       <Route component={Budget} path='/budget/' ></Route>
    </Switch>

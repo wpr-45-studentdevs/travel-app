@@ -1,7 +1,5 @@
 const initialState = {
-      user: {
-            user_id: 1
-      },
+      user: {},
 }
 
 //ACTION TYPES

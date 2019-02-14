@@ -30,7 +30,7 @@ massive(CONNECTION_STRING).then(db => {
 //AUTH ENDPOINTS
 app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
-app.get('/api/userData', authController.userData) // gets user data off the session to see if they're logged in
+app.get('/auth/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
 //BUCKET LIST ENDPOINTS
@@ -49,6 +49,7 @@ app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 //ENDPOINTS
 
 
+
 //individual user's trips
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
 
@@ -59,4 +60,6 @@ app.get('/api/locations/:trip_id', tripCtrl.getLocations)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
 app.get('/api/budget/:trip_id', tripCtrl.getBudget)
+
+app.post('/api/tripInfo', tripCtrl.getSingleTrip)
 

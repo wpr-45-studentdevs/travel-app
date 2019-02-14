@@ -2,8 +2,23 @@ import React, { Component } from 'react'
 import Header from '../Header/Header'
 import './Dashboard.scss';
 import SideNav from '../SideNav/SideNav';
+import axios from 'axios';
+import { getUserData } from '../../ducks/reducer';
+import { connect } from 'react-redux'
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+   constructor() {
+      super();
+      this.state = {}
+   }
+
+   async componentDidMount() {
+      const res = await axios.get(`/auth/userData`);
+      if(res.data) {
+         this.props.getUserData()
+      }
+   }
+
    render() {
       return (
          <div>
@@ -23,3 +38,6 @@ export default class Dashboard extends Component {
    }
 }
 
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, { getUserData })(Dashboard) 

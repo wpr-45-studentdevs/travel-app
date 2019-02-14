@@ -1,6 +1,11 @@
 
-.tripDisplay {
+.trip-display {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.content-window {
+  width: 90%;
+  height: 90%;
 }

@@ -7,7 +7,7 @@ export default function SideNav() {
       <div className='side-navbar'>
          <ul>
             <li className='add-trip-button'>Add Trip</li>
-            <Link to='my-trips'>
+            <Link to='/my-trips'>
                <li>My Trips</li>
             </Link>
             <Link to='/bucket-list'>

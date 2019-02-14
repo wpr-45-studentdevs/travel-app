@@ -46,6 +46,9 @@ app.post('/bucketlist', bucketController.addBucketListItem);
 //Returns bucket list of the user on sessions
 app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
+//Deletes a bucket list item
+//Returns the deleted item
+app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem);
 //ENDPOINTS
 
 

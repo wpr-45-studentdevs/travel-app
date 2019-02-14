@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
+const tripController = require('./controllers/tripController')
 const bucketController = require('./controllers/bucketController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
@@ -46,7 +47,13 @@ app.post('/bucketlist', bucketController.addBucketListItem);
 //Returns bucket list of the user on sessions
 app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
+//Deletes a bucket list item
+//Returns the deleted item
+app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem);
 //ENDPOINTS
+
+//Public trips
+app.get('/trips/getAllPublic', tripController.getAllPublicTrips)
 
 
 

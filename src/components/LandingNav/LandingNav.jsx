@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function LandingNav(props) {
    return (
-      <>
+      <div className='landing-nav-container'>
          <nav className='landing-nav'>
             <h1 className='landing-nav-title'>Kanoo</h1>
             {props.auth ?
@@ -12,16 +12,15 @@ export default function LandingNav(props) {
                :
                <>
                   <div>
-                     <Link to='/login'>
-                        <button>Login</button>
+                     <Link to='/login' className='landing-nav-buttons'>
+                        Login
                      </Link>
-                     <Link to='/register'>
-                        <button>Register</button>
+                     <Link to='/register' className='landing-nav-buttons'>
+                        Register
                      </Link>
                   </div>
                </>}
-
          </nav>
-      </>
+      </div>
    )
 }

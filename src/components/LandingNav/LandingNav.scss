@@ -1,13 +1,33 @@
 @import '../../styles.scss';
 
+.landing-nav-container  {
+    width: 100vw;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: baseline;
+	align-content: stretch;
+    
+}
+
 .landing-nav {
+    width: 95vw;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 85px;
-    background-color: $primary-background-color;
+    background-color: rgba(37, 36, 36, 0);
+    position: fixed;
+    z-index: 1;
+    border-bottom: 1px solid white;
 }
 
 .landing-nav-title {
     color: white;
+}
+
+.landing-nav-buttons {
+
 }

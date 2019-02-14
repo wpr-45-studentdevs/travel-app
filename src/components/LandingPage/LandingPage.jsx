@@ -2,33 +2,74 @@ import React, { Component } from 'react'
 import './LandingPage.scss';
 import LandingNav from '../LandingNav/LandingNav';
 import Slider from 'react-slick';
+import landing1 from '../../images/landing1.jpg'
+import landing2 from '../../images/landing2.jpg'
+import landing3 from '../../images/landing3.jpg'
+import landing4 from '../../images/landing4.jpg'
+import landing5 from '../../images/landing5.jpg'
+import landing6 from '../../images/landing6.jpg'
+import landing7 from '../../images/landing7.jpg'
+import landing8 from '../../images/landing8.jpg'
+import landing9 from '../../images/landing9.jpg'
+import landing11 from '../../images/landing11.jpg'
+import landing12 from '../../images/landing12.jpg'
+import landing13 from '../../images/landing13.jpg'
+
 
 export default class LandingPage extends Component {
    render() {
       var settings = {
-         dots: true,
+         dots: false,
          infinite: true,
          speed: 500,
          slidesToShow: 1,
          slidesToScroll: 1,
          autoplay: true,
          autoplaySpeed: 4500,
+         pauseOnHover: false,
+         initialSlide: 8,
       };
 
       return (
          <>
             <LandingNav />
-            <div>I will be a carousel</div>
             <div>
-               <Slider {...settings}>
+               <Slider {...settings} className='slider'>
                   <div>
-                     <img className="carousel-img" src="https://img.huffingtonpost.com/asset/5a25a7291400001d57b6b5a8.jpeg?cache=gvij4youfr&ops=1910_1000" alt=""/>
+                     <img className="carousel-img" src={landing1} alt=""/>
                   </div>
                   <div>
-                     <img className="carousel-img" src="https://i.kym-cdn.com/entries/icons/original/000/026/111/4917038d8bbd7fe362bed691690c7da4.jpg" alt=""/>
+                     <img className="carousel-img" src={landing2} alt=""/>
                   </div>
                   <div>
-                     <img className="carousel-img" src="https://vignette.wikia.nocookie.net/christmasspecials/images/d/d6/Mr.Krabs.jpg/revision/latest?cb=20101201062252" alt=""/>
+                     <img className="carousel-img" src={landing3} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing4} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing5} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing6} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing7} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing8} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing9} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing11} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing12} alt=""/>
+                  </div>
+                  <div>
+                     <img className="carousel-img" src={landing13} alt=""/>
                   </div>
                </Slider>
             </div>

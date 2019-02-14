@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
+const tripController = require('./controllers/tripController')
 const bucketController = require('./controllers/bucketController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
@@ -47,6 +48,9 @@ app.post('/bucketlist', bucketController.addBucketListItem);
 app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
 //ENDPOINTS
+
+//Public trips
+app.get('/trips/getAllPublic', tripController.getAllPublicTrips)
 
 
 //individual user's trips

@@ -1,0 +1,19 @@
+@import '../../styles.scss';
+
+.budget-inputs {
+   display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+   align-content: stretch;
+      h3 {
+         margin-top: 2em;
+      }
+}
+
+.budget-total {
+   h2 {
+      margin-top: 3em;
+   }
+}

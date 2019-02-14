@@ -6,7 +6,7 @@ export default function LandingNav(props) {
    return (
       <>
          <nav className='landing-nav'>
-            <h1 className='landing-nav-title'>Travelicity</h1>
+            <h1 className='landing-nav-title'>Kanoo</h1>
             {props.auth ?
                <> </>
                :

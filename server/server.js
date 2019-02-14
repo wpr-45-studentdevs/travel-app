@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
+const tripController = require('./controllers/tripController')
 const bucketController = require('./controllers/bucketController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
@@ -28,8 +29,9 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 //AUTH ENDPOINTS
-app.post('/auth/register', authController.register) //register
+app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
+app.get('/auth/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
 //BUCKET LIST ENDPOINTS
@@ -45,7 +47,14 @@ app.post('/bucketlist', bucketController.addBucketListItem);
 //Returns bucket list of the user on sessions
 app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 
+//Deletes a bucket list item
+//Returns the deleted item
+app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem);
 //ENDPOINTS
+
+//Public trips
+app.get('/trips/getAllPublic', tripController.getAllPublicTrips)
+
 
 
 //individual user's trips

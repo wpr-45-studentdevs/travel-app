@@ -1,0 +1,48 @@
+@import '../../styles.scss';
+
+.tripCard {
+  background-color: antiquewhite;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 575px;
+}
+
+.mainPhoto {
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+}
+
+img {
+  height: 300px;
+  margin: auto;
+}
+
+.listFlex {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+ul {
+  text-align: start;
+}
+
+.modal-wrapper {
+  height: 100%;
+  width: calc(100vw - #{$side-nav-width});
+  background-color: rgba(24, 22, 22, 0.842);
+  position: absolute;
+  top: 7em;
+  left: $side-nav-width;
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal {
+  height: 90%;
+  width: 90%;
+  background-color: $secondary-background-color;
+  z-index: 1;
+}

@@ -3,7 +3,7 @@
 .side-nav{
    background-color: $secondary-background-color;
    height: 100vh;
-   width: 15vw;
+   width: $side-nav-width;
       ul {
          display: flex;
          flex-direction: column;
@@ -21,9 +21,42 @@
                text-decoration: none;
                color: black;
             }
+            a.active{
+               background: white;
+            }
+            
       }
 }
 
 .add-trip-button:hover {
    cursor: pointer;
 }
+
+.modalWrapper{
+   top: 0;
+   position: fixed;
+   background: rgba(49, 48, 48, .7);
+   height: 100vh;
+   width: 100vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   button{
+      margin-top: 1rem;
+   }
+}
+
+.modal{
+   height: 50vh;
+   width: 50vw;
+   background: rgb(168, 168, 168);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.checkboxes{
+   display: flex;
+   margin-top: 1rem;
+}
+

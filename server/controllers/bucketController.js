@@ -4,7 +4,6 @@ module.exports = {
         const db = req.app.get('db');
 
         const bucketList = await db.get_bucket_list({user_id});
-        console.log(bucketList);
         res.status(200).send(bucketList);
     },
     addBucketListItem: async (req, res) => {
@@ -27,5 +26,16 @@ module.exports = {
         }
         const updatedItem = await db.update_bucket_list_item({title, completed, bucket_list_id});
         res.status(200).send(updatedItem);
+    },
+    deleteBucketListItem: async (req, res) => {
+        const {bucket_list_id} = req.params;
+        const db = req.app.get('db');
+
+        const item = await db.find_bucket_list_item({bucket_list_id});
+        if (item.length === 0) {
+            res.status(404).send({message: 'Could not find bucket list item'});   
+        }
+        const deletedItem = await db.delete_bucket_list_item({bucket_list_id});
+        res.status(200).send(deletedItem);
     }
 }

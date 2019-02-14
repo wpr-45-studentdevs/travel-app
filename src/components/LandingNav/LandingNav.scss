@@ -1,9 +1,11 @@
+@import '../../styles.scss';
+
 .landing-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 85px;
-    background: rgb(8, 163, 112);
+    background-color: $primary-background-color;
 }
 
 .landing-nav-title {

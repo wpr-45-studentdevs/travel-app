@@ -1,44 +1,29 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import "./MyTrips.scss";
 import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
-import Trip from "../Trip/Trip";
+import TripCard from "../TripCard/TripCard";
+import TripDetails from '../TripDetails/TripDetails';
 
 class MyTrips extends Component {
   state = {
-    trips: [
-      // {
-      //   photos: ['https://d3hne3c382ip58.cloudfront.net/resized/750x420/4-days-3-nights-amazing-tanzania-safari-experience-tour-2-31090_1510029029.JPG'],
-      //   title: 'Southern Africa',
-      //   activities: ['safari', 'get chased by a cheetah', 'blessed the reigns'],
-      //   locations: ['tanzania', 'zimbabwe'],
-      //   dates: '5/20/19 - 6/3/19',
-      //   budget: '$3000'
-
-      // },
-
-      // {
-      //   photos: ['https://www.barcelo.com/pinandtravel/wp-content/uploads/2018/04/Apertura1-3-1170x532.jpg'],
-      //   title: 'Mexico',
-      //   activities: ['swim in a cenote', 'experience a strong undertow'],
-      //   locations: ['yacatan peninsula', 'chichen itza'],
-      //   dates: '6/20/19 - 7/3/19',
-      //   budget: '$1000'
-      // }
-    ]
+    trips: [],
   };
 
-  componentDidMount() {
-    this.getTrips()
+  componentDidMount = async () => {
+    const res = await axios.get('/auth/userData')
+    if(res.data) {
+      await this.props.getUserData(res.data)
+      this.getTrips()
+    }
   }
 
 
   getTrips = async () => {
-    const { user_id } = this.props
+    const { user_id } = this.props.user
     let res = await axios.get(`/api/userTrips/${user_id}`)
     this.setState({
       trips: res.data
@@ -47,12 +32,14 @@ class MyTrips extends Component {
 
 
   render() {
-    let tripToDisplay = this.state.trips.map((trip, i) => {
+    let displayAllTrips = this.state.trips.map((trip) => {
       return (
-        <Trip
-        trip={trip}
-        key={i}/>
+        <TripCard
+          trip={trip}
+          key={trip.trip_id}
+        />
       );
+      
     });
     return (
       <div>
@@ -65,7 +52,9 @@ class MyTrips extends Component {
             <div className="content-window">
               <h1>My Trips</h1>
               <br />
-              <div className="tripDisplay">{tripToDisplay}</div>
+              <div className='trip-display'>
+                {displayAllTrips}
+              </div>
             </div>
           </div>
         </div>
@@ -75,8 +64,7 @@ class MyTrips extends Component {
 }
 
 const mapStateToProps = (reduxState) => {
-  const { user } = reduxState
-  return user
+  return reduxState
 }
 
 export default connect(mapStateToProps, { getUserData })(MyTrips)

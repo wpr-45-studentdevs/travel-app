@@ -3,7 +3,7 @@
 .side-nav{
    background-color: $secondary-background-color;
    height: 100vh;
-   width: 15vw;
+   width: $side-nav-width;
       ul {
          display: flex;
          flex-direction: column;

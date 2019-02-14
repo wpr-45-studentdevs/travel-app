@@ -58,6 +58,7 @@ export default class BucketList extends Component {
                <div className='side-nav'>
                   < SideNav />
                </div>
+               {/* Content and content-window class names already exist */}
                <div className='content'>
                   <div className='content-window'>
                      <h2>Bucket List</h2>

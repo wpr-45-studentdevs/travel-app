@@ -8,7 +8,6 @@
 	justify-content: center;
 	align-items: baseline;
 	align-content: stretch;
-    
 }
 
 .landing-nav {
@@ -28,6 +27,23 @@
     color: white;
 }
 
-.landing-nav-buttons {
+.landing-nav-register-button {
+    padding: 11px 25px;
+    margin-left: 25px;
+    border: 1.5px white solid;
+    color: white;
+    border-radius: 50px;
+}
 
+.landing-nav-register-button:hover {
+    background-color: rgba(247, 240, 240, 0.459);
+    transition: .33s;
+}
+
+.landing-nav-login-button {
+    color: white;
+}
+
+.landing-nav-login-button:hover {
+    color: rgb(202, 201, 201);
 }

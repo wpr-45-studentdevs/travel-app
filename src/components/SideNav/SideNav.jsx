@@ -39,16 +39,16 @@ export default class SideNav extends Component {
               <input placeholder="trip name" />
               <input placeholder="Trip Date" />
               <input placeholder="Trip Length" />
-              <div className = 'checkboxes'>
-                 <span>Trip Completed?</span>
-                 <input type="checkbox" placeholder="trip name" />
+              <div className='checkboxes'>
+                <span>Trip Completed?</span>
+                <input type="checkbox" placeholder="trip name" />
               </div>
-              <div className = 'checkboxes'>
-                 <span>Trip Public?</span>
-                 <input type="checkbox" placeholder="trip name" />
+              <div className='checkboxes'>
+                <span>Trip Public?</span>
+                <input type="checkbox" placeholder="trip name" />
               </div>
               <button>Save</button>
-              <button onClick={()=>this.setState({toggleModal: false})}>Close</button>
+              <button onClick={() => this.setState({ toggleModal: false })}>Close</button>
             </div>
           </div>
         ) : null}

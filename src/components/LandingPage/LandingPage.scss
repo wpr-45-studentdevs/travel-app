@@ -1,7 +1,10 @@
-// .carousel-img {
-//     width: 50vw;
-//     height: 50vh;
-// }
+.carousel-img {
+    margin: 0;
+    width: 95vw;
+    height: 100vh;
+    filter: brightness(75%);
+    overflow: hidden;
+}
 
 .each-fade {
     display: flex;
@@ -22,6 +25,20 @@
     width: 100%;
     height: 100%;
     filter: brightness(75%);
+}
+
+.showing-fade {
+    animation-duration: 3s;
+    z-index: 0;
+}
+
+.slides {
+    filter: brightness(75%);
+    width: 100vw;
+}
+
+.slideshow-container {
+    height: 90vh;
 }
 
 

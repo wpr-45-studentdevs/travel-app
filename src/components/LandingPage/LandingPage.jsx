@@ -16,9 +16,21 @@ import landing9 from '../../images/landing9.jpg'
 import landing11 from '../../images/landing11.jpg'
 import landing12 from '../../images/landing12.jpg'
 import landing13 from '../../images/landing13.jpg'
+import Slideshow from 'react-slidez';
 
 export default class LandingPage extends Component {
    render() {
+
+      const settings = {
+         dots: false,
+         infinite: true,
+         speed: 500,
+         slidesToShow: 1,
+         slidesToScroll: 1,
+         fade: true,
+         autoplay: true,
+         pauseOnHover: false
+      }
 
       const fadeImages = [
          landing1,
@@ -32,25 +44,25 @@ export default class LandingPage extends Component {
          landing9,
          landing11,
          landing12,
-         landing13
+         landing13,
          // 'https://img.huffingtonpost.com/asset/5a25a7291400001d57b6b5a8.jpeg?cache=gvij4youfr&ops=1910_1000',
          // 'https://i.kym-cdn.com/entries/icons/original/000/026/111/4917038d8bbd7fe362bed691690c7da4.jpg',
          // 'https://vignette.wikia.nocookie.net/christmasspecials/images/d/d6/Mr.Krabs.jpg/revision/latest?cb=20101201062252'
       ]
 
-      const fadeProperties = {
-         duration: 5000,
-         transitionDuration: 1000,
-         infinite: true,
-         indicators: false,
-         arrows: false
-      }
+      // const fadeProperties = {
+      //    duration: 5000,
+      //    transitionDuration: 1000,
+      //    infinite: true,
+      //    indicators: false,
+      //    arrows: false
+      // }
 
-      const Slideshow = () => {
-         return (
-            <>
-               <Fade {...fadeProperties}>
-                  {/* <div className='each-fade'>
+      // const Slideshow = () => {
+      //    return (
+      //       <>
+      //          <Fade {...fadeProperties}>
+      {/* <div className='each-fade'>
                      <div className='image-container'>
                         <img src={fadeImages[0]} alt="" />
                      </div>
@@ -68,32 +80,41 @@ export default class LandingPage extends Component {
                      </div>
                      <h2>Third Slide!</h2>
                   </div> */}
-                  {
-                     fadeImages.map((each, i) => {
-                        return (
-                           <div key={i}>
-                              <div className='each-fade'>
-                                 <div className='image-container'>
-                                    <img className='slide-img' src={each} alt="" />
-                                 </div>
-                              </div>
-                           </div>
-                        )
-                     })
-                  }
-               </Fade>
-            </>
+      //             {
+      //                fadeImages.map((each, i) => {
+      //                   return (
+      //                      <div key={i}>
+      //                         <div className='each-fade'>
+      //                            <div className='image-container'>
+      //                               <img className='slide-img' src={each} alt="" />
+      //                            </div>
+      //                         </div>
+      //                      </div>
+      //                   )
+      //                })
+      //             }
+      //          </Fade>
+      //       </>
+      //    )
+      // }
+      const photos = fadeImages.map((photo, i) => {
+         return (
+            <div key={i} >
+               <img className='carousel-img' src={photo} alt="" />
+            </div>
          )
-      }
+      })
       return (
          <>
-            <LandingNav/>
-            {Slideshow()}
+            <LandingNav />
+            <Slider {...settings}>
+               {photos}
+            </Slider>
          </>
       )
    }
 }
-      
+
       // var settings = {
       //    dots: true,
       //    infinite: true,

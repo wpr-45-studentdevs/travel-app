@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './TripCard.scss';
+import placeholderImage from '../../images/placeholderImage.jpg';
 
 class TripCard extends Component {
 
@@ -8,26 +9,26 @@ class TripCard extends Component {
     activities: [],
     locations: [],
     budget: [],
-    mainPhoto: '',
+    mainPhoto: placeholderImage,
     budgetTotal: 0,
     showDetails: false,
   }
 
-  componentDidMount = () => {
-    this.getInfo();
+  componentDidMount = async () => {
+    await this.getInfo();
   }
-  
+
   handleBackClick() {
     this.setState({
       showDetails: false
     })
   }
 
-  getInfo() {
-    this.getActivities()
-    this.getLocations()
-    this.getPhotos()
-    this.getBudgetTotal()
+  async getInfo() {
+    await this.getActivities()
+    await this.getLocations()
+    await this.getPhotos()
+    await this.getBudgetTotal()
   }
 
   getActivities = async () => {
@@ -48,10 +49,17 @@ class TripCard extends Component {
 
   getPhotos = async () => {
     const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/trip-photos/${trip_id}`)
-    this.setState({
-      mainPhoto: res.data[0].photo_url
-    })
+    let res = await axios.get(`/api/trip-photos/${trip_id}`);
+    console.log(res)
+    if (res.data.length === 0) {
+      this.setState({
+        mainPhoto: placeholderImage
+      })
+    } else {
+      this.setState({
+        mainPhoto: res.data[0].photo_url
+      })
+    }
   }
 
   getBudgetTotal = async () => {
@@ -85,28 +93,16 @@ class TripCard extends Component {
 
     return (
       <div className='tripCard'>
-        <div onClick={() => this.setState({ showDetails: true })}>
-          <div className='mainPhoto'>
-            <img src={mainPhoto} alt="mainphoto" />
+        <div onClick={() => this.setState({ showDetails: true })} className='trip-details-body'>
+          <div className='trip-name-date'>
+            <h3>{trip.trip_name}</h3>
+            <p>Date: {trip.date}</p>
           </div>
-          <h3>{trip.trip_name}</h3>
-          <p>Date: {trip.date}</p>
-          <div className="listFlex">
-            <div>
-              <h4>Activities:</h4>
-              <ul>
-                {displayActivities}
-              </ul>
-            </div>
-            <div>
-              <h4>Locations:</h4>
-              <ul>
-                {locationsToDisplay}
-              </ul>
-            </div>
-            <br />
+          <div className='card-image-container' style={{
+            backgroundImage: `url(${mainPhoto})`
+          }}>
+
           </div>
-          <h4>Budget: </h4>
         </div>
 
         {/* MODAL */}
@@ -114,24 +110,36 @@ class TripCard extends Component {
           this.state.showDetails === true ?
             <div className='modal-wrapper'>
               <div className='modal'>
-                <h2>{trip.trip_name}</h2>
-                <h3>{trip.date}</h3>
-                <div className='mainPhoto'>
-                  <img src={mainPhoto} alt="mainphoto" />
+                <div className='trip-details-metadata'>
+                  <h2>{trip.trip_name} Details</h2>
+                  <h3>{trip.date}</h3>
                 </div>
-                <div>
-                  <h4>Activities:</h4>
-                  <ul>
-                    {displayActivities}
-                  </ul>
+                {/* <div className='trip-photos'>
+                  <img src={mainPhoto} alt="main" />
+                </div> */}
+                <div className='trip-detail-category-container' >
+                  <div className='trip-detail-box-container'>
+                    <div className='trip-locations-box detail-box' >
+                      <h4>Locations</h4>
+                      <ul>
+                        {locationsToDisplay}
+                      </ul>
+                    </div>
+                    <div className='trip-activities-box detail-box' >
+                      <h4>Activities</h4>
+                      <ul>
+                        {displayActivities}
+                      </ul>
+                    </div>
+                    <div className='trip-friends-box detail-box' >
+                      <h4>Friends:</h4>
+                    </div>
+                  </div>
+                  <div className='trip-budget-container detail-box'>
+                    <h4>Budget</h4>
+                    <h4>Total: {budgetTotal}</h4>
+                  </div>
                 </div>
-                <div>
-                  <h4>Locations:</h4>
-                  <ul>
-                    {locationsToDisplay}
-                  </ul>
-                </div>
-                <h4>Budget: </h4>
                 <button onClick={() => this.setState({ showDetails: false })}>Back</button>
               </div>
             </div>

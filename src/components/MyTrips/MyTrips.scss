@@ -1,11 +1,56 @@
-
-.trip-display {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.body {
+  height: 100vh;
 }
 
-.content-window {
-  width: 90%;
-  height: 90%;
+.content {
+  width: 100%;
+  background-image: url('../../images/travel.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.content-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 37, 37, 0.692);
+}
+
+.my-trips-content-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: space-around;
+  z-index: 1;
+  color: white;
+  overflow: auto;
+}
+
+.trip-display {
+  padding-top: 150px;
+  padding-bottom: 25px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: space-around;
+  overflow: auto;
+}
+
+.trip-detail-category-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.trip-detail-box-container {
+  
+}
+
+.trip-budget-container {
+
 }

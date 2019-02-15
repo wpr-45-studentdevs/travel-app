@@ -21,7 +21,7 @@ export default class LandingPage extends Component {
       var settings = {
          dots: false,
          infinite: true,
-         speed: 500,
+         speed: 1200,
          slidesToShow: 1,
          slidesToScroll: 1,
          autoplay: true,

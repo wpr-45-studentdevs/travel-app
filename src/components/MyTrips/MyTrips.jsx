@@ -14,7 +14,7 @@ class MyTrips extends Component {
 
   componentDidMount = async () => {
     const res = await axios.get('/auth/userData')
-    if(res.data) {
+    if (res.data) {
       await this.props.getUserData(res.data)
       this.getTrips()
     }
@@ -38,7 +38,7 @@ class MyTrips extends Component {
           key={trip.trip_id}
         />
       );
-      
+
     });
     return (
       <div>
@@ -48,11 +48,12 @@ class MyTrips extends Component {
             <SideNav />
           </div>
           <div className="content">
-            <div className="content-window">
-              <h1>My Trips</h1>
-              <br />
-              <div className='trip-display'>
-                {displayAllTrips}
+            <div className='content-overlay'>
+              <div className="my-trips-content-window">
+                <h1>My Trips</h1>
+                <div className='trip-display'>
+                  {displayAllTrips}
+                </div>
               </div>
             </div>
           </div>

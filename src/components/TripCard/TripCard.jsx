@@ -13,8 +13,9 @@ class TripCard extends Component {
     showDetails: false,
   }
 
-  componentDidMount = () => {
-    this.getInfo();
+  componentDidMount = async () => {
+    await this.getInfo();
+    console.log(this.state)
   }
   
   handleBackClick() {
@@ -131,7 +132,8 @@ class TripCard extends Component {
                     {locationsToDisplay}
                   </ul>
                 </div>
-                <h4>Budget: </h4>
+                <h4>Budget:</h4>
+                <h4>Budget Total: {budgetTotal}</h4>
                 <button onClick={() => this.setState({ showDetails: false })}>Back</button>
               </div>
             </div>

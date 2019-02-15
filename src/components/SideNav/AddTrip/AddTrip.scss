@@ -1,0 +1,33 @@
+.modalFullPage{
+    top: 0;
+    position: fixed;
+    background: rgba(49, 48, 48, .7);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    button{
+       margin-top: 1rem;
+    }
+ }
+ 
+ .modalAddTrip{
+    height: 70vh;
+    width: 50vw;
+    background: rgb(168, 168, 168);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+ 
+ .checkboxes{
+    display: flex;
+    margin-top: 1rem;
+ }
+ 
+ .addTripInputs{
+    width: 200px;
+    margin-top: 1rem;
+ }

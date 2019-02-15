@@ -48,7 +48,6 @@ export default class Dashboard extends Component {
          });
       }
       const showPublicTrips = filteredArr.map((trip, i) => {
-         console.log(trip);
          return (
             <div key={i}>
                <div>{trip.trip_name} {trip.date}</div>

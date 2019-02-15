@@ -7,7 +7,8 @@
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: baseline;
-	align-content: stretch;
+    align-content: stretch;
+    overflow: hidden;
 }
 
 .landing-nav {
@@ -33,6 +34,7 @@
     border: 1.5px white solid;
     color: white;
     border-radius: 50px;
+    transition: .33s;
 }
 
 .landing-nav-register-button:hover {
@@ -42,8 +44,14 @@
 
 .landing-nav-login-button {
     color: white;
+    transition: .33s;
 }
 
 .landing-nav-login-button:hover {
     color: rgb(202, 201, 201);
+    transition: .33s;
+}
+
+.landing-nav > img {
+    height: 75px;
 }

@@ -25,9 +25,10 @@ export default class LandingPage extends Component {
          slidesToShow: 1,
          slidesToScroll: 1,
          autoplay: true,
-         autoplaySpeed: 4500,
+         autoplaySpeed: 7500,
          pauseOnHover: false,
          initialSlide: 8,
+         fade: true
       };
 
       return (

@@ -1,3 +1,16 @@
+.auth-register-page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../images/landing14.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+}
+
 .register {
   display: flex;
   justify-content: center;

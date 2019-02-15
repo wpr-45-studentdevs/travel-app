@@ -6,7 +6,6 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
 import TripCard from "../TripCard/TripCard";
-import TripDetails from '../TripDetails/TripDetails';
 
 class MyTrips extends Component {
   state = {

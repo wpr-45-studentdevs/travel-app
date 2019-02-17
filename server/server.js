@@ -6,6 +6,7 @@ const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
 const tripController = require('./controllers/tripController')
 const bucketController = require('./controllers/bucketController');
+const userCtrl = require('./controllers/userInfoController')
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
@@ -67,4 +68,10 @@ app.get('/api/locations/:trip_id', tripCtrl.getLocations)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
 app.get('/api/budget/:trip_id', tripCtrl.getBudget)
+
+
+// user's profile info
+app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
+
+app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
 

@@ -68,3 +68,5 @@ app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
 app.get('/api/budget/:trip_id', tripCtrl.getBudget)
 
+app.post('/api/add-trip', tripCtrl.addTrips)
+

@@ -1,0 +1,32 @@
+.publicTripCard {
+  background-color: sienna;
+  margin: 1em;
+  padding: 1em;
+}
+
+.user {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  margin: 0 .5em;
+}
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+.public-trip-info {
+  display: flex;
+  justify-content: space-around;
+  div {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 2em;
+    margin: 1em 0;
+  }
+}

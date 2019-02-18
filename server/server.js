@@ -4,7 +4,6 @@ const massive = require('massive');
 const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
-const tripController = require('./controllers/tripController')
 const bucketController = require('./controllers/bucketController');
 const userCtrl = require('./controllers/userInfoController')
 
@@ -54,7 +53,9 @@ app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem)
 //ENDPOINTS
 
 //Public trips
-app.get('/trips/getAllPublic', tripController.getAllPublicTrips)
+app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
+
+app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
 
 
 
@@ -75,3 +76,4 @@ app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
 
 app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
 
+app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)

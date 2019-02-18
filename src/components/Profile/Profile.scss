@@ -1,15 +1,19 @@
 .profileBody {
   height: 100%;
   width: 100%;
-  background-color: rgb(103, 103, 103);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://localhost:3000/static/media/travel.c995ae9d.jpg);
+  background-size: cover;
+  background-position: center;
 }
+
 
 .profile-container {
   background-color: #fff;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: fit-content;
   box-shadow: 3px 3px 20px;
-  margin: auto;
+  padding: 1em;
+  margin: 2em auto;
 }
 
 .profile-img-container {
@@ -28,4 +32,17 @@
     font-weight: 700;
   }
 
+}
+
+.profile-slider {
+  width: 760px;
+  margin: 2em auto;
+  .slick-next::before, .slick-prev::before {
+    color: black;
+  }
+}
+
+.friend-container img{
+  border-radius: 50%;
+  height: 150px;
 }

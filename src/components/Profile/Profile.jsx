@@ -6,6 +6,7 @@ import { getUserData } from '../../ducks/reducer'
 import SideNav from '../SideNav/SideNav';
 import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
+import Slider from 'react-slick'
 
 
 class Profile extends Component {
@@ -15,7 +16,8 @@ class Profile extends Component {
     name: '',
     bio: '',
     img: '',
-    edit: false
+    edit: false,
+    friends: []
   }
 
   async componentDidMount() {
@@ -23,6 +25,7 @@ class Profile extends Component {
     if (res.data) {
       // await this.props.getUserData(res.data)
       this.getUserInfo()
+      this.getFriends()
     }
   }
 
@@ -60,7 +63,7 @@ class Profile extends Component {
   }
 
   resetInputs = () => {
-    const {userInfo} = this.state
+    const { userInfo } = this.state
     this.setState({
       email: userInfo.user_email,
       name: userInfo.user_display_name,
@@ -74,12 +77,43 @@ class Profile extends Component {
     this.resetInputs()
   }
 
+  getFriends = async () => {
+    const { user_id } = this.props.user
+    const res = await axios.get(`/api/userFriends/${user_id}`)
+    this.setState({
+      friends: res.data
+    })
+  }
+
   render() {
-    const { userInfo, email, name, bio, img, edit } = this.state
+    const { userInfo, email, name, bio, img, edit, friends } = this.state
+    const friendDisplay = friends.map((friend, i) => {
+      // let backgroundImg;
+      // if(friend.profile_pic){
+      //   backgroundImg = friend.profile_pic 
+      // }else {
+      //   backgroundImg = 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
+      // }
+      return (
+        <div key={i} className='friend-container'>
+          {/* <div className='friend-img' style={{backgroundImage: `${backgroundImg}`}}></div> */}
+          <img src={friend.profile_pic ? friend.profile_pic : 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'} alt="" />
+          <label htmlFor="">{friend.user_display_name}</label>
+        </div>
+      )
+    })
+    const settings = {
+      dots: false,
+      speed: 500,
+      infinite: true,
+      slidesToShow: 2,
+      slidesToScroll: 2
+    }
+
     return (
       <div>
-        <Header 
-        img={userInfo.profile_pic}/>
+        <Header
+          img={userInfo.profile_pic} />
         <div className='body'>
           <div className='side-nav'>
             <SideNav />
@@ -143,6 +177,15 @@ class Profile extends Component {
 
 
               </div>
+
+              <div>
+                <h3>Friends:</h3>
+
+                <Slider {...settings} className='profile-slider'>
+                  {friendDisplay}
+                </Slider>
+              </div>
+
             </div>
           </div>
         </div>

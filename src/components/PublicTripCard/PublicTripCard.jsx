@@ -111,6 +111,7 @@ class TripCard extends Component {
     return (
       <div className='publicTripCard'>
         <h3>{trip.trip_name}</h3>
+        <p><span>Date:</span>{trip.date}</p>
         <div>
           <img src={mainPhoto} alt="" />
         </div>

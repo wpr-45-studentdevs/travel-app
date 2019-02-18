@@ -42,7 +42,12 @@
   }
 }
 
-.friend-container img{
-  border-radius: 50%;
+
+.friend-img {
   height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
 }

@@ -88,16 +88,16 @@ class Profile extends Component {
   render() {
     const { userInfo, email, name, bio, img, edit, friends } = this.state
     const friendDisplay = friends.map((friend, i) => {
-      // let backgroundImg;
-      // if(friend.profile_pic){
-      //   backgroundImg = friend.profile_pic 
-      // }else {
-      //   backgroundImg = 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
-      // }
+      let backgroundImg;
+      if(friend.profile_pic){
+        backgroundImg = friend.profile_pic 
+      }else {
+        backgroundImg = 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
+      }
       return (
-        <div key={i} className='friend-container'>
-          {/* <div className='friend-img' style={{backgroundImage: `${backgroundImg}`}}></div> */}
-          <img src={friend.profile_pic ? friend.profile_pic : 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'} alt="" />
+        <div key={i} className='friend-container' style={{width: 'fit-content'}}>
+          <div className='friend-img' style={{backgroundImage: `url(${backgroundImg})`}}></div>
+          {/* <img src={friend.profile_pic ? friend.profile_pic : 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'} alt="" /> */}
           <label htmlFor="">{friend.user_display_name}</label>
         </div>
       )

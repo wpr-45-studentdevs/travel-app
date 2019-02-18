@@ -12,8 +12,8 @@ module.exports = {
         const db = req.app.get('db');
 
         const addedItem = await db.add_bucket_list_item({title, user_id, completed});
-        const bucketList = await db.get_bucket_list({user_id});
-        res.status(200).send(bucketList);
+        // const bucketList = await db.get_bucket_list({user_id});
+        res.status(200).send(addedItem);
     },
     updateBucketListItem: async (req, res) => {
         const {bucket_list_id} = req.params;

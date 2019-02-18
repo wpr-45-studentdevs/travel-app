@@ -77,3 +77,6 @@ app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
 app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
 
 app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)
+
+app.post('/api/add-trip', tripCtrl.addTrips)
+

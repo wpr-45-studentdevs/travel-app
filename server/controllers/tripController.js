@@ -41,5 +41,31 @@ module.exports = {
     const{trip_id} = req.params
     const tripUsers = await db.get_trip_users({trip_id})
     res.status(200).send(tripUsers)
+  },
+
+  addTrips: async (req, res) => {
+    const db = req.app.get("db");
+    const { tripName, date, completed, public, tripLength } = req.body;
+    const tripArray = await db.add_user_trip({
+      trip_name: tripName,
+      date: date,
+      completed: completed,
+      public: public,
+      trip_length: tripLength
+    });
+    if (tripArray) {
+      res.status(200).send(tripArray);
+    } else {
+      return res.status(500).send("user id screwed up");
+    }
+  },
+
+  addTripToUser: async (req, res) => {
+    const db = req.app.get("db");
+    const userId = 11;
+    const userTrip = await db.user_to_trip({
+      trip_id: tripID,
+      user_id: userId
+    });
   }
 };

@@ -16,6 +16,7 @@ import landing12 from '../../images/landing12.jpg'
 import landing13 from '../../images/landing13.jpg'
 
 
+
 export default class LandingPage extends Component {
    render() {
       var settings = {
@@ -25,7 +26,7 @@ export default class LandingPage extends Component {
          slidesToShow: 1,
          slidesToScroll: 1,
          autoplay: true,
-         autoplaySpeed: 7500,
+         autoplaySpeed: 4500,
          pauseOnHover: false,
          initialSlide: 8,
          fade: true
@@ -73,10 +74,7 @@ export default class LandingPage extends Component {
                      <img className="carousel-img" src={landing13} alt=""/>
                   </div>
                </Slider>
-
-               
-            </div>
-
+            </div> 
          </>
       )
    }

@@ -80,3 +80,5 @@ app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)
 
 app.post('/api/add-trip', tripCtrl.addTrips)
 
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
+

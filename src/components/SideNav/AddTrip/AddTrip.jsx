@@ -21,13 +21,18 @@ export default class AddTrip extends Component {
 
  
   addTripDetails = async () => {
-    await Axios.post("/api/add-trip", {
+    const tripDetails = await Axios.post("/api/add-trip", {
       tripName: this.state.tripName,
       date: this.state.date,
       completed: this.state.completed,
       public: this.state.public,
       tripLength: this.state.tripLength
-    }).then(response=>{console.log(response)})
+    }).then(async (response)=>{
+       console.log(response.data[0])
+       const tripID = response.data[0].trip_id
+       await Axios.post(`/api/add-user-to-trip/${tripID}`)
+       .then(res=>{console.log(res)})
+    })
   };
 
   render() {

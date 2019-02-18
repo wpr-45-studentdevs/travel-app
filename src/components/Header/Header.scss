@@ -1,6 +1,7 @@
-.Header {
-    background: whitesmoke;
-    color: rgb(117, 117, 117);
+
+.Header{
+    background: #00000082;
+    color: #fff;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -16,9 +17,7 @@
 #headerSpace {
     width: 95%
 }
-
-#mainHead {
-    background: whitesmoke;
+ #mainHead{
     width: 97vw;
     display: flex;
     font-size: 1em;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './TripCard.scss';
+import './PublicTripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
 
 class TripCard extends Component {
@@ -12,6 +12,7 @@ class TripCard extends Component {
     mainPhoto: placeholderImage,
     budgetTotal: 0,
     showDetails: false,
+    users: []
   }
 
   componentDidMount = async () => {
@@ -29,6 +30,7 @@ class TripCard extends Component {
     await this.getLocations()
     await this.getPhotos()
     await this.getBudgetTotal()
+    await this.getUsers()
   }
 
   getActivities = async () => {
@@ -50,6 +52,7 @@ class TripCard extends Component {
   getPhotos = async () => {
     const { trip_id } = this.props.trip
     let res = await axios.get(`/api/trip-photos/${trip_id}`);
+    console.log(res)
     if (res.data.length === 0) {
       this.setState({
         mainPhoto: placeholderImage
@@ -75,9 +78,17 @@ class TripCard extends Component {
     })
   }
 
+  getUsers = async () => {
+    const { trip_id } = this.props.trip
+    let res = await axios.get(`/api/trips/users/${trip_id}`)
+    this.setState({
+      users: res.data
+    })
+  }
+
   render() {
     const { trip } = this.props;
-    const { activities, locations, budget, budgetTotal, mainPhoto } = this.state;
+    const { activities, locations, budget, budgetTotal, mainPhoto, users } = this.state;
     const displayActivities = activities.map((activity, i) => {
       return (
         <li key={i}>{activity.activity_name}</li>
@@ -89,33 +100,45 @@ class TripCard extends Component {
         <li key={location.location_id}>{location.location_name}</li>
       )
     })
+    const usersToDisplay = users.map((user, i) => {
+      return (
+        <div className='user' style={{ backgroundImage: `url(${user.profile_pic})` }}>
+          {/* <img src={user.profile_pic} alt=""/> */}
+        </div>
+      )
+    })
 
     return (
-      <div className='tripCard'>
-        <div onClick={() => this.setState({ showDetails: true })} className='trip-details-body'>
-          <div className='trip-name-date'>
-            <h3>{trip.trip_name}</h3>
-            <p>{trip.date}</p>
-          </div>
-          <div className='card-image-container' style={{
-            backgroundImage: `url(${mainPhoto})`
-          }}>
+      <div className='publicTripCard'>
+        <h3>{trip.trip_name}</h3>
+        <p><span>Date:</span>{trip.date}</p>
+        <div>
+          <img src={mainPhoto} alt="" />
+        </div>
+        <div className='user-container'>
+          {usersToDisplay}
+        </div>
 
+        <div className='public-trip-info'>
+          <div>
+            <h4>Activities:</h4>
+            <ul>
+              {displayActivities}
+            </ul>
+          </div>
+
+          <div>
+            <h4>Locations:</h4>
+            <ul>
+              {locationsToDisplay}
+            </ul>
           </div>
         </div>
 
-        {/* MODAL */}
-        {
-          this.state.showDetails === true ?
-            <div className='trip-modal-wrapper'>
-              <div className='trip-modal'>
+        <div>
+          <h4>Budget: ${budgetTotal}</h4>
+        </div>
 
-                <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
-              </div>
-            </div>
-
-            : null
-        }
 
       </div>
 

@@ -36,6 +36,12 @@ module.exports = {
     const budget = await db.get_budget({ trip_id });
     res.status(200).send(budget);
   },
+  getTripUsers: async (req,res) => {
+    const db = req.app.get('db')
+    const{trip_id} = req.params
+    const tripUsers = await db.get_trip_users({trip_id})
+    res.status(200).send(tripUsers)
+  },
 
   addTrips: async (req, res) => {
     const db = req.app.get("db");

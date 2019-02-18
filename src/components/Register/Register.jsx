@@ -73,11 +73,12 @@ export default class Register extends Component {
           </div>
           <div>
             Bio:
-              <input
+              <textarea
               type="text"
               placeholder='What do you want people to know about you?'
               onChange={(e) => this.setState({ bio: e.target.value })}
               className='auth-menu-item'
+              cols="30" rows="10"
             />
           </div>
           <Link to='/' className='auth-menu-item'><button>Back</button></Link>

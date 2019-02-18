@@ -2,7 +2,7 @@
 
 .side-nav{
    background-color: $secondary-background-color;
-   height: 100vh;
+   height: calc(100vh - 7em);
    width: $side-nav-width;
       ul {
          display: flex;

@@ -1,38 +1,36 @@
 
 .Header{
-    background: whitesmoke;
-    color: rgb(117, 117, 117);
+    background: #00000082;
+    color: #fff;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 7rem;
 }
-h1 {
-    margin-left: 1%;
-}
-.logo{
+
+.logo {
     height: 75px;
     opacity: .7;
 }
-#headerSpace{
+
+#headerSpace {
     width: 95%
 }
  #mainHead{
-    background: whitesmoke;
     width: 97vw;
     display: flex;
     font-size: 1em;
     border-bottom: solid .1px lightgray
- }
+}
 
- .userButtons{
+.userButtons {
     display: flex;
     align-items: flex-end;
     margin-bottom: 5px;
     color: white;
 }
 
-#dropdown{
+#dropdown {
     margin: .3rem
 }

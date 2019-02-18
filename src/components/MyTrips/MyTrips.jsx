@@ -32,7 +32,7 @@ class MyTrips extends Component {
   }
 
   handleSearch = async (userInput) => {
-    await this.setState({search: userInput});
+    await this.setState({ search: userInput });
   };
 
 
@@ -40,10 +40,10 @@ class MyTrips extends Component {
     //SEARCH
     const { trips, search } = this.state;
     let filteredTrips = this.state.trips;
-    if(search) {
+    if (search) {
       filteredTrips = trips.filter((trip, index) => {
-        for(let property in trip) {
-          if (typeof(trip[property]) === 'string') {
+        for (let property in trip) {
+          if (typeof (trip[property]) === 'string') {
             if (trip[property].toLowerCase().includes(search.toLowerCase())) {
               return true
             }
@@ -72,13 +72,17 @@ class MyTrips extends Component {
             <SideNav />
           </div>
           <div className='trips-container'>
-            <input 
-              type="text"
-              placeholder='Search'
-              onChange={(e) => this.handleSearch(e.target.value)}
-            />
-            <div className="trip-list-display">
-              {displayTrips}
+            <div className='trip-search-list-container'>
+              <div>
+                <input
+                  type="text"
+                  placeholder='Search'
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                />
+              </div>
+              <div class="trip-card-display">
+                {displayTrips}
+              </div>
             </div>
           </div>
         </div>

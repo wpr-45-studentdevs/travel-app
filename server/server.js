@@ -70,3 +70,5 @@ app.get('/api/budget/:trip_id', tripCtrl.getBudget)
 
 app.post('/api/add-trip', tripCtrl.addTrips)
 
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
+

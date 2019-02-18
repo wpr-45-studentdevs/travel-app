@@ -54,12 +54,19 @@ module.exports = {
     }
   },
 
-  addTripToUser: async (req, res) => {
+  addUserToTrip: async (req, res) => {
     const db = req.app.get("db");
-    const userId = 11;
+    const { trip_id } = req.params;
+    const { user_id } = req.session.user;
+    console.log(req.session.user)
     const userTrip = await db.user_to_trip({
-      trip_id: tripID,
-      user_id: userId
+      trip_id: trip_id,
+      user_id: user_id
     });
+    if (userTrip) {
+      res.status(200).send(userTrip);
+    } else {
+      res.status(500).send("no user on this trip");
+    }
   }
 };

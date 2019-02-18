@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './LandingPage.scss';
 import LandingNav from '../LandingNav/LandingNav';
-// import Slider from 'react-slick';
-import { Fade } from 'react-slideshow-image';
 import Slider from 'react-slick';
 import landing1 from '../../images/landing1.jpg'
 import landing2 from '../../images/landing2.jpg'
@@ -16,7 +14,6 @@ import landing9 from '../../images/landing9.jpg'
 import landing11 from '../../images/landing11.jpg'
 import landing12 from '../../images/landing12.jpg'
 import landing13 from '../../images/landing13.jpg'
-import Slideshow from 'react-slidez';
 
 export default class LandingPage extends Component {
    render() {

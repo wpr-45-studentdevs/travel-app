@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import "./Dashboard.scss";
 import SideNav from "../SideNav/SideNav";
 import axios from "axios";
+import PublicTripCard from "../PublicTripCard/PublicTripCard";
 
 export default class Dashboard extends Component {
    state = {
@@ -49,9 +50,9 @@ export default class Dashboard extends Component {
       }
       const showPublicTrips = filteredArr.map((trip, i) => {
          return (
-            <div key={i}>
-               <div>{trip.trip_name} {trip.date}</div>
-            </div>
+               <PublicTripCard
+               trip={trip}
+               key={i}/>
          );
       });
 

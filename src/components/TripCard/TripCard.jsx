@@ -113,9 +113,6 @@ class TripCard extends Component {
 
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
 
-                <Travelers
-                trip={trip}
-                />
               </div>
             </div>
 

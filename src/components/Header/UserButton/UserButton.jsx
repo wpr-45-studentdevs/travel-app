@@ -45,7 +45,6 @@ class UserMenu extends React.Component {
         <div id='menu'>
             <Menu id='Menu'  anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
             <Link to='/profile'><MenuItem id='menuItem' onClick={this.handleClose}>Profile</MenuItem> </Link>
-              <MenuItem id='menuItem' onClick={this.handleClose}>Change Profile Picture</MenuItem>
               <Link to='/' style={{textDecoration: 'none'}}>
                 <MenuItem id='menuItem' onClick={this.logout} >Logout</MenuItem>
               </Link>

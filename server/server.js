@@ -5,7 +5,8 @@ const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
-const userCtrl = require('./controllers/userInfoController');
+const userCtrl = require('./controllers/userInfoController')
+const travelerCtrl = require('./controllers/travelerController')
 const locationController = require('./controllers/locationController');
 const activitiesController = require('./controllers/activityController');
 
@@ -81,6 +82,11 @@ app.post('/api/add-trip', tripCtrl.addTrips)
 
 app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
+
+//travelers
+app.post('/api/travelers/:trip_id', travelerCtrl.addTravelers)
+
+app.delete('/api/travelers/:bridge_id', travelerCtrl.removeTraveler)
 //LOCATION ENDPOINTS
 //returns an array of all the locations of a given trip
 app.get('/api/locations/:trip_id', locationController.getLocations);

@@ -5,6 +5,12 @@
   box-shadow: 3px 3px 15px black;
 }
 
+.public-users-slider {
+  width: 300px;
+  margin: 0 1em;
+  margin-bottom: 0.5em;
+}
+
 .user {
   height: 50px;
   width: 50px;
@@ -12,7 +18,7 @@
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  margin: 0 .5em;
+  margin: 0 auto;
 }
 
 .public-main-img {
@@ -27,6 +33,8 @@
   display: flex;
   justify-content: center;
   margin: 1em;
+  overflow: scroll;
+  width: 300px;
 }
 
 .public-trip-info {

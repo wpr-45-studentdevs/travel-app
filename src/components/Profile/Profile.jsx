@@ -8,6 +8,7 @@ import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import { array } from 'prop-types';
 
 
 class Profile extends Component {
@@ -86,6 +87,7 @@ class Profile extends Component {
     })
   }
 
+
   render() {
     const { userInfo, email, name, bio, img, edit, friends } = this.state
     const friendDisplay = friends.map((friend, i) => {
@@ -103,12 +105,23 @@ class Profile extends Component {
         </div>
       )
     })
+    let friendLength = 1;
+    if (friendDisplay.length > 1 && friendDisplay.length < 5) {
+      friendLength = friendDisplay.length - 1
+    } else if (friendDisplay.length >= 5) {
+      friendLength = 5
+    }
+    let scrollAmount = 1;
+    if(friendLength > 1) {
+      scrollAmount = friendLength - 1
+    }
+
     const settings = {
       dots: false,
       speed: 500,
       infinite: true,
-      slidesToShow: 2,
-      slidesToScroll: 2
+      slidesToShow: friendLength,
+      slidesToScroll: scrollAmount
     }
 
     return (

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './PublicTripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
+import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import Slider from 'react-slick'
 
 class PublicTripCard extends Component {
 
@@ -19,8 +21,8 @@ class PublicTripCard extends Component {
     await this.getInfo();
   }
 
- async componentDidUpdate (prevProps) {
-    if(prevProps.trip.trip_id !== this.props.trip.trip_id) {
+  async componentDidUpdate(prevProps) {
+    if (prevProps.trip.trip_id !== this.props.trip.trip_id) {
       await this.getInfo();
     }
   }
@@ -58,7 +60,6 @@ class PublicTripCard extends Component {
   getPhotos = async () => {
     const { trip_id } = this.props.trip
     let res = await axios.get(`/api/trip-photos/${trip_id}`);
-    console.log(res)
     if (res.data.length === 0) {
       this.setState({
         mainPhoto: placeholderImage
@@ -107,19 +108,50 @@ class PublicTripCard extends Component {
       )
     })
     const usersToDisplay = users.map((user, i) => {
+      let userImg;
+      if (user.profile_pic) {
+        userImg = user.profile_pic
+      } else {
+        userImg = UserImgPlaceholder
+      }
       return (
-        <div className='user' style={{ backgroundImage: `url(${user.profile_pic})` }}>
-          {/* <img src={user.profile_pic} alt=""/> */}
+        <div key={i} className='traveler-container' style={{width: 'fit-content'}}>
+          <div className='user' style={{ backgroundImage: `url(${userImg})` }}>
+            {/* <img src={user.profile_pic} alt=""/> */}
+          </div>
         </div>
       )
     })
 
+    let friendLength = 1;
+    if (usersToDisplay.length > 1 && usersToDisplay.length < 5) {
+      friendLength = usersToDisplay.length 
+    } else if(usersToDisplay.length >= 5) {
+      friendLength = 5
+    }
+    let scrollAmount = 1;
+    if (friendLength > 1) {
+      scrollAmount = friendLength - 1
+    }
+
+    const settings = {
+      dots: false,
+      speed: 500,
+      infinite: true,
+      slidesToShow: friendLength,
+      slidesToScroll: scrollAmount
+    }
+
+
     return (
       <div className='publicTripCard'>
         <div>
-          <div className='user-container'>
+          {/* <div className='user-container'>
             {usersToDisplay}
-          </div>
+          </div> */}
+          <Slider {...settings} className='public-users-slider'>
+            {usersToDisplay}
+          </Slider>
           <div>
             <div className='public-main-img' style={{ backgroundImage: `url(${mainPhoto})` }} />
           </div>

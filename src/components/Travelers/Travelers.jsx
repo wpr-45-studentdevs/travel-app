@@ -28,9 +28,14 @@ export default class Travelers extends Component {
   addTraveler = async () => {
     const { trip_id } = this.props.trip
     const { email: user_email } = this.state
-    await axios.post(`/api/travelers/${trip_id}`, { user_email })
-    this.getTravelers()
-    this.showAddFn()
+    const res = await axios.post(`/api/travelers/${trip_id}`, { user_email })
+    if(!res.data.travelerAdded){
+      alert(res.data.message)
+    } else {
+      this.getTravelers()
+      this.showAddFn()
+      alert(res.data.message)
+    }
   }
 
   handleChange = (prop, val) => {
@@ -70,7 +75,8 @@ export default class Travelers extends Component {
 
         {showAdd &&
           <div className='add-container'>
-            <input onChange={e => { this.handleChange('email', e.target.value) }} type="text" />
+            <input placeholder="Traveler's Email"
+            onChange={e => { this.handleChange('email', e.target.value) }} type="text" />
             <i onClick={this.addTraveler} class="fas fa-plus"></i>
             <i onClick={this.showAddFn} class="fas fa-undo"></i>
           </div>

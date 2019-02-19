@@ -16,10 +16,9 @@ export default class AddTrip extends Component {
 
   handleChange = (prop, val) => {
     this.setState({ [prop]: val });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
- 
   addTripDetails = async () => {
     const tripDetails = await Axios.post("/api/add-trip", {
       tripName: this.state.tripName,
@@ -27,12 +26,14 @@ export default class AddTrip extends Component {
       completed: this.state.completed,
       public: this.state.public,
       tripLength: this.state.tripLength
-    }).then(async (response)=>{
-       console.log(response.data[0])
-       const tripID = response.data[0].trip_id
-       await Axios.post(`/api/add-user-to-trip/${tripID}`)
-       .then(res=>{console.log(res)})
-    })
+    }).then(async response => {
+      // console.log(response.data[0]);
+      const tripID = response.data[0].trip_id;
+      await Axios.post(`/api/add-user-to-trip/${tripID}`).then(res => {
+        // console.log(res);
+        return res;
+      });
+    });
   };
 
   render() {
@@ -51,33 +52,58 @@ export default class AddTrip extends Component {
               <input
                 className="addTripInputs"
                 onChange={e => this.handleChange("tripName", e.target.value)}
-                type='text'
+                type="text"
                 placeholder="Trip Name"
               />
               <input
                 className="addTripInputs"
                 onChange={e => this.handleChange("date", e.target.value)}
-                type='text'
+                type="text"
                 placeholder="Trip Date"
               />
               <input
                 className="addTripInputs"
                 onChange={e => this.handleChange("tripLength", e.target.value)}
-                type = 'number'
+                type="number"
                 placeholder="Trip Length"
               />
               <div className="checkboxes">
                 <span>Trip Completed?</span>
-                <input type="checkbox" placeholder="trip name" onClick={()=>this.setState({completed: !this.state.completed})}/>
+                <input
+                  id="checkboxStyle"
+                  type="checkbox"
+                  placeholder="trip name"
+                  onChange={() =>
+                    this.setState({ completed: !this.state.completed })
+                  }
+                />
               </div>
               <div className="checkboxes">
                 <span>Trip Public?</span>
-                <input type="checkbox" placeholder="trip name" onClick={()=>this.setState({public: !this.state.public})}/>
+                <input
+                  id="checkboxStyle"
+                  type="checkbox"
+                  placeholder="trip name"
+                  onChange={() => this.setState({ public: !this.state.public })}
+                />
               </div>
-              <button onClick={()=> this.addTripDetails()}>Save</button>
-              <button onClick={() => this.setState({ toggleModal: false })}>
-                Close
-              </button>
+              <div >
+                <button
+                  className="addTripButtons"
+                  onClick={() => {
+                    this.addTripDetails();
+                    this.setState({ toggleModal: false });
+                  }}
+                >
+                  Save
+                </button>
+                <button
+                  className="addTripButtons"
+                  onClick={() => this.setState({ toggleModal: false })}
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         ) : null}

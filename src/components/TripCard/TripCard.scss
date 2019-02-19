@@ -75,10 +75,28 @@ ul {
   background-color: white;
   z-index: 2;
   border-radius: 10px;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
 }
 
 .trip-modal-close-button {
   position: absolute;
   top: 6%;
   left: 94%;
+}
+
+.detail-box {
+  width: 33.33%;
+  height: 50%;
+  border: 1px solid black;
+}
+
+.text-editor-box {
+  height: 100%;
+  width: 33.33%;
+  background-color: lightgray;
 }

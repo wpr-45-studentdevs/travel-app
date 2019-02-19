@@ -9,6 +9,7 @@
   width: 300px;
   margin: 0 1em;
   margin-bottom: 0.5em;
+  z-index: 0;
 }
 
 .user {
@@ -58,10 +59,12 @@
 .list {
   overflow: scroll;
   height: 90px;
+  
   ul {
     margin-top: 0;
   }
 }
+
 
 @media (min-width: 1240px) {
   .publicTripCard {

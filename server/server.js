@@ -10,47 +10,49 @@ const travelerCtrl = require('./controllers/travelerController')
 const locationController = require('./controllers/locationController');
 const activitiesController = require('./controllers/activityController');
 
-const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
+const { CONNECTION_STRING, SERVER_PORT, SECRET } = process.env;
 
 const app = express();
 
 //MIDDLEWARE
-app.use(express.json())
-app.use(session({
-   secret: SECRET,
-   resave: false,
-   saveUninitialized: false
-}))
+app.use(express.json());
+app.use(
+  session({
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 //DATABASE CONNECTION
 massive(CONNECTION_STRING).then(db => {
-   app.set('db', db)
-      console.log('Connected to database')
-   app.listen(SERVER_PORT, () => {
-      console.log(`Listening on port: ${SERVER_PORT}`)
-   })
-})
+  app.set("db", db);
+  console.log("Connected to database");
+  app.listen(SERVER_PORT, () => {
+    console.log(`Listening on port: ${SERVER_PORT}`);
+  });
+});
 
 //ENDPOINTS
 
 //AUTH ENDPOINTS
-app.post('/auth/register', authController.register) //register new user
-app.post('/auth/login', authController.login) //login
-app.get('/auth/userData', authController.userData) // gets user data off the session to see if they're logged in
-app.get('/auth/logout', authController.logout) //logout
+app.post("/auth/register", authController.register); //register new user
+app.post("/auth/login", authController.login); //login
+app.get("/auth/userData", authController.userData); // gets user data off the session to see if they're logged in
+app.get("/auth/logout", authController.logout); //logout
 
 
 //BUCKET LIST ENDPOINTS
 //Returns bucket list of the user on sessions
-app.get('/bucketlist', bucketController.getBucketList);
+app.get("/bucketlist", bucketController.getBucketList);
 
-//Creates a new bucket list item 
+//Creates a new bucket list item
 //Returns bucket list of the user on sessions
-app.post('/bucketlist', bucketController.addBucketListItem);
+app.post("/bucketlist", bucketController.addBucketListItem);
 
 //Updates a bucket list item
 //Returns bucket list of the user on sessions
-app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
+app.put("/bucketlist/:bucket_list_id", bucketController.updateBucketListItem);
 
 //Deletes a bucket list item
 //Returns the deleted item
@@ -64,23 +66,22 @@ app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
 app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
 
 //individual user's trips
-app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
+app.get("/api/userTrips/:user_id", tripCtrl.getUserTrips);
 
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
 app.get('/api/budget/:trip_id', tripCtrl.getBudget)
 
+app.get("/api/budget/:trip_id", tripCtrl.getBudget);
 
 // user's profile info
-app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
+app.get("/api/userInfo/:user_id", userCtrl.getUserInfo);
 
-app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
+app.put("/api/userInfo/:user_id", userCtrl.editUserInfo);
 
-app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)
+app.get("/api/userFriends/:user_id", userCtrl.getUserFriends);
 
-app.post('/api/add-trip', tripCtrl.addTrips)
-
-app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
+app.post("/api/add-trip", tripCtrl.addTrips);
 
 
 //travelers

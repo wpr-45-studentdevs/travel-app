@@ -3,12 +3,12 @@ import axios from 'axios';
 import './TripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
 import Travelers from '../Travelers/Travelers';
+import Locations from '../Locations/Locations';
+import Activities from '../Activities/Activities';
 
 class TripCard extends Component {
 
   state = {
-    activities: [],
-    locations: [],
     budget: [],
     mainPhoto: placeholderImage,
     budgetTotal: 0,
@@ -26,26 +26,8 @@ class TripCard extends Component {
   }
 
   async getInfo() {
-    await this.getActivities()
-    await this.getLocations()
     await this.getPhotos()
     await this.getBudgetTotal()
-  }
-
-  getActivities = async () => {
-    const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/activities/${trip_id}`)
-    this.setState({
-      activities: res.data
-    })
-  }
-
-  getLocations = async () => {
-    const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/locations/${trip_id}`)
-    this.setState({
-      locations: res.data
-    })
   }
 
   getPhotos = async () => {
@@ -79,18 +61,7 @@ class TripCard extends Component {
   render() {
     const { trip } = this.props;
     const { activities, locations, budget, budgetTotal, mainPhoto } = this.state;
-    const displayActivities = activities.map((activity, i) => {
-      return (
-        <li key={i}>{activity.activity_name}</li>
-      )
-    })
-
-    const locationsToDisplay = locations.map((location, i) => {
-      return (
-        <li key={location.location_id}>{location.location_name}</li>
-      )
-    })
-
+  
     return (
       <div className='tripCard'>
         <div onClick={() => this.setState({ showDetails: true })} className='trip-details-body'>
@@ -110,7 +81,6 @@ class TripCard extends Component {
           this.state.showDetails === true ?
             <div className='trip-modal-wrapper'>
               <div className='trip-modal'>
-
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
 
               </div>

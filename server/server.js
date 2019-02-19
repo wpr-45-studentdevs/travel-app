@@ -7,6 +7,8 @@ const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
 const userCtrl = require('./controllers/userInfoController')
 const travelerCtrl = require('./controllers/travelerController')
+const locationController = require('./controllers/locationController');
+const activitiesController = require('./controllers/activityController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
@@ -29,14 +31,16 @@ massive(CONNECTION_STRING).then(db => {
    })
 })
 
+//ENDPOINTS
+
 //AUTH ENDPOINTS
 app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
 app.get('/auth/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
-//BUCKET LIST ENDPOINTS
 
+//BUCKET LIST ENDPOINTS
 //Returns bucket list of the user on sessions
 app.get('/bucketlist', bucketController.getBucketList);
 
@@ -51,21 +55,16 @@ app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 //Deletes a bucket list item
 //Returns the deleted item
 app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem);
-//ENDPOINTS
 
+
+//TRIP ENDPOINTS
 //Public trips
 app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
 
 app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
 
-
-
 //individual user's trips
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
-
-app.get('/api/activities/:trip_id', tripCtrl.getActivities)
-
-app.get('/api/locations/:trip_id', tripCtrl.getLocations)
 
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
@@ -88,3 +87,38 @@ app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 app.post('/api/travelers/:trip_id', travelerCtrl.addTravelers)
 
 app.delete('/api/travelers/:bridge_id', travelerCtrl.removeTraveler)
+//LOCATION ENDPOINTS
+//returns an array of all the locations of a given trip
+app.get('/api/locations/:trip_id', locationController.getLocations);
+
+//adds a location to a trip's locations
+//returns added location
+app.post('/api/locations/:trip_id', locationController.addLocation);
+
+//updates a location on a trip's locations
+//return updated location
+app.put('/api/locations/:location_id', locationController.editLocation);
+
+//deletes a location from a trip
+//returns the deleted locatoin
+app.delete('/api/locations/:location_id', locationController.deleteLocation);
+
+
+//ACTIVITIES ENDPOINTS
+//returns all activities for a given trip
+app.get('/api/activities/:trip_id', activitiesController.getActivities);
+
+//add a new activity to a trip
+//returns the new activity
+app.post('/api/activities/:trip_id', activitiesController.addActivity);
+
+//updates an activity on a trip
+//returns the updated activity
+app.put('/api/activities/:activity_id', activitiesController.editActivity);
+
+//deletes an activity
+//returns the deleted activity
+app.delete('/api/activities/:activity_id', activitiesController.deleteActivity);
+
+
+

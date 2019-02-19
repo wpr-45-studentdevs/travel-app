@@ -32,12 +32,36 @@ export default class LandingPage extends Component {
          fade: true
       };
 
+      const images = [
+         landing1,
+         landing2,
+         landing3,
+         landing4,
+         landing5,
+         landing6,
+         landing7,
+         landing8,
+         landing9,
+         landing11,
+         landing12,
+         landing13
+      ]
+
+      const carousel = images.map((image, i) => {
+         return (
+            <div>
+               <img className="carousel-img" src={image} alt=""/>
+            </div>
+         )
+      })
+
       return (
          <>
             <LandingNav />
             <div>
                <Slider {...settings} className='slider'>
-                  <div>
+               {carousel}
+                  {/* <div>
                      <img className="carousel-img" src={landing1} alt=""/>
                   </div>
                   <div>
@@ -72,7 +96,7 @@ export default class LandingPage extends Component {
                   </div>
                   <div>
                      <img className="carousel-img" src={landing13} alt=""/>
-                  </div>
+                  </div> */}
                </Slider>
             </div> 
          </>

@@ -1,0 +1,22 @@
+.travelers-outer-box {
+  width: fit-content;
+}
+
+.travelers-container {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  flex-wrap: wrap;
+}
+
+.add-container i {
+  transition: .5s;
+  text-shadow: 1px 1px 3px #212121;
+}
+
+.add-container i:hover{
+  // text-shadow: 0 0 10px #000;
+  color: #dedede;
+  transition: .5s;
+}
+

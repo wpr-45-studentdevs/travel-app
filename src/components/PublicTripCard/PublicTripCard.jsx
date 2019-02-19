@@ -3,7 +3,7 @@ import axios from 'axios';
 import './PublicTripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
 
-class TripCard extends Component {
+class PublicTripCard extends Component {
 
   state = {
     activities: [],
@@ -17,6 +17,12 @@ class TripCard extends Component {
 
   componentDidMount = async () => {
     await this.getInfo();
+  }
+
+ async componentDidUpdate (prevProps) {
+    if(prevProps.trip.trip_id !== this.props.trip.trip_id) {
+      await this.getInfo();
+    }
   }
 
   handleBackClick() {
@@ -110,33 +116,59 @@ class TripCard extends Component {
 
     return (
       <div className='publicTripCard'>
-        <h3>{trip.trip_name}</h3>
-        <p><span>Date:</span>{trip.date}</p>
         <div>
-          <img src={mainPhoto} alt="" />
-        </div>
-        <div className='user-container'>
-          {usersToDisplay}
-        </div>
-
-        <div className='public-trip-info'>
-          <div>
-            <h4>Activities:</h4>
-            <ul>
-              {displayActivities}
-            </ul>
+          <div className='user-container'>
+            {usersToDisplay}
           </div>
-
           <div>
-            <h4>Locations:</h4>
-            <ul>
-              {locationsToDisplay}
-            </ul>
+            <div className='public-main-img' style={{ backgroundImage: `url(${mainPhoto})` }} />
           </div>
         </div>
 
+
         <div>
-          <h4>Budget: ${budgetTotal}</h4>
+          <h3>{trip.trip_name}</h3>
+          <p><span>Date:</span>{trip.date}</p>
+
+          {
+            displayActivities[0] || locationsToDisplay[0] ?
+              <div className='public-trip-info'>
+                {
+                  displayActivities[0] &&
+                  <div className='list-box'>
+                    <h4>Activities:</h4>
+                    <div className='list'>
+                      <ul>
+                        {displayActivities}
+                      </ul>
+                    </div>
+                  </div>
+                }
+
+                {
+                  locationsToDisplay[0] &&
+                  <div className='list-box'>
+                    <h4>Locations:</h4>
+                    <div className='list'>
+                      <ul>{locationsToDisplay}</ul>
+                    </div>
+                  </div>
+                }
+
+
+              </div>
+              :
+              null
+          }
+
+          {
+            budgetTotal ?
+              <div>
+                <h4>Budget: ${budgetTotal}</h4>
+              </div>
+              :
+              null
+          }
         </div>
 
 
@@ -146,4 +178,4 @@ class TripCard extends Component {
   }
 }
 
-export default TripCard;
+export default PublicTripCard;

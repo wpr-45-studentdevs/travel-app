@@ -1,7 +1,8 @@
 .publicTripCard {
-  background-color: sienna;
-  margin: 1em;
+  background-color: #eaeaea;
+  margin: 1.7em 0;
   padding: 1em;
+  box-shadow: 3px 3px 15px black;
 }
 
 .user {
@@ -14,6 +15,14 @@
   margin: 0 .5em;
 }
 
+.public-main-img {
+  height: 200px;
+  width: 300px;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+}
+
 .user-container {
   display: flex;
   justify-content: center;
@@ -23,10 +32,37 @@
 .public-trip-info {
   display: flex;
   justify-content: space-around;
-  div {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 0 1em;
+  width: 95%;
+  margin: auto;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  .list-box {
     margin: 1em 0;
+    height: 150px;
+    width: 150px;
+    margin: 0 .5em;
+    h4 {
+      margin: 0.7em;
+    }
   }
+}
+
+.list {
+  overflow: scroll;
+  height: 90px;
+  ul {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1240px) {
+  .publicTripCard {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .publicTripCard > div {
+    width: 330px;
+  }
+  
 }

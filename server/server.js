@@ -6,6 +6,7 @@ const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
 const userCtrl = require('./controllers/userInfoController')
+const travelerCtrl = require('./controllers/travelerController')
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
@@ -82,3 +83,8 @@ app.post('/api/add-trip', tripCtrl.addTrips)
 
 app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
+
+//travelers
+app.post('/api/travelers/:trip_id', travelerCtrl.addTravelers)
+
+app.delete('/api/travelers/:bridge_id', travelerCtrl.removeTraveler)

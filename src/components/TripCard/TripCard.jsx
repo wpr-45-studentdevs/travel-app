@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './TripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
+import Travelers from '../Travelers/Travelers';
 
 class TripCard extends Component {
 
@@ -111,6 +112,10 @@ class TripCard extends Component {
               <div className='trip-modal'>
 
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
+
+                <Travelers
+                trip={trip}
+                />
               </div>
             </div>
 

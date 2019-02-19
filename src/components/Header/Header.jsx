@@ -5,12 +5,13 @@ import Logo from '../../images/kanoo_logo3.svg'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
+import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
 
 
 class Header extends Component {
 
   state = {
-    profileImg: 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
+    profileImg: UserImgPlaceholder
   }
 
   async componentDidMount() {
@@ -22,14 +23,12 @@ class Header extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    // console.log(prevProps)
-    console.log(prevProps.img !== this.props.img)
     if(prevProps.img !== this.props.img) {
       if(this.props.img){
         this.getprofileImg()
       } else {
         this.setState({
-          profileImg: 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
+          profileImg: UserImgPlaceholder
         })
       }
     }

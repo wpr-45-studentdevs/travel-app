@@ -19,7 +19,6 @@ class MyTrips extends Component {
       await this.props.getUserData(res.data)
       await this.getTrips()
     }
-    console.log(this.state.trips)
   }
 
 
@@ -80,7 +79,7 @@ class MyTrips extends Component {
                   onChange={(e) => this.handleSearch(e.target.value)}
                 />
               </div>
-              <div class="trip-card-display">
+              <div className="trip-card-display">
                 {displayTrips}
               </div>
             </div>

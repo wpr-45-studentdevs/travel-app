@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './PublicTripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
+import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import Slider from 'react-slick'
 
-class TripCard extends Component {
+class PublicTripCard extends Component {
 
   state = {
     activities: [],
@@ -17,6 +19,12 @@ class TripCard extends Component {
 
   componentDidMount = async () => {
     await this.getInfo();
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (prevProps.trip.trip_id !== this.props.trip.trip_id) {
+      await this.getInfo();
+    }
   }
 
   handleBackClick() {
@@ -52,7 +60,6 @@ class TripCard extends Component {
   getPhotos = async () => {
     const { trip_id } = this.props.trip
     let res = await axios.get(`/api/trip-photos/${trip_id}`);
-    console.log(res)
     if (res.data.length === 0) {
       this.setState({
         mainPhoto: placeholderImage
@@ -101,42 +108,99 @@ class TripCard extends Component {
       )
     })
     const usersToDisplay = users.map((user, i) => {
+      let userImg;
+      if (user.profile_pic) {
+        userImg = user.profile_pic
+      } else {
+        userImg = UserImgPlaceholder
+      }
       return (
-        <div className='user' style={{ backgroundImage: `url(${user.profile_pic})` }}>
-          {/* <img src={user.profile_pic} alt=""/> */}
+        <div key={i} className='traveler-container' style={{width: 'fit-content'}}>
+          <div className='user' style={{ backgroundImage: `url(${userImg})` }}>
+            {/* <img src={user.profile_pic} alt=""/> */}
+          </div>
         </div>
       )
     })
 
+    let friendLength = 1;
+    if (usersToDisplay.length > 1 && usersToDisplay.length < 5) {
+      friendLength = usersToDisplay.length 
+    } else if(usersToDisplay.length >= 5) {
+      friendLength = 5
+    }
+    let scrollAmount = 1;
+    if (friendLength > 1) {
+      scrollAmount = friendLength - 1
+    }
+
+    const settings = {
+      dots: false,
+      speed: 500,
+      infinite: true,
+      slidesToShow: friendLength,
+      slidesToScroll: scrollAmount
+    }
+
+
     return (
       <div className='publicTripCard'>
-        <h3>{trip.trip_name}</h3>
-        <p><span>Date:</span>{trip.date}</p>
         <div>
-          <img src={mainPhoto} alt="" />
-        </div>
-        <div className='user-container'>
-          {usersToDisplay}
-        </div>
-
-        <div className='public-trip-info'>
+          {/* <div className='user-container'>
+            {usersToDisplay}
+          </div> */}
+          <Slider {...settings} className='public-users-slider'>
+            {usersToDisplay}
+          </Slider>
           <div>
-            <h4>Activities:</h4>
-            <ul>
-              {displayActivities}
-            </ul>
-          </div>
-
-          <div>
-            <h4>Locations:</h4>
-            <ul>
-              {locationsToDisplay}
-            </ul>
+            <div className='public-main-img' style={{ backgroundImage: `url(${mainPhoto})` }} />
           </div>
         </div>
 
+
         <div>
-          <h4>Budget: ${budgetTotal}</h4>
+          <h3>{trip.trip_name}</h3>
+          <p><span>Date:</span>{trip.date}</p>
+
+          {
+            displayActivities[0] || locationsToDisplay[0] ?
+              <div className='public-trip-info'>
+                {
+                  displayActivities[0] &&
+                  <div className='list-box'>
+                    <h4>Activities:</h4>
+                    <div className='list'>
+                      <ul>
+                        {displayActivities}
+                      </ul>
+                    </div>
+                  </div>
+                }
+
+                {
+                  locationsToDisplay[0] &&
+                  <div className='list-box'>
+                    <h4>Locations:</h4>
+                    <div className='list'>
+                      <ul>{locationsToDisplay}</ul>
+                    </div>
+                  </div>
+                }
+
+
+              </div>
+              :
+              null
+          }
+
+          {
+            budgetTotal ?
+              <div>
+                <h4>Budget: ${budgetTotal}</h4>
+              </div>
+              :
+              null
+          }
         </div>
 
 
@@ -146,4 +210,4 @@ class TripCard extends Component {
   }
 }
 
-export default TripCard;
+export default PublicTripCard;

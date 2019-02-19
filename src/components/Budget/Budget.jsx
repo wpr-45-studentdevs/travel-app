@@ -58,7 +58,7 @@ export default class Budget extends Component {
          const { budget_item_id } = budgetItem
          return (
             <div key={budget_item_id}>
-               < BudgetItem 
+               < BudgetItem
                   budget_item={budgetItem}
                   getBudget={this.getBudget}
                />
@@ -77,25 +77,25 @@ export default class Budget extends Component {
             </div>
             <div className="budget-item-list">
                {budgetItemList}
-               <div>
-                  <input
-                     type="text"
-                     placeholder='Name'
-                     value={this.state.item_name}
-                     ref='name'
-                     onChange={(e) => this.setState({ item_name: e.target.value })}
-                  />
-                  <input
-                     type="text"
-                     placeholder='Cost'
-                     value={this.state.item_cost}
-                     ref='cost'
-                     onChange={(e) => this.setState({ item_cost: e.target.value })}
-                  />
-                  <button onClick={() => this.addBudgetItem()}>
-                     <i className="fas fa-plus"></i>
-                  </button>
-               </div>
+            </div>
+            <div>
+               <input
+                  type="text"
+                  placeholder='Name'
+                  value={this.state.item_name}
+                  ref='name'
+                  onChange={(e) => this.setState({ item_name: e.target.value })}
+               />
+               <input
+                  type="text"
+                  placeholder='Cost'
+                  value={this.state.item_cost}
+                  ref='cost'
+                  onChange={(e) => this.setState({ item_cost: e.target.value })}
+               />
+               <button onClick={() => this.addBudgetItem()}>
+                  <i className="fas fa-plus"></i>
+               </button>
             </div>
             <div className="budget-total">
                Total: ${budgetTotal}

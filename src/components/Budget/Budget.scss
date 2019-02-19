@@ -19,7 +19,7 @@
 }
 
 .budget-item-list {
-   height: 70%;
+   height: 60%;
    overflow: auto;
    border-top: 1px solid black;
    border-bottom: 1px solid black;
@@ -50,6 +50,9 @@
 	align-items: center;
    align-content: stretch;
    padding: 7px;
+   div {
+      font-weight: 700;
+   }
 }
 
 .budget-item-category {

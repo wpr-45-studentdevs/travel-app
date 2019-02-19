@@ -4,15 +4,14 @@ import './TripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
 import Budget from '../Budget/Budget';
 import TextEditor from '../TextEditor/TextEditor';
+import Travelers from '../Travelers/Travelers';
+import Locations from '../Locations/Locations';
+import Activities from '../Activities/Activities';
 
 class TripCard extends Component {
 
   state = {
-    activities: [],
-    locations: [],
-    budget: [],
     mainPhoto: placeholderImage,
-    budgetTotal: 0,
     showDetails: false,
   }
 
@@ -27,25 +26,7 @@ class TripCard extends Component {
   }
 
   async getInfo() {
-    await this.getActivities()
-    await this.getLocations()
     await this.getPhotos()
-  }
-
-  getActivities = async () => {
-    const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/activities/${trip_id}`)
-    this.setState({
-      activities: res.data
-    })
-  }
-
-  getLocations = async () => {
-    const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/locations/${trip_id}`)
-    this.setState({
-      locations: res.data
-    })
   }
 
   getPhotos = async () => {
@@ -65,18 +46,7 @@ class TripCard extends Component {
 
   render() {
     const { trip } = this.props;
-    const { activities, locations, mainPhoto } = this.state;
-    const displayActivities = activities.map((activity, i) => {
-      return (
-        <li key={i}>{activity.activity_name}</li>
-      )
-    })
-
-    const locationsToDisplay = locations.map((location, i) => {
-      return (
-        <li key={location.location_id}>{location.location_name}</li>
-      )
-    })
+    const { activities, locations, budget, budgetTotal, mainPhoto } = this.state;
 
     return (
       <div className='tripCard'>
@@ -98,26 +68,34 @@ class TripCard extends Component {
             <div className='trip-modal-wrapper'>
               <div className='trip-modal'>
                 <div className='detail-box'>
-                  < Budget
-                      key={trip.trip_id}
-                      trip_id={trip.trip_id}
+                  < Locations
+                    trip={trip}
                   />
                 </div>
                 <div className='detail-box'>
-
+                  < Activities
+                    trip={trip}
+                  />
                 </div>
                 <div className='detail-box'>
-
+                  < Budget
+                    key={trip.trip_id}
+                    trip_id={trip.trip_id}
+                  />
                 </div>
                 <div className='detail-box'>
-
+                  < Travelers
+                    trip={trip}
+                  
+                  />
                 </div>
                 <div className="text-editor-box">
-                    < TextEditor
-                        trip_id={trip.trip_id}
-                    />
+                  < TextEditor
+                    trip_id={trip.trip_id}
+                  />
                 </div>
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
+
               </div>
             </div>
 

@@ -76,6 +76,7 @@ class MyTrips extends Component {
                 <input
                   type="text"
                   placeholder='Search'
+                  className='default-input'
                   onChange={(e) => this.handleSearch(e.target.value)}
                 />
               </div>

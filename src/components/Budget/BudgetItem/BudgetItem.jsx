@@ -47,10 +47,10 @@ export default class BudgetItem extends Component {
                         <p>${cost}</p>
                      </div>
                      <div className="budget-button-container budget-property">
-                        <p onClick={() => this.setState({editItem: true})} className='budget-icons'>
+                        <p onClick={() => this.setState({editItem: true})} className='list-icon'>
                            <i className="fas fa-edit"></i>
                         </p>
-                        <p onClick={() => this.deleteBudgetItem()} className='budget-icons'>
+                        <p onClick={() => this.deleteBudgetItem()} className='list-icon'>
                            <i className="fas fa-trash"></i>
                         </p>
                      </div>
@@ -72,10 +72,10 @@ export default class BudgetItem extends Component {
                      />
                      </div>
                      <div className="budget-button-container budget-property">
-                        <p onClick={() => this.setState({editItem: false})} className='budget-icons'>
+                        <p onClick={() => this.setState({editItem: false})} className='list-icon'>
                            <i className="fas fa-times budget-cancel-icon"></i>
                         </p>
-                        <p onClick={this.updateBudgetItem} className='budget-icons budget-submit-icon'>
+                        <p onClick={this.updateBudgetItem} className='list-icon budget-submit-icon'>
                            <i className="fas fa-check"></i>
                         </p>
                      </div>

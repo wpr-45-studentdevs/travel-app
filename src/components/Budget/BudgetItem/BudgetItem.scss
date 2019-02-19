@@ -12,6 +12,7 @@
 
 .budget-property {
    width: 33.333%;
+   font-size: 14px;
 }
 
 .item-name {
@@ -21,13 +22,6 @@
 .budget-button-container {
    display: flex;
    justify-content: flex-end;
-}
-
-.budget-icons {
-   margin-left: 8px;
-   :hover {
-      cursor: pointer;
-   }
 }
 
 .budget-cancel-icon {

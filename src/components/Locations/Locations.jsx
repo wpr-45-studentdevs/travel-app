@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Location from './Location';
+import './Locations.scss';
 
 export default class Locations extends Component {
 
@@ -42,9 +43,9 @@ export default class Locations extends Component {
         const { locations, locationToAdd } = this.state;
         const displayLocations = locations.map((location, i) => {
             return (
-                <div key={i}>
+                <li key={i}>
                     <Location location={location} getLocations={this.getLocations}/>
-                </div>
+                </li>
             )
         })
 
@@ -60,8 +61,10 @@ export default class Locations extends Component {
                     this.setState({
                         locationToAdd: ''
                     })
-                }}>+</button>
-                {displayLocations}
+                }}><i className="fas fa-plus"></i></button>
+                <ul className='locations-list'>
+                    {displayLocations}
+                </ul>
             </div>
         )
     }

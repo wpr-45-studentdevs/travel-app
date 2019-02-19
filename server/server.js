@@ -12,26 +12,32 @@ const travelerCtrl = require('./controllers/travelerController')
 const locationController = require('./controllers/locationController');
 const activitiesController = require('./controllers/activityController');
 
-const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
+const {
+   CONNECTION_STRING,
+   SERVER_PORT,
+   SECRET
+} = process.env;
 
 const app = express();
 
 //MIDDLEWARE
-app.use(express.json())
-app.use(session({
-   secret: SECRET,
-   resave: false,
-   saveUninitialized: false
-}))
+app.use(express.json());
+app.use(
+   session({
+      secret: SECRET,
+      resave: false,
+      saveUninitialized: false
+   })
+);
 
 //DATABASE CONNECTION
 massive(CONNECTION_STRING).then(db => {
-   app.set('db', db)
-      console.log('Connected to database')
+   app.set("db", db);
+   console.log("Connected to database");
    app.listen(SERVER_PORT, () => {
-      console.log(`Listening on port: ${SERVER_PORT}`)
-   })
-})
+      console.log(`Listening on port: ${SERVER_PORT}`);
+   });
+});
 
 //ENDPOINTS
 
@@ -64,7 +70,6 @@ app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
 //individual user's trips
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
-
 
 
 // User Profile Info
@@ -113,4 +118,3 @@ app.put('/api/activities/:activity_id', activitiesController.editActivity);
 //deletes an activity
 //returns the deleted activity
 app.delete('/api/activities/:activity_id', activitiesController.deleteActivity);
-

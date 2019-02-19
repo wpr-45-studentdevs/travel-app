@@ -1,0 +1,40 @@
+.budget-item-container {
+   display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+   align-content: center;
+   padding: 8px;
+   height: 40px;
+   border-bottom: 1px solid black;
+}
+
+.budget-property {
+   width: 33.333%;
+}
+
+.item-name {
+   text-align: left;
+}
+
+.budget-button-container {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.budget-icons {
+   margin-left: 8px;
+   :hover {
+      cursor: pointer;
+   }
+}
+
+.budget-cancel-icon {
+   color: rgb(180, 6, 6);
+   margin-right: 3px;
+}
+
+.budget-submit-icon {
+   color: green;
+}

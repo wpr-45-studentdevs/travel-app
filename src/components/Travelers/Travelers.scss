@@ -1,11 +1,18 @@
 .travelers-outer-box {
-  width: fit-content;
+  width: 100%;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+  align-content: center;
+  overflow: auto;
 }
 
 .travelers-container {
   display: flex;
   justify-content: space-around;
-  width: 500px;
+  width: 100%;
   flex-wrap: wrap;
 }
 

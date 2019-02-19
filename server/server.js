@@ -5,7 +5,9 @@ const session = require('express-session');
 const tripCtrl = require('./controllers/tripController')
 const authController = require('./controllers/authController');
 const bucketController = require('./controllers/bucketController');
-const userCtrl = require('./controllers/userInfoController')
+const userCtrl = require('./controllers/userInfoController');
+const budgetController = require('./controllers/budgetController');
+const notesController = require('./controllers/notesController');
 
 const { CONNECTION_STRING, SERVER_PORT, SECRET,  } = process.env;
 
@@ -28,13 +30,15 @@ massive(CONNECTION_STRING).then(db => {
    })
 })
 
-//AUTH ENDPOINTS
+//ENDPOINTS
+
+//Auth Endpoints
 app.post('/auth/register', authController.register) //register new user
 app.post('/auth/login', authController.login) //login
 app.get('/auth/userData', authController.userData) // gets user data off the session to see if they're logged in
 app.get('/auth/logout', authController.logout) //logout
 
-//BUCKET LIST ENDPOINTS
+//Bucket List Endpoints
 
 //Returns bucket list of the user on sessions
 app.get('/bucketlist', bucketController.getBucketList);
@@ -50,7 +54,7 @@ app.put('/bucketlist/:bucket_list_id', bucketController.updateBucketListItem);
 //Deletes a bucket list item
 //Returns the deleted item
 app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem);
-//ENDPOINTS
+
 
 //Public trips
 app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
@@ -68,7 +72,6 @@ app.get('/api/locations/:trip_id', tripCtrl.getLocations)
 
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 
-app.get('/api/budget/:trip_id', tripCtrl.getBudget)
 
 
 // user's profile info
@@ -82,3 +85,11 @@ app.post('/api/add-trip', tripCtrl.addTrips)
 
 app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
+//Budget Endpoints
+app.get('/api/budget/:trip_id', budgetController.getBudget);
+app.post('/api/budget/', budgetController.addBudgetItem);
+app.put('/api/budget', budgetController.updateBudgetItem);
+app.delete('/api/budget/:budget_item_id', budgetController.deleteBudgetItem)
+
+//Trip Notes Endpoints
+app.post('/api/notes', notesController.addNotes)

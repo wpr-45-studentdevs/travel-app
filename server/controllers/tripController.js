@@ -12,18 +12,6 @@ module.exports = {
     const trips = await db.get_user_trip_names({ user_id });
     res.status(200).send(trips);
   },
-  getActivities: async (req, res) => {
-    const db = req.app.get("db");
-    const { trip_id } = req.params;
-    const activities = await db.get_activities({ trip_id });
-    res.status(200).send(activities);
-  },
-  getLocations: async (req, res) => {
-    const db = req.app.get("db");
-    const { trip_id } = req.params;
-    const locations = await db.get_locations({ trip_id });
-    res.status(200).send(locations);
-  },
   getPhotos: async (req, res) => {
     const db = req.app.get("db");
     const { trip_id } = req.params;
@@ -36,10 +24,10 @@ module.exports = {
     const budget = await db.get_budget({ trip_id });
     res.status(200).send(budget);
   },
-  getTripUsers: async (req,res) => {
+  getTripUsers: async (req, res) => {
     const db = req.app.get('db')
-    const{trip_id} = req.params
-    const tripUsers = await db.get_trip_users({trip_id})
+    const { trip_id } = req.params
+    const tripUsers = await db.get_trip_users({ trip_id })
     res.status(200).send(tripUsers)
   },
 
@@ -74,5 +62,5 @@ module.exports = {
     } else {
       res.status(500).send("no user on this trip");
     }
-  }
+  },
 };

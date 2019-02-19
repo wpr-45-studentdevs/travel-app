@@ -7,6 +7,8 @@ import SideNav from '../SideNav/SideNav';
 import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
+import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import { array } from 'prop-types';
 
 
 class Profile extends Component {
@@ -85,29 +87,41 @@ class Profile extends Component {
     })
   }
 
+
   render() {
     const { userInfo, email, name, bio, img, edit, friends } = this.state
     const friendDisplay = friends.map((friend, i) => {
       let backgroundImg;
-      if(friend.profile_pic){
-        backgroundImg = friend.profile_pic 
-      }else {
-        backgroundImg = 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'
+      if (friend.profile_pic) {
+        backgroundImg = friend.profile_pic
+      } else {
+        backgroundImg = UserImgPlaceholder
       }
       return (
-        <div key={i} className='friend-container' style={{width: 'fit-content'}}>
-          <div className='friend-img' style={{backgroundImage: `url(${backgroundImg})`}}></div>
-          {/* <img src={friend.profile_pic ? friend.profile_pic : 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'} alt="" /> */}
+        <div key={i} className='friend-container' style={{ width: 'fit-content' }}>
+          <div className='friend-img' style={{ backgroundImage: `url(${backgroundImg})` }}></div>
+          {/* <img src={friend.profile_pic ? friend.profile_pic : UserImgPlaceholder} alt="" /> */}
           <label htmlFor="">{friend.user_display_name}</label>
         </div>
       )
     })
+    let friendLength = 1;
+    if (friendDisplay.length > 1 && friendDisplay.length < 5) {
+      friendLength = friendDisplay.length - 1
+    } else if (friendDisplay.length >= 5) {
+      friendLength = 5
+    }
+    let scrollAmount = 1;
+    if(friendLength > 1) {
+      scrollAmount = friendLength - 1
+    }
+
     const settings = {
       dots: false,
       speed: 500,
       infinite: true,
-      slidesToShow: 2,
-      slidesToScroll: 2
+      slidesToShow: friendLength,
+      slidesToScroll: scrollAmount
     }
 
     return (
@@ -123,7 +137,7 @@ class Profile extends Component {
               <h1>Profile</h1>
 
               <div className='profile-img-container'>
-                <img src={userInfo.profile_pic ? userInfo.profile_pic : 'https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg'} alt="" />
+                <img src={userInfo.profile_pic ? userInfo.profile_pic : UserImgPlaceholder} alt="" />
               </div>
 
 
@@ -135,8 +149,8 @@ class Profile extends Component {
 
                 {
                   edit &&
-                  <div>
-                    <span>Image Url:</span>
+                  <div className={edit && 'edit'}>
+                    <span>Image Url: </span>
                     <input onChange={e => this.handleChange('img', e.target.value)}
                       value={img} type="text" />
                   </div>
@@ -144,32 +158,31 @@ class Profile extends Component {
 
 
 
-                <div>
+                <div className={edit && 'edit'}>
                   <span>Email: </span>
                   {edit ? <input onChange={e => this.handleChange('email', e.target.value)}
                     value={email} type="text" /> : userInfo.user_email}
                 </div>
 
-                <div>
+                <div className={edit && 'edit'}>
                   <span>Display Name: </span>
                   {edit ? <input onChange={e => this.handleChange('name', e.target.value)}
                     value={name} type="text" /> : userInfo.user_display_name}
                 </div>
 
-                <div>
+                <div className={edit ? 'edit' : 'bio-box'}>
                   <span>Bio: </span>
                   {
                     edit ?
-                      <div>
-                        <textarea onChange={e => this.handleChange('bio', e.target.value)}
-                          value={bio} type="text" cols="30" rows="10"></textarea>
-                      </div>
+                      <textarea onChange={e => this.handleChange('bio', e.target.value)}
+                        value={bio} type="text" cols="35" rows="6"></textarea>
                       :
-                      userInfo.user_bio}
+                      <p>{userInfo.user_bio}</p>
+                      }
                 </div>
 
                 {edit &&
-                  <div>
+                  <div className='profile-buttons'>
                     <button onClick={this.handleCancel}>Cancel</button>
                     <button onClick={this.updateUserInfo}>Save</button>
                   </div>

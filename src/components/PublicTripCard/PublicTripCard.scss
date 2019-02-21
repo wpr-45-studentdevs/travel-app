@@ -12,13 +12,14 @@
   z-index: 0;
 }
 
-.traveler-container label {
+.traveler-container .label {
     font-size: 0.7em;
+    margin: 0 auto;
     opacity: 0;
     transition: .4s;
 }
 
-.traveler-container:hover label {
+.traveler-container:hover .label {
   opacity: 100;
   transition: .4s;
 }

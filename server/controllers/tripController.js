@@ -9,8 +9,14 @@ module.exports = {
   getUserTrips: async (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.params;
-    const trips = await db.get_user_trip_names({ user_id });
+    const trips = await db.user_trips.get_user_trip_names({ user_id });
     res.status(200).send(trips);
+  },
+  getCompletedTrips: async (req, res) => {
+    const db = req.app.get('db')
+    const { user_id } = req.params;
+    const trips = await db.user_trips.get_completed_user_trips({user_id})
+    res.status(200).send(trips)
   },
   getPhotos: async (req, res) => {
     const db = req.app.get("db");

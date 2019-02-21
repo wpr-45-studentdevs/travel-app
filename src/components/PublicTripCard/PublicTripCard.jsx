@@ -123,7 +123,7 @@ class PublicTripCard extends Component {
           <div className='user' style={{ backgroundImage: `url(${userImg})` }}>
             {/* <img src={user.profile_pic} alt=""/> */}
           </div>
-          <div className='label' style={{height:'1em', width: 'fit-content'}} >{user.user_display_name}</div>
+          <label htmlFor="">{user.user_display_name}</label>
         </div>
       )
     })

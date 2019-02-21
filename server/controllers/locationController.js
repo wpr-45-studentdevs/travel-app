@@ -10,6 +10,9 @@ module.exports = {
         const db = req.app.get('db');
         const { trip_id } = req.params;
         const { location_name } = req.body;
+        if (!location_name) {
+            res.status(400).send({message: 'Could not add location'});
+        }
         const addedLocation = await db.location.add_location({ location_name, trip_id });
 
         res.status(200).send(addedLocation);

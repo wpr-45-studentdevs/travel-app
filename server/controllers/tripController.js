@@ -25,10 +25,10 @@ module.exports = {
     res.status(200).send(budget);
   },
   getTripUsers: async (req, res) => {
-    const db = req.app.get('db')
-    const { trip_id } = req.params
-    const tripUsers = await db.get_trip_users({ trip_id })
-    res.status(200).send(tripUsers)
+    const db = req.app.get("db");
+    const { trip_id } = req.params;
+    const tripUsers = await db.get_trip_users({ trip_id });
+    res.status(200).send(tripUsers);
   },
 
   addTrips: async (req, res) => {
@@ -51,16 +51,17 @@ module.exports = {
   addUserToTrip: async (req, res) => {
     const db = req.app.get("db");
     const { trip_id } = req.params;
-    const user_id  = 10;
-    // console.log(req.session.user)
+    const { user_id } = req.session.user;
+    // const user_id = 10
+    console.log(req.session.user);
     const userTrip = await db.user_to_trip({
       trip_id: trip_id,
       user_id: user_id
     });
     if (userTrip) {
-      res.status(200).send(userTrip);
+      res.status(201).send(userTrip);
     } else {
       res.status(500).send("no user on this trip");
     }
-  },
+  }
 };

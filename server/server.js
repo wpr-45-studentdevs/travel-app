@@ -74,6 +74,8 @@ app.get('/api/budget/:trip_id', tripCtrl.getBudget)
 
 app.get("/api/budget/:trip_id", tripCtrl.getBudget);
 
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
+
 // user's profile info
 app.get("/api/userInfo/:user_id", userCtrl.getUserInfo);
 

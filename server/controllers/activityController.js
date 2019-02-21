@@ -10,6 +10,9 @@ module.exports = {
         const db = req.app.get('db');
         const { trip_id } = req.params;
         const { activity_name } = req.body;
+        if (!activity_name) {
+            res.status(400).send({message: 'Could not add activity'})
+        }
         const activity = await db.activities.add_activity({ activity_name, trip_id });
         res.status(200).send(activity);
     },

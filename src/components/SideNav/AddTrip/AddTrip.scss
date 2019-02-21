@@ -1,35 +1,21 @@
-.modalFullPage{
-    top: 0;
-    position: fixed;
-    background: rgba(49, 48, 48, .7);
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 0px;
-    button{
-       margin-top: 1rem;
-    }
- }
- 
- .modalAddTrip{
-    height: 70vh;
-    width: 50vw;
-    background: rgb(168, 168, 168);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 2;
- }
- 
- .checkboxes{
-    display: flex;
+.modalFullPage {
+  top: 0;
+  position: fixed;
+  //   filter: blur(8px);
+  background: rgba(49, 48, 48, 0.945);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0px;
+
+  button {
     margin-top: 1rem;
   }
 
 .modalAddTrip {
-   position: absolute;
+  position: absolute;
   height: 40vh;
   width: 30vw;
   background: rgb(168, 168, 168);
@@ -37,38 +23,36 @@
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
+  justify-content: center;
+  padding-bottom: 5%;
 }
 
+
+
 .checkboxes {
-   color: rgb(58, 58, 58);
+  color: rgb(58, 58, 58);
   display: flex;
   margin-top: 1rem;
   border-radius: 2px;
-  #checkboxStyle{
-   width: 2px;
-   height: 1px;
-   color: black;
-   margin: 0;
-   margin-left: 15px;
+  #checkboxStyle {
+    width: 2px;
+    height: 1px;
+    color: black;
+    margin: 0;
+    margin-left: 15px;
+  }
 }
-}
-
-
-
-
-// button {
-//   height: 2.5rem;
-//   width: 5rem;
-//   border-radius: 50px;
-//   background: rgb(151, 151, 151);
-//   border: none;
-//   transition: 0.75s;
-//   color: rgb(58, 58, 58);
-//   margin: 10px;
-// }
 
 .addTripButtons:hover {
   background: rgb(117, 117, 117);
 }
 
+.Links{
+  // text-decoration: none;
+  transition: .3s;
+}
 
+.Links:hover{
+color: black;
+font-size: 23px;
+}

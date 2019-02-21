@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../../styles/detail.scss';
 import './Location.scss';
 
 export default class Location extends Component {
 
     state = {
         edit: false,
-        newLocation: '',
+        newLocation: this.props.location.location_name,
         deletedLocation: []
     }
 
-    updateLocation = async () => {
+    editLocation = async () => {
         const { location_id } = this.props.location;
         const { newLocation } = this.state;
+
+        if (!newLocation) {
+            return;
+        }
 
         const res = await axios.put(`/api/locations/${location_id}`, {
             location_name: newLocation
@@ -21,11 +26,11 @@ export default class Location extends Component {
     }
 
     deleteLocation = async () => {
-        const {location_id} = this.props.location;
-        
+        const { location_id } = this.props.location;
+
         const res = await axios.delete(`/api/locations/${location_id}`);
 
-        this.setState({deletedLocation: res.data[0]})
+        this.setState({ deletedLocation: res.data[0] })
         await this.props.getLocations();
     }
 
@@ -39,26 +44,38 @@ export default class Location extends Component {
         const { location } = this.props;
         const { edit, newLocation } = this.state;
         return (
-            <>
-                <i className="fas fa-map-marker-alt"></i>
-                {location.location_name}
-                <i className="fas fa-edit list-icon" onClick={() => this.setState({ edit: !this.state.edit })}></i>
-                <i className="fas fa-trash list-icon"></i>
-                {edit ?
-                    <>
-                        <input
+            <div className="detail">
+                <div className="detail-name">
+                    <i className="fas fa-map-marker-alt"></i>
+                    {
+                        edit ? <><input
+                            className="detail-input"
                             type="text"
                             value={newLocation}
-                            onChange={(e) => this.handleInput(e.target.value)} />
-                        <button
-                        onClick={() => {
-                            this.updateLocation();
-                            this.setState({newLocation: '', edit: false})
-                        }}>Save</button>
-                    </>
-                    :
-                    null}
-            </>
+                            onChange={(e) => this.handleInput(e.target.value)}
+                            />
+                        </> : <>{location.location_name}</>
+                    }
+                </div>
+                <div>
+                    <i className={edit ? "fas fa-times cancel-edit list-icon" : "fas fa-edit list-icon"} onClick={() => this.setState({ edit: !this.state.edit })}></i>
+                    {edit ?
+                        <>
+                            <i
+                                className="fas fa-check list-icon"
+                                onClick={() => {
+                                    this.editLocation();
+                                    this.setState({ edit: false })
+                                }}
+                            ></i>
+                        </>
+                        :
+                        <i
+                            className="fas fa-trash list-icon"
+                            onClick={() => this.deleteLocation()}
+                        ></i>}
+                </div>
+            </div>
         )
     }
 }

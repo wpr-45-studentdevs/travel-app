@@ -40,22 +40,26 @@ export default class Activities extends Component {
         const displayActivities = activities.map((activity, i) => {
             return (
                 <div key={i}>
-                    <Activity activity={activity} getActivities={this.getActivities}/>
+                    <Activity activity={activity} getActivities={this.getActivities} />
                 </div>
             )
         })
         return (
             <>
-                <h2>Activities</h2>
-                <input
-                    type="text"
-                    value={newActivity}
-                    onChange={(e) => this.handleInput(e.target.value)} />
-                <button onClick={() => {
-                    this.addActivity();
-                    this.setState({ newActivity: '' })
-                }}>+</button>
-                {displayActivities}
+                <div className="detail-header">
+                    <h2>Activities</h2>
+                    <input
+                        type="text"
+                        value={newActivity}
+                        onChange={(e) => this.handleInput(e.target.value)} />
+                    <button onClick={() => {
+                        this.addActivity();
+                        this.setState({ newActivity: '' })
+                    }}><i className="fas fa-plus"></i></button>
+                </div>
+                <div className="detail-list">
+                    {displayActivities}
+                </div>
             </>
         )
     }

@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import axios from 'axios';
 import BucketItem from '../BucketItem/BucketItem';
 import bucketListBg from '../../images/bucket-list-bg.jpg';
+import {filterItems} from '../../Logic/Logic';
 
 export default class BucketList extends Component {
    state = {
@@ -16,9 +17,11 @@ export default class BucketList extends Component {
 
    getBucketList = async () => {
       const items = await axios.get('/bucketlist');
-      await this.filterItems(items.data);
+      const filter = await filterItems(items.data);
       this.setState({
-         items: items.data
+         items: items.data,
+         completedItems: filter[0],
+         incompleteItems: filter[1]
       });
       console.log(this.state)
    }
@@ -37,25 +40,8 @@ export default class BucketList extends Component {
       this.getBucketList();
    }
 
-   filterItems = async (arr) => {
-      let completedItems = [];
-      let incompleteItems = []
-      for (let i = 0; i < arr.length; i++) {
-         if (arr[i].completed === true) {
-            completedItems.push(arr[i])
-         } else {
-            incompleteItems.push(arr[i])
-         }
-      }
-      this.setState({
-         completedItems,
-         incompleteItems
-      })
-   }
-
    async componentDidMount() {
       await this.getBucketList();
-      // await this.filterItems(this.state.items);
    }
 
    render() {

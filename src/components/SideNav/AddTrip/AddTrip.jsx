@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./AddTrip.scss";
 import Axios from "axios";
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 
 class AddTrip extends Component {
   state = {
@@ -90,16 +92,17 @@ class AddTrip extends Component {
                   onChange={() => this.setState({ public: !this.state.public })}
                 />
               </div>
-              <div >
-                <button
-                  className="addTripButtons"
+              <div>
+                <Link
+                  className="Links"
+                  to = 'my-trips'
                   onClick={() => {
                     this.addTripDetails();
                     this.setState({ toggleModal: false });
                   }}
                 >
                   Save
-                </button>
+                </Link>
                 <button
                   className="addTripButtons"
                   onClick={() => this.setState({ toggleModal: false })}
@@ -107,6 +110,7 @@ class AddTrip extends Component {
                   Close
                 </button>
               </div>
+              
             </div>
           </div>
         ) : null}

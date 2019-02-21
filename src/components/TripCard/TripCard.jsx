@@ -67,12 +67,12 @@ class TripCard extends Component {
           this.state.showDetails === true ?
             <div className='trip-modal-wrapper'>
               <div className='trip-modal'>
-                <div className='detail-box'>
+                <div className='detail-box locations-box'>
                   < Locations
                     trip={trip}
                   />
                 </div>
-                <div className='detail-box'>
+                <div className='detail-box activities-box'>
                   < Activities
                     trip={trip}
                   />
@@ -95,7 +95,9 @@ class TripCard extends Component {
                   />
                 </div>
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
-
+                <Locations trip = {trip}/>
+                <Travelers trip = {trip}/>
+                <Activities trip = {trip}/>
               </div>
             </div>
 

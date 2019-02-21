@@ -6,6 +6,9 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
 import TripCard from "../TripCard/TripCard";
+import AddTrip from './AddTrip/AddTrip'
+import { ButtonBase } from "@material-ui/core";
+
 
 class MyTrips extends Component {
   state = {
@@ -72,7 +75,8 @@ class MyTrips extends Component {
           </div>
           <div className='trips-container'>
             <div className='trip-search-list-container'>
-              <div>
+              <div className='button-and-search'>
+                <div><AddTrip/></div>
                 <input
                   type="text"
                   placeholder='Search'

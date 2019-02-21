@@ -18,7 +18,7 @@ export default class AddTrip extends Component {
 
   handleChange = (prop, val) => {
     this.setState({ [prop]: val });
-    // console.log(this.state);
+    console.log(this.state); 
   };
 
   addTripDetails = async () => {
@@ -29,10 +29,10 @@ export default class AddTrip extends Component {
       public: this.state.public,
       tripLength: this.state.tripLength
     }).then(async response => {
-      // console.log(response.data[0]);
+      console.log(response.data[0]);
       const tripID = response.data[0].trip_id;
       await Axios.post(`/api/add-user-to-trip/${tripID}`).then(res => {
-        // console.log(res);
+        console.log(res);
         return res;
       });
     });
@@ -41,12 +41,12 @@ export default class AddTrip extends Component {
   render() {
     return (
       <>
-        <li
+        <button
           className="add-trip-button"
           onClick={() => this.setState({ toggleModal: true })}
         >
-          Add Trip
-        </li>
+          +
+        </button>
         {/* MODAL */}
         {this.state.toggleModal === true ? (
           <div className="modalFullPage">
@@ -75,7 +75,7 @@ export default class AddTrip extends Component {
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
-                  onChange={() =>
+                  onClick={() =>
                     this.setState({ completed: !this.state.completed })
                   }
                 />
@@ -86,7 +86,7 @@ export default class AddTrip extends Component {
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
-                  onChange={() => this.setState({ public: !this.state.public })}
+                  onClick={() => this.setState({ public: !this.state.public })}
                 />
               </div>
               <div>

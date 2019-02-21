@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './TripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
+import Budget from '../Budget/Budget';
+import TextEditor from '../TextEditor/TextEditor';
 import Travelers from '../Travelers/Travelers';
 import Locations from '../Locations/Locations';
 import Activities from '../Activities/Activities';
@@ -9,9 +11,7 @@ import Activities from '../Activities/Activities';
 class TripCard extends Component {
 
   state = {
-    budget: [],
     mainPhoto: placeholderImage,
-    budgetTotal: 0,
     showDetails: false,
   }
 
@@ -27,7 +27,6 @@ class TripCard extends Component {
 
   async getInfo() {
     await this.getPhotos()
-    await this.getBudgetTotal()
   }
 
   getPhotos = async () => {
@@ -44,24 +43,11 @@ class TripCard extends Component {
     }
   }
 
-  getBudgetTotal = async () => {
-    const { trip_id } = this.props.trip
-    let res = await axios.get(`/api/budget/${trip_id}`)
-    await this.setState({
-      budget: res.data
-    })
-    let budgetTotal = this.state.budget.reduce((acc, item) => {
-      return acc + item.item_cost / 100
-    }, 0)
-    this.setState({
-      budgetTotal: budgetTotal
-    })
-  }
 
   render() {
     const { trip } = this.props;
     const { activities, locations, budget, budgetTotal, mainPhoto } = this.state;
-  
+
     return (
       <div className='tripCard'>
         <div onClick={() => this.setState({ showDetails: true })} className='trip-details-body'>
@@ -81,6 +67,33 @@ class TripCard extends Component {
           this.state.showDetails === true ?
             <div className='trip-modal-wrapper'>
               <div className='trip-modal'>
+                <div className='detail-box'>
+                  < Locations
+                    trip={trip}
+                  />
+                </div>
+                <div className='detail-box'>
+                  < Activities
+                    trip={trip}
+                  />
+                </div>
+                <div className='detail-box'>
+                  < Budget
+                    key={trip.trip_id}
+                    trip_id={trip.trip_id}
+                  />
+                </div>
+                <div className='detail-box'>
+                  < Travelers
+                    trip={trip}
+                  
+                  />
+                </div>
+                <div className="text-editor-box">
+                  < TextEditor
+                    trip_id={trip.trip_id}
+                  />
+                </div>
                 <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
                 <Locations trip = {trip}/>
                 <Travelers trip = {trip}/>

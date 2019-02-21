@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Location from "./Location";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Location from './Location';
+import './Locations.scss';
 
 export default class Locations extends Component {
   state = {
@@ -45,28 +46,27 @@ export default class Locations extends Component {
           <Location location={location} getLocations={this.getLocations} />
         </div>
       );
-    });
+    })
 
-    return (
-      <div>
-        <h3>Locations</h3>
-        <input
-          type="text"
-          value={locationToAdd}
-          onChange={e => this.handleInput(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            this.addLocation();
-            this.setState({
-              locationToAdd: ""
-            });
-          }}
-        >
-          +
-        </button>
-        {displayLocations}
-      </div>
-    );
-  }
+    
+
+        return (
+            <div>
+                <h2>Locations</h2>
+                <input
+                    type="text"
+                    value={locationToAdd}
+                    onChange={(e) => this.handleInput(e.target.value)} />
+                <button onClick={() => {
+                    this.addLocation();
+                    this.setState({
+                        locationToAdd: ''
+                    })
+                }}><i className="fas fa-plus"></i></button>
+                <ul className='locations-list'>
+                    {displayLocations}
+                </ul>
+            </div>
+        )
+    }
 }

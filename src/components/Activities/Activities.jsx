@@ -46,7 +46,7 @@ export default class Activities extends Component {
         })
         return (
             <>
-                <h3>Activities</h3>
+                <h2>Activities</h2>
                 <input
                     type="text"
                     value={newActivity}

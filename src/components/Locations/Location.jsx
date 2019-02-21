@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Location.scss';
 
 export default class Location extends Component {
 
@@ -39,12 +40,10 @@ export default class Location extends Component {
         const { edit, newLocation } = this.state;
         return (
             <>
+                <i className="fas fa-map-marker-alt"></i>
                 {location.location_name}
-                <button onClick={() => this.setState({ edit: !this.state.edit })}>
-                    {
-                        edit ? <>Cancel</> : <>Edit</>
-                    }
-                </button>
+                <i className="fas fa-edit list-icon" onClick={() => this.setState({ edit: !this.state.edit })}></i>
+                <i className="fas fa-trash list-icon"></i>
                 {edit ?
                     <>
                         <input
@@ -59,10 +58,6 @@ export default class Location extends Component {
                     </>
                     :
                     null}
-                <button
-                onClick={() => {
-                    this.deleteLocation();
-                }}>Delete</button>
             </>
         )
     }

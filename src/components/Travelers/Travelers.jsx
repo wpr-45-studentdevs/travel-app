@@ -67,7 +67,7 @@ export default class Travelers extends Component {
     })
     return (
       <div className='travelers-outer-box'>
-        <h3>Travelers:</h3>
+        <h2>Travelers:</h2>
 
         <div className='travelers-container'>
           {usersToDisplay}

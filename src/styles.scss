@@ -40,3 +40,7 @@ $side-nav-width: 215px;
       cursor: pointer;
    }
 }
+
+*:focus {
+  outline: none;
+}

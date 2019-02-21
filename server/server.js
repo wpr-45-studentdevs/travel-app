@@ -66,6 +66,8 @@ app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem)
 //Public trips
 app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
 app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
+app.post('/api/add-trip', tripCtrl.addTrips)
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
 //individual user's trips
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
@@ -75,9 +77,6 @@ app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 // User Profile Info
 app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
 app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
-app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)
-app.post('/api/add-trip', tripCtrl.addTrips)
-app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
 //Budget
 app.get('/api/budget/:trip_id', budgetController.getBudget);
@@ -89,8 +88,14 @@ app.delete('/api/budget/:budget_item_id', budgetController.deleteBudgetItem)
 app.post('/api/notes', notesController.addNotes)
 
 //Travelers
-app.post('/api/travelers/:trip_id', travelerCtrl.addTravelers)
+app.post('/api/travelers/:trip_id/:user_id', travelerCtrl.addTravelers)
 app.delete('/api/travelers/:bridge_id', travelerCtrl.removeTraveler)
+
+//Friends
+app.get('/api/userFriends/:user_id', userCtrl.getUserFriends)
+app.get('/api/trip/friends/:user_id/:trip_id', userCtrl.getFriendsNotOnTrip)
+app.post('/api/friend/:user_id', userCtrl.addFriend)
+app.delete('/api/friend/:user_id/:friend_id', userCtrl.removeFriend)
 
 //Locations
 //returns an array of all the locations of a given trip

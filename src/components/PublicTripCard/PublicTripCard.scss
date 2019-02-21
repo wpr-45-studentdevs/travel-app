@@ -12,6 +12,17 @@
   z-index: 0;
 }
 
+.traveler-container label {
+    font-size: 0.7em;
+    opacity: 0;
+    transition: .4s;
+}
+
+.traveler-container:hover label {
+  opacity: 100;
+  transition: .4s;
+}
+
 .user {
   height: 50px;
   width: 50px;

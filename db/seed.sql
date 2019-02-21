@@ -43,13 +43,14 @@ CREATE TABLE trip_bridge (
 );
 
 CREATE TABLE trips (
-   trip_id integer DEFAULT nextval('trip_trip_id_seq'::regclass) PRIMARY KEY,
-   trip_name character varying(20) NOT NULL,
-   date character varying(50),
-   completed boolean NOT NULL,
-   public boolean NOT NULL,
-   trip_length integer,
-   trip_notes text
+    trip_id integer DEFAULT nextval('trip_trip_id_seq'::regclass) PRIMARY KEY,
+    trip_name character varying(20) NOT NULL,
+    date character varying(50),
+    completed boolean NOT NULL,
+    public boolean NOT NULL,
+    trip_length integer,
+    trip_notes text,
+    trip_owner integer REFERENCES users(user_id)
 );
 
 CREATE TABLE users (

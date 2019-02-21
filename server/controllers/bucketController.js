@@ -9,10 +9,12 @@ module.exports = {
     addBucketListItem: async (req, res) => {
         const {user_id} = req.session.user;
         const {title, completed} = req.body;
+        if (!title || !completed) {
+            res.status(400).send({message: 'Could not add item to bucket list'})
+        }
         const db = req.app.get('db');
 
         const addedItem = await db.bucket.add_bucket_list_item({title, user_id, completed});
-        // const bucketList = await db.get_bucket_list({user_id});
         res.status(200).send(addedItem);
     },
     updateBucketListItem: async (req, res) => {

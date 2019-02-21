@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Location from './Location';
+import '../../styles/detail.scss';
 import './Locations.scss';
 
 export default class Locations extends Component {
@@ -43,29 +44,31 @@ export default class Locations extends Component {
         const { locations, locationToAdd } = this.state;
         const displayLocations = locations.map((location, i) => {
             return (
-                <li key={i}>
-                    <Location location={location} getLocations={this.getLocations}/>
-                </li>
+                <div key={i}>
+                    <Location location={location} getLocations={this.getLocations} />
+                </div>
             )
         })
 
         return (
-            <div>
-                <h2>Locations</h2>
-                <input
-                    type="text"
-                    value={locationToAdd}
-                    onChange={(e) => this.handleInput(e.target.value)} />
-                <button onClick={() => {
-                    this.addLocation();
-                    this.setState({
-                        locationToAdd: ''
-                    })
-                }}><i className="fas fa-plus"></i></button>
-                <ul className='locations-list'>
+            <>
+                <div className="detail-header">
+                    <h2>Locations</h2>
+                    <input
+                        type="text"
+                        value={locationToAdd}
+                        onChange={(e) => this.handleInput(e.target.value)} />
+                    <button onClick={() => {
+                        this.addLocation();
+                        this.setState({
+                            locationToAdd: ''
+                        })
+                    }}><i className="fas fa-plus"></i></button>
+                </div>
+                <div className='detail-list'>
                     {displayLocations}
-                </ul>
-            </div>
+                </div>
+            </>
         )
     }
 }

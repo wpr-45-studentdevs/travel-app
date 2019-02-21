@@ -48,6 +48,7 @@ export default class Dashboard extends Component {
             }
          });
       }
+      console.log(filteredArr)
       const showPublicTrips = filteredArr.map((trip, i) => {
          return (
                <PublicTripCard

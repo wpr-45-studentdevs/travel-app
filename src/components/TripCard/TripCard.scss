@@ -9,7 +9,7 @@
   box-sizing: border-box;
   color: black;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5 );
-  margin-top: 30px;
+  margin: 30px 2.5px 0px 2.5px;
   border-radius: 7px;
 }
 
@@ -57,7 +57,7 @@ ul {
 .trip-modal-wrapper {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(37, 37, 37, 0.712);
+  background-color: rgba(20, 20, 20, 0.712);
   position: absolute;
   top: 0;
   left: 0;
@@ -66,37 +66,69 @@ ul {
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	align-content: center;
+  align-content: center;
 }
 
+.detail-button-container {
+  width: 135px;
+  height: auto;
+  position: fixed;
+  top: 1%;
+  right: 1%;display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+  align-content: stretch;
+}
+.details-button-container {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+}
+.trip-details-close-button {
+  
+  color: white;
+  transition: .3s;
+}
+.trip-details-close-button:hover {
+  cursor: pointer;
+  color: rgb(126, 126, 126);
+  transition: .3s;
+}
+
+
 .trip-modal {
-  height: 90%;
+  height: 85%;
   width: 95%;
-  background-color: white;
+  background-color: transparent;
   z-index: 2;
   border-radius: 10px;
   display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: stretch;
-	align-content: stretch;
-}
-
-.trip-modal-close-button {
-  position: absolute;
-  top: 6%;
-  left: 94%;
+	align-content: space-between;
 }
 
 .detail-box {
-  width: 33.33%;
-  height: 50%;
-  border: 1px solid black;
+  width: 32%;
+  height: 49%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .text-editor-box {
+  position: relative;
   height: 100%;
   width: 33.33%;
-  background-color: lightgray;
+  background-color: $secondary-background-color;
+  color: black;
+  border-radius: 10px;
 }
+
+.quill {
+  height: 100%;
+}
+

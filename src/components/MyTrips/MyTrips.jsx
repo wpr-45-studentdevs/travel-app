@@ -57,9 +57,11 @@ class MyTrips extends Component {
         <TripCard
           trip={trip}
           key={trip.trip_id}
+          getTrips={this.getTrips}
         />
       )
     });
+
 
     return (
       <div>

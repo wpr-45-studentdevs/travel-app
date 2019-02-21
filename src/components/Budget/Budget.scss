@@ -22,7 +22,7 @@
    height: 60%;
    overflow: auto;
    border-top: 1px solid black;
-   border-bottom: 1px solid black;
+   // border-bottom: 1px solid black;
    margin-top: 0;
 }
 
@@ -50,6 +50,7 @@
 	align-items: center;
    align-content: stretch;
    padding: 7px;
+   margin: 0px 10px;
    div {
       font-weight: 700;
    }

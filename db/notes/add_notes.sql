@@ -1,4 +1,4 @@
-INSERT INTO trips (trip_notes)
-VALUES ${trip_notes}
-WHERE trip_id = ${trip_id}
+UPDATE trips
+SET trip_notes=${trip_notes}
+WHERE trip_id=${trip_id}
 RETURNING *;

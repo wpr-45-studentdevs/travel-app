@@ -3,8 +3,9 @@
 .trips-container {
   height: calc(100vh - #{($navbar-height)});
   width: 100%;
-  background-image: url('../../images/map-background.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/map-background.jpg);
   background-size: cover;
+  background-position: center;
 }
 
 .trip-search-list-container {
@@ -27,7 +28,7 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
-	align-content: flex-start;
+	align-content: center;
   overflow-y: auto;
   padding: 30px 0px;
 }

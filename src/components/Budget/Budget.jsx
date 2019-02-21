@@ -39,7 +39,7 @@ export default class Budget extends Component {
       if (item_name.length < 1) {
          alert('Please enter a name for the new budget item')
       } else if (isNaN(item_cost)) {
-         alert('Please enter a cost for the new budget item (Must be a number)')
+         alert('Budget item cost must be a number')
       } else {
          const res = await axios.post('/api/budget', { item_name, item_cost: itemCost, trip_id });
          await this.getBudget();
@@ -51,9 +51,8 @@ export default class Budget extends Component {
    }
 
 
-
    render() {
-      const { budget, budgetTotal, item_name, item_cost } = this.state;
+      const { budget, budgetTotal } = this.state;
       const budgetItemList = budget.map((budgetItem) => {
          const { budget_item_id } = budgetItem
          return (

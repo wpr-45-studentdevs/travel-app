@@ -66,10 +66,12 @@ app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem)
 //Public trips
 app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
 app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
-
 //individual user's trips
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
+app.delete('/api/trip/:trip_id', tripCtrl.deleteTrip)
+app.put('/api/trip/public', tripCtrl.updateTripPublic)
+app.put('/api/trip/completed', tripCtrl.updateTripCompleted)
 
 
 // User Profile Info
@@ -86,7 +88,8 @@ app.put('/api/budget', budgetController.updateBudgetItem);
 app.delete('/api/budget/:budget_item_id', budgetController.deleteBudgetItem)
 
 //Trip Notes Endpoints
-app.post('/api/notes', notesController.addNotes)
+app.get(`/api/notes/:trip_id`, notesController.getNotes)
+app.put('/api/notes', notesController.addNotes);
 
 //Travelers
 app.post('/api/travelers/:trip_id', travelerCtrl.addTravelers)

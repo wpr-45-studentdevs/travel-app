@@ -9,8 +9,14 @@ module.exports = {
   getUserTrips: async (req, res) => {
     const db = req.app.get("db");
     const { user_id } = req.params;
-    const trips = await db.get_user_trip_names({ user_id });
+    const trips = await db.user_trips.get_user_trip_names({ user_id });
     res.status(200).send(trips);
+  },
+  getCompletedTrips: async (req, res) => {
+    const db = req.app.get('db')
+    const { user_id } = req.params;
+    const trips = await db.user_trips.get_completed_user_trips({user_id})
+    res.status(200).send(trips)
   },
   getPhotos: async (req, res) => {
     const db = req.app.get("db");
@@ -33,13 +39,14 @@ module.exports = {
   },
   addTrips: async (req, res) => {
     const db = req.app.get("db");
-    const { tripName, date, completed, public, tripLength } = req.body;
+    const { tripName, date, completed, public, tripLength, trip_owner } = req.body;
     const tripArray = await db.add_user_trip({
       trip_name: tripName,
       date: date,
       completed: completed,
       public: public,
-      trip_length: tripLength
+      trip_length: tripLength,
+      trip_owner: trip_owner
     });
     if (tripArray) {
       res.status(200).send(tripArray);

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./AddTrip.scss";
 import Axios from "axios";
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 
-export default class AddTrip extends Component {
+class AddTrip extends Component {
   state = {
     toggleModal: false,
     tripName: "",
@@ -22,12 +23,14 @@ export default class AddTrip extends Component {
   };
 
   addTripDetails = async () => {
+    const {user_id} = this.props.user
     const tripDetails = await Axios.post("/api/add-trip", {
       tripName: this.state.tripName,
       date: this.state.date,
       completed: this.state.completed,
       public: this.state.public,
-      tripLength: this.state.tripLength
+      tripLength: this.state.tripLength,
+      trip_owner: user_id
     }).then(async response => {
       // console.log(response.data[0]);
       const tripID = response.data[0].trip_id;
@@ -115,3 +118,7 @@ export default class AddTrip extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => reduxState
+
+export default connect(mapStateToProps)(AddTrip)

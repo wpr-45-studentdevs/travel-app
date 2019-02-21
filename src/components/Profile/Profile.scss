@@ -21,7 +21,8 @@
   margin: 2em auto;
   // font-family: 'Raleway', sans-serif;
   h1 {
-    margin: .5em;
+    margin: 0.3em;
+    font-size: 1.6rem;
   }
 }
 
@@ -90,4 +91,22 @@
   background-size: cover;
   background-position: center;
   margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  // align-items: center;
+  i {
+    opacity: 0;
+    transition: .5s;
+    height: fit-content;
+  }
+}
+
+.friend-img:hover i {
+  opacity: 100;
+  transition: .5s;
+}
+
+.friend-img i:hover {
+  color: #fff;
+  text-shadow: 0 0 3px black;
 }

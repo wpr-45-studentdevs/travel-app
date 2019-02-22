@@ -22,8 +22,13 @@ class AddTrip extends Component {
   };
 
   addTripDetails = async () => {
+<<<<<<< HEAD
     const {user_id} = this.props.user;
     await Axios.post("/api/add-trip", {
+=======
+    const {user_id} = this.props.user
+    const tripDetails = await Axios.post("/api/add-trip", {
+>>>>>>> master
       tripName: this.state.tripName,
       date: this.state.date,
       completed: this.state.completed,

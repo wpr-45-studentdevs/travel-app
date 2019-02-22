@@ -2,6 +2,7 @@ export function toggle(bool) {
   return !bool
 }
 
+<<<<<<< HEAD
 
 
 let budget = [{
@@ -32,6 +33,8 @@ export function addBudgetItem(item_name, item_cost) {
   return newItem;
 }
 
+=======
+>>>>>>> master
 export function calculateTotal(arr) {
   let total = arr.reduce((acc, item) => {
     return acc + item.item_cost
@@ -39,11 +42,16 @@ export function calculateTotal(arr) {
   total = total / 100
   let numArr = total.toString().split('.')
   // console.log(numArr)
+<<<<<<< HEAD
   if (numArr[1]) {
     return total.toLocaleString('dollar', {
       style: 'currency',
       currency: 'USD'
     })
+=======
+  if(numArr[1]) {
+    return total.toLocaleString('dollar', {style: 'currency', currency: 'USD'})
+>>>>>>> master
   } else {
     return '$' + total
   }
@@ -52,11 +60,19 @@ export function filterItems(arr) {
   let completedItems = [];
   let incompleteItems = []
   for (let i = 0; i < arr.length; i++) {
+<<<<<<< HEAD
     if (arr[i].completed === true) {
       completedItems.push(arr[i])
     } else {
       incompleteItems.push(arr[i])
     }
+=======
+     if (arr[i].completed === true) {
+        completedItems.push(arr[i])
+     } else {
+        incompleteItems.push(arr[i])
+     }
+>>>>>>> master
   }
   return [completedItems, incompleteItems];
   // this.setState({
@@ -69,7 +85,10 @@ export function filterItems(arr) {
 
 export function searchTrips(arr, search) {
   let arr2 = []
+<<<<<<< HEAD
   console.log(arr2)
+=======
+>>>>>>> master
   if (search) {
     let filteredArr = arr.filter((object, index) => {
       let passed = false;
@@ -85,11 +104,19 @@ export function searchTrips(arr, search) {
       } else {
         return false;
       }
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> master
     });
     return filteredArr
     // console.log(filteredArr)
   }
 }
 
+<<<<<<< HEAD
 //Fin's tests End
+=======
+//Fin's tests End
+>>>>>>> master

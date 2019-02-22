@@ -19,7 +19,11 @@ export default class Location extends Component {
             return;
         }
 
+<<<<<<< HEAD
         await axios.put(`/api/locations/${location_id}`, {
+=======
+        const res = await axios.put(`/api/locations/${location_id}`, {
+>>>>>>> master
             location_name: newLocation
         })
         await this.props.getLocations();

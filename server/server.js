@@ -66,6 +66,12 @@ app.delete('/bucketlist/:bucket_list_id', bucketController.deleteBucketListItem)
 //Public trips
 app.get('/trips/getAllPublic', tripCtrl.getAllPublicTrips)
 app.get('/api/trips/users/:trip_id', tripCtrl.getTripUsers)
+<<<<<<< HEAD
+=======
+app.post('/api/add-trip', tripCtrl.addTrips)
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
+
+>>>>>>> master
 //individual user's trips
 app.delete('/api/trip/:trip_id', tripCtrl.deleteTrip)
 app.put('/api/trip/public', tripCtrl.updateTripPublic)

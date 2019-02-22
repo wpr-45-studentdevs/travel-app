@@ -25,6 +25,7 @@ export default class BudgetItem extends Component {
    updateBudgetItem = async () => {
       const { budget_item_id } = this.props.budget_item;
       const { item_name, item_cost } = this.state;
+<<<<<<< HEAD
       let cost = item_cost;
       if(isNaN(cost)) {
          swal('Please enter a number for item cost')
@@ -35,6 +36,11 @@ export default class BudgetItem extends Component {
       }
       let res = await axios.put('/api/budget', { item_name, item_cost: cost, budget_item_id });
       this.setState({
+=======
+      // let itemCost = item_cost * 100;
+      let res = await axios.put('/api/budget', { item_name, item_cost, budget_item_id });
+      await this.setState({
+>>>>>>> master
          item_name: res.data.item_name,
          item_cost: res.data.item_cost,
          editItem: false

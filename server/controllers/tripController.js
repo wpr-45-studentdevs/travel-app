@@ -59,6 +59,11 @@ module.exports = {
     const db = req.app.get("db");
     const { trip_id } = req.params;
     const { user_id } = req.session.user;
+<<<<<<< HEAD
+=======
+    // const user_id = 10
+    console.log(req.session.user);
+>>>>>>> master
     const userTrip = await db.user_to_trip({
       trip_id: trip_id,
       user_id: user_id
@@ -68,6 +73,7 @@ module.exports = {
     } else {
       res.status(500).send("no user on this trip");
     }
+<<<<<<< HEAD
   },
 
   deleteTrip: async (req, res) => {
@@ -98,4 +104,7 @@ module.exports = {
     const updatedTripCompleted = await db.trip.update_trip_completed({ trip_id, completed });
     res.status(200).send(updatedTripCompleted)
   },
+=======
+  }
+>>>>>>> master
 };

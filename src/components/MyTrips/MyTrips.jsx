@@ -2,12 +2,27 @@ import React, { Component } from "react";
 import "./MyTrips.scss";
 import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";
-import axios from 'axios'
-import { connect } from 'react-redux'
-import { getUserData } from '../../ducks/reducer'
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { getUserData } from '../../ducks/reducer';
 import TripCard from "../TripCard/TripCard";
 import Switch from '@material-ui/core/Switch';
-import { toggle } from '../../Logic/Logic'
+import { withStyles } from '@material-ui/core';
+import { toggle } from '../../Logic/Logic';
+
+const styles = theme => ({
+  colorSwitchBase: {
+    color: 'teal',
+    '&$colorChecked': {
+      color: 'teal',
+      '& + $colorBar': {
+        backgroundColor: 'teal',
+      },
+    },
+  },
+  colorBar: {},
+  colorChecked: {},
+});
 
 
 class MyTrips extends Component {
@@ -81,6 +96,8 @@ class MyTrips extends Component {
       )
     });
 
+    const { classes } = this.props;
+
 
     return (
       <div>
@@ -93,22 +110,29 @@ class MyTrips extends Component {
           </div>
           <div className='trips-container'>
             <div className='trip-search-list-container'>
-              <div>
-                <input
-                  type="text"
-                  placeholder='Search'
-                  className='default-input'
-                  onChange={(e) => this.handleSearch(e.target.value)}
-                />
+              <div className='input-toggle-container'>
                 <div className='my-trips-toggle'>
                   <Switch
                     checked={this.state.checkedB}
                     onChange={this.handleChange}
                     value="checkedB"
                     color="primary"
+                    label='Show Completed Trips'
+                    className='switch'
+                    classes={{
+                      switchBase: classes.colorSwitchBase,
+                      checked: classes.colorChecked,
+                      bar: classes.colorBar,
+                    }}
                   />
                   <label>Show Completed Trips</label>
                 </div>
+                <input
+                  type="text"
+                  placeholder='Search'
+                  className='default-input'
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                />
               </div>
               <div className="trip-card-display">
                 {displayTrips}
@@ -125,4 +149,4 @@ const mapStateToProps = (reduxState) => {
   return reduxState
 }
 
-export default connect(mapStateToProps, { getUserData })(MyTrips)
+export default connect(mapStateToProps, { getUserData })(withStyles(styles)(MyTrips))

@@ -31,7 +31,7 @@ class OptionsMenu extends React.Component {
    componentDidMount = async () => {
       await this.setState({
          completed: this.props.trip.completed,
-         public: this.props.trip.completed,
+         isPublic: this.props.trip.public,
       })
       console.log(this.state)
    }

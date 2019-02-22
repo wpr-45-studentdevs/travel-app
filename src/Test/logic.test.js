@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import {toggle, addBudgetItem} from '../Logic/Logic'
-=======
 import { toggle, calculateTotal, filterItems, searchTrips } from '../Logic/Logic'
->>>>>>> master
-=======
 import { toggle, calculateTotal, filterItems, searchTrips } from '../Logic/Logic'
->>>>>>> master
 
 const budget = [
   {
@@ -68,9 +63,6 @@ describe('tests toggle show button', () => {
   })
 })
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 //Budget Tests
 describe('can add budget item to budget array', () => {
   test('new item must have name', () => {
@@ -92,9 +84,9 @@ describe('can add budget item to budget array', () => {
   
   test('item name must be a string', () => {
     expect(addBudgetItem(2, 2)).toBe('item name must be a string')
-=======
-=======
->>>>>>> master
+  })
+})
+
 describe('can calculate total of budget', () => {
   test('should get correct subtotal', () => {
     expect(calculateTotal(budget)).toBe('$1708')
@@ -214,9 +206,5 @@ describe.only('filter bucket list items', () => {
 
   test('filter should not modify original array', () => {
     expect(list).toHaveLength(3);
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> master
   })
 })

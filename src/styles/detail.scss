@@ -1,5 +1,4 @@
 .cancel-edit {
-<<<<<<< HEAD
    color: red;
 }
 
@@ -42,46 +41,3 @@
 .detail-header {
    margin-bottom: 15px;
 }
-=======
-    color: red;
- }
- 
- .detail {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    margin: 5px 20px;
- }
- 
- .detail-input {
-    width: 130px;
- }
- 
- .fa-check {
-    color: green;
- }
- 
- .detail-name {
-    opacity: 1;
- }
-
- .detail-list {
-    li {
-          list-style-type: none;
-    }
-       background: white;
-       opacity: .85;
-       border-radius: 10px;
-       border: 2px solid black;
-       width: 60%;
-       padding: 10px 0px;
-       margin: 0 auto;
-       height: 240px;
-       overflow-y: scroll;
- }
- 
- .detail-header {
-       margin-bottom: 30px;
- }
->>>>>>> master

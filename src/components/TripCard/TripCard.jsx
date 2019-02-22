@@ -132,13 +132,6 @@ class TripCard extends Component {
                     text={this.state.text}
                   />
                 </div>
-<<<<<<< HEAD
-=======
-                <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
-                <Locations trip = {trip}/>
-                <Travelers trip = {trip}/>
-                <Activities trip = {trip}/>
->>>>>>> master
               </div>
             </div>
 

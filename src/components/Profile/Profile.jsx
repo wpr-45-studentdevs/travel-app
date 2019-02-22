@@ -8,10 +8,7 @@ import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
-<<<<<<< HEAD
 import swal from 'sweetalert';
-=======
->>>>>>> master
 
 
 class Profile extends Component {
@@ -106,11 +103,7 @@ class Profile extends Component {
       this.getFriends()
       this.showFriendsToAdd()
     } else {
-<<<<<<< HEAD
       swal(res.data.message)
-=======
-      alert(res.data.message)
->>>>>>> master
     }
   }
 

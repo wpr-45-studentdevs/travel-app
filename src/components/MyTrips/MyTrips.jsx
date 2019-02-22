@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { getUserData } from '../../ducks/reducer';
 import TripCard from "../TripCard/TripCard";
 import Switch from '@material-ui/core/Switch';
-<<<<<<< HEAD
 import { withStyles } from '@material-ui/core';
 import { toggle } from '../../Logic/Logic';
 
@@ -24,9 +23,7 @@ const styles = theme => ({
   colorBar: {},
   colorChecked: {},
 });
-=======
-import { toggle } from '../../Logic/Logic'
->>>>>>> master
+
 
 
 class MyTrips extends Component {
@@ -116,6 +113,7 @@ class MyTrips extends Component {
             <div className='trip-search-list-container'>
               <div className='input-toggle-container'>
                 <div className='my-trips-toggle'>
+                  <label>Upcoming Trips</label>
                   <Switch
                     checked={this.state.checkedB}
                     onChange={this.handleChange}
@@ -137,15 +135,6 @@ class MyTrips extends Component {
                   className='default-input'
                   onChange={(e) => this.handleSearch(e.target.value)}
                 />
-                <div className='my-trips-toggle'>
-                  <Switch
-                    checked={this.state.checkedB}
-                    onChange={this.handleChange}
-                    value="checkedB"
-                    color="primary"
-                  />
-                  <label>Show Completed Trips</label>
-                </div>
               </div>
               <div className="trip-card-display">
                 {displayTrips}

@@ -165,7 +165,7 @@ class PublicTripCard extends Component {
 
         <div>
           <h3>{trip.trip_name}</h3>
-          <p><span>Date:</span>{trip.date}</p>
+          <p><span>Date: </span>{trip.date}</p>
 
           {
             displayActivities[0] || locationsToDisplay[0] ?

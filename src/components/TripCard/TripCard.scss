@@ -11,8 +11,13 @@
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5 );
   margin: 30px 2.5px 0px 2.5px;
   border-radius: 7px;
+    &:hover {
+      height: 305px;
+      width: 355px;
+      transition: .25s;
+      margin: 20px 0 0 0;
+    }
 }
-
 
 .trip-details-body {
   height: 100%;
@@ -20,16 +25,10 @@
   cursor: pointer;
 }
 
-img {
-  height: 300px;
-  margin: auto;
-}
-
 .listFlex {
   display: flex;
   justify-content: space-around;
 }
-
 
 ul {
   text-align: start;
@@ -86,15 +85,15 @@ ul {
   top: 10px;
   right: 15px;
 }
+
 .trip-details-close-button {
-  
   color: white;
   transition: .3s;
-}
-.trip-details-close-button:hover {
-  cursor: pointer;
-  color: rgb(126, 126, 126);
-  transition: .3s;
+    &:hover {
+    cursor: pointer;
+    color: rgb(126, 126, 126);
+    transition: .3s;
+  }
 }
 
 

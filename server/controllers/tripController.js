@@ -59,8 +59,6 @@ module.exports = {
     const db = req.app.get("db");
     const { trip_id } = req.params;
     const { user_id } = req.session.user;
-    // const user_id = 10
-    console.log(req.session.user);
     const userTrip = await db.user_to_trip({
       trip_id: trip_id,
       user_id: user_id

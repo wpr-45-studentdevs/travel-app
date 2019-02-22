@@ -36,7 +36,21 @@ $side-nav-width: 185px;
 
 .list-icon {
    margin-left: 8px;
-   :hover {
+   &:hover {
       cursor: pointer;
    }
+}
+
+.fa-trash {
+   &:hover {
+      color: rgb(221, 11, 11);
+   }
+   transition: .1s ease-in;
+}
+
+.fa-edit {
+   &:hover {
+      color: rgb(212, 199, 6);
+   }
+   transition: .1s ease-in;
 }

@@ -102,12 +102,12 @@ class TripCard extends Component {
                 <i className="fas fa-times fa-2x trip-details-close-button" onClick={() => this.handleClose()}></i>
               </div>
               <div className='trip-modal'>
-                <div className='detail-box'>
+                <div className='detail-box locations-box'>
                   < Locations
                     trip={trip}
                   />
                 </div>
-                <div className='detail-box'>
+                <div className='detail-box activities-box'>
                   < Activities
                     trip={trip}
                   />

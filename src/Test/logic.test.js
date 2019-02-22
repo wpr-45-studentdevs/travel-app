@@ -144,7 +144,7 @@ describe('testing adding trips details and user to trip', ()=>{
 
 
 //SAM'S TESTS
-describe.only('filter bucket list items', () => {
+describe('filter bucket list items', () => {
   const list = [
     {
       bucket_list_id: 1,

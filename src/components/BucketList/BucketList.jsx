@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SideNav from '../SideNav/SideNav';
 import './BucketList.scss';
-import Header from '../Header/Header';
 import axios from 'axios';
 import BucketItem from '../BucketItem/BucketItem';
 import bucketListBg from '../../images/bucket-list-bg.jpg';
@@ -71,9 +70,6 @@ export default class BucketList extends Component {
 
       return (
          <div>
-            <div className='header'>
-               <Header />
-            </div>
             <div className='body'>
                <div className='side-nav'>
                   < SideNav />

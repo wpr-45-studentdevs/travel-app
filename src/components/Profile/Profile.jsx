@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
@@ -153,8 +152,6 @@ class Profile extends Component {
 
     return (
       <div>
-        <Header
-          img={userInfo.profile_pic} />
         <div className='body'>
           <div className='side-nav'>
             <SideNav />

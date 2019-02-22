@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../Header/Header";
 import "./Dashboard.scss";
 import SideNav from "../SideNav/SideNav";
 import axios from "axios";
@@ -50,24 +49,38 @@ export default class Dashboard extends Component {
       console.log(filteredArr)
       const showPublicTrips = filteredArr.map((trip, i) => {
          return (
-               <PublicTripCard
+            <PublicTripCard
                trip={trip}
-               key={i}/>
+               key={i} />
          );
       });
 
       return (
          <div>
-            <Header />
             <div className="body">
                <div className="side-nav">
                   <SideNav />
                </div>
                <div className="content">
-                  <input
-                     onChange={e => this.handleSearchTripsInput(e.target.value)}
-                     type="text"
-                  />
+                  <div className='dash-search-container'>
+                     <div>
+                        <input
+                           onChange={e => this.handleSearchTripsInput(e.target.value)}
+                           type="text"
+                           className='default-input'
+                           placeholder='Search'
+                        />
+                     </div>
+                     <div>
+                        <h2 style={{
+                           color: 'white',
+                           textShadow: '1px 1px 10px black'
+                           }}
+                        >Community Trips</h2>
+                     </div>
+                     <div>
+                     </div>
+                  </div>
                   <div className="content-window">
                      {/* {tripToDisplay} */}
                      <div>{showPublicTrips}</div>

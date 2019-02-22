@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./MyTrips.scss";
-import Header from "../Header/Header";
 import SideNav from "../SideNav/SideNav";
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -102,9 +101,9 @@ class MyTrips extends Component {
 
     return (
       <div>
-        <div>
+        {/* <div>
           <Header />
-        </div>
+        </div> */}
         <div className="body">
           <div className="side-nav">
             <SideNav />
@@ -112,6 +111,12 @@ class MyTrips extends Component {
           <div className='trips-container'>
             <div className='trip-search-list-container'>
               <div className='input-toggle-container'>
+                  <input
+                    type="text"
+                    placeholder='Search'
+                    className='default-input'
+                    onChange={(e) => this.handleSearch(e.target.value)}
+                  />
                 <div className='my-trips-toggle'>
                   <label>Upcoming Trips</label>
                   <Switch
@@ -129,12 +134,6 @@ class MyTrips extends Component {
                   />
                   <label>Show Completed Trips</label>
                 </div>
-                <input
-                  type="text"
-                  placeholder='Search'
-                  className='default-input'
-                  onChange={(e) => this.handleSearch(e.target.value)}
-                />
               </div>
               <div className="trip-card-display">
                 {displayTrips}

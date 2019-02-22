@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import './UserButton.scss'
+import './UserMenu.scss'
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 

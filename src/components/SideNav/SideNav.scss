@@ -1,8 +1,17 @@
 @import '../../styles.scss';
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
 
 .side-nav{
-   background-color: $secondary-background-color;
-   height: calc(100vh - 7em);
+   background-color: rgb(19, 19, 19);
+   color: white;
+   display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+   height: 100vh;
    width: $side-nav-width;
       ul {
          display: flex;
@@ -16,16 +25,27 @@
             li {
                margin-top: 10px;
                list-style-type: none;
+               text-decoration: none;
             }
             a {
                text-decoration: none;
-               color: black;
             }
             a.active{
                background: white;
+               text-decoration: none;
             }
             
       }
+}
+
+.side-navbar {
+   height: 90%;
+   display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: space-between;
 }
 
 .add-trip-button:hover {
@@ -63,4 +83,17 @@
 .addTripInputs{
    width: 200px;
    margin-top: 1rem;
+}
+
+.side-nav-icon-container {
+   margin: 2.5em 0;
+}
+
+.side-nav-icon {
+   font-size: 2.25em;
+}
+
+.kanoo-text {
+   font-family: 'Abel', sans-serif;
+   text-transform: uppercase;
 }

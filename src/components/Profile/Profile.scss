@@ -7,7 +7,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/map-background.jpg);
   background-size: cover;
   background-position: center;
-  height: calc(100vh - #{($navbar-height)});
+  height: 100vh;
 }
 
 

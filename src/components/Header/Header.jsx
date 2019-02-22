@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "./Header.scss";
-import UserMenu from '../Header/UserButton/UserButton';
+import UserMenu from '../UserMenu/UserMenu';
 import Logo from '../../images/kanoo_logo3.svg'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -18,7 +18,7 @@ class Header extends Component {
     const res = await axios.get('/auth/userData')
     if (res.data) {
       await this.props.getUserData(res.data)
-      await this.getprofileImg()
+      await this.getProfileImg()
     }
   }
 
@@ -34,7 +34,7 @@ class Header extends Component {
     }
   }
 
-  getprofileImg = async () => {
+  getProfileImg = async () => {
     const { user_id } = this.props.user
     let res = await axios.get(`/api/userInfo/${user_id}`)
     if (res.data[0].profile_pic) {

@@ -1,7 +1,8 @@
 @import '../../styles.scss';
 
 .trips-container {
-  height: calc(100vh - #{($navbar-height)});
+  // height: calc(100vh - #{($navbar-height)});
+  height: 100vh;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/map-background.jpg);
   background-size: cover;
@@ -9,7 +10,8 @@
 }
 
 .trip-search-list-container {
-  height: calc(100vh - #{($navbar-height)});
+  // height: calc(100vh - #{($navbar-height)});
+  height: 100vh;
   width: 100%;
   display: flex;
 	flex-direction: column;
@@ -17,7 +19,6 @@
 	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
-  background-color: rgba(51, 51, 51, 0.555); 
 }
 
 .input-toggle-container {
@@ -44,7 +45,8 @@
 }
 
 .trip-card-display {
-  height: calc(100vh - #{($navbar-height)});
+  // height: calc(100vh - #{($navbar-height)});
+  height: 100vh;
   width: 100%;
   display: flex;
 	flex-direction: row;

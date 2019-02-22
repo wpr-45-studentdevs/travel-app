@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './BudgetItem.scss';
+import swal from 'sweetalert';
 
 export default class BudgetItem extends Component {
    constructor(props) {
@@ -26,7 +27,7 @@ export default class BudgetItem extends Component {
       const { item_name, item_cost } = this.state;
       let cost = item_cost;
       if(isNaN(cost)) {
-         alert('Please enter a number for item cost')
+         swal('Please enter a number for item cost')
          return;
       }
       if(cost !== this.props.budget_item.item_cost) {

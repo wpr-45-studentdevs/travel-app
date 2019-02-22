@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Budget.scss';
 import BudgetItem from '../Budget/BudgetItem/BudgetItem';
+import swal from 'sweetalert';
 
 export default class Budget extends Component {
    constructor(props) {
@@ -37,9 +38,9 @@ export default class Budget extends Component {
       const { item_name, item_cost } = this.state;
       let itemCost = item_cost * 100;
       if (item_name.length < 1) {
-         alert('Please enter a name for the new budget item')
+         swal('Please enter a name for the new budget item')
       } else if (isNaN(item_cost)) {
-         alert('Budget item cost must be a number')
+         swal('Budget item cost must be a number')
       } else {
       await axios.post('/api/budget', { item_name, item_cost: itemCost, trip_id });
          await this.getBudget();

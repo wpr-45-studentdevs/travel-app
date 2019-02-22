@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Switch from '@material-ui/core/Switch';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core';
+import Swal from 'sweetalert2';
 
 const styles = theme => ({
    colorSwitchBase: {
@@ -12,13 +13,13 @@ const styles = theme => ({
       '&$colorChecked': {
          color: 'teal',
          '& + $colorBar': {
-         backgroundColor: 'teal',
+            backgroundColor: 'teal',
          },
       },
    },
    colorBar: {},
    colorChecked: {},
-   });
+});
 
 class OptionsMenu extends React.Component {
    state = {
@@ -46,14 +47,30 @@ class OptionsMenu extends React.Component {
    deleteTrip = async () => {
       const { getTrips } = this.props;
       const { trip_id } = this.props.trip;
-      let res = await axios.delete(`/api/trip/${trip_id}`);
-      alert(res.data.message)
-      await this.props.closeModal();
-      await getTrips();
+      Swal.fire({
+         title: 'Are you sure you want to delete this trip?',
+         text: "This action cannot be undone!",
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+         if (result.value) {
+            await axios.delete(`/api/trip/${trip_id}`);
+            await this.props.closeModal();
+            await getTrips();
+            Swal.fire(
+               'Deleted!',
+               'Your trip has been deleted.',
+               'success'
+            )
+         }
+      })
    }
 
    handleCompletedToggle = async () => {
-      this.setState({completed: !this.state.completed}, () => this.updateCompleted())
+      this.setState({ completed: !this.state.completed }, () => this.updateCompleted())
    }
 
    updateCompleted = async () => {
@@ -63,7 +80,7 @@ class OptionsMenu extends React.Component {
    }
 
    handlePublicToggle = async () => {
-      this.setState({isPublic: !this.state.isPublic}, () => this.updatePublic())
+      this.setState({ isPublic: !this.state.isPublic }, () => this.updatePublic())
    }
 
    updatePublic = async () => {
@@ -87,6 +104,7 @@ class OptionsMenu extends React.Component {
                   fontSize: '12px',
                   border: '1px solid white',
                }}
+               className='trip-options-button'
             >
                Trip Options
             </Button>
@@ -96,8 +114,8 @@ class OptionsMenu extends React.Component {
                open={Boolean(anchorEl)}
                onClose={this.handleClose}
             >
-               <MenuItem > 
-                  Private 
+               <MenuItem >
+                  Private
                   < Switch
                      checked={this.state.isPublic}
                      onChange={this.handlePublicToggle}
@@ -107,7 +125,7 @@ class OptionsMenu extends React.Component {
                         bar: classes.colorBar,
                      }}
                   />
-                  Public 
+                  Public
                </MenuItem>
                <MenuItem >
                   Trip Completed
@@ -121,7 +139,16 @@ class OptionsMenu extends React.Component {
                      }}
                   />
                </MenuItem>
-               <MenuItem onClick={() => this.deleteTrip()}> Delete Trip </MenuItem>
+               <MenuItem
+                  onClick={() => this.deleteTrip()}
+                  className='trip-delete-button'
+                  style={{
+                     color: 'red',
+                  }}
+               >
+                  <p style={{ marginRight: '1rem' }}> Delete Trip </p>
+                  <i style={{ marginBottom: '.25rem' }} class="far fa-trash-alt"></i>
+               </MenuItem>
             </Menu>
          </div>
       );

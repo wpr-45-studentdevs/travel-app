@@ -69,6 +69,7 @@ export function filterItems(arr) {
 
 export function searchTrips(arr, search) {
   let arr2 = []
+  console.log(arr2)
   if (search) {
     let filteredArr = arr.filter((object, index) => {
       let passed = false;

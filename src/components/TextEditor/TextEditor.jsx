@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactQuill from 'react-quill';
-import axios from 'axios';
 import './TextEditor.scss';
 
 class TextEditor extends Component {

@@ -59,7 +59,7 @@ class OptionsMenu extends React.Component {
    updateCompleted = async () => {
       const { trip_id } = this.props.trip;
       const { completed } = this.state;
-      let res = await axios.put(`/api/trip/completed`, { trip_id, completed });
+      await axios.put(`/api/trip/completed`, { trip_id, completed });
    }
 
    handlePublicToggle = async () => {
@@ -69,7 +69,7 @@ class OptionsMenu extends React.Component {
    updatePublic = async () => {
       const { trip_id } = this.props.trip;
       const { isPublic } = this.state;
-      let res = await axios.put('/api/trip/public', { trip_id, public: isPublic })
+      axios.put('/api/trip/public', { trip_id, public: isPublic })
    }
 
 

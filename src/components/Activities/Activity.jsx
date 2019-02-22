@@ -24,7 +24,7 @@ export default class Activity extends Component {
             return;
         }
 
-        const res = await axios.put(`/api/activities/${activity_id}`, {
+        await axios.put(`/api/activities/${activity_id}`, {
             activity_name: newActivity
         })
         await this.props.getActivities();

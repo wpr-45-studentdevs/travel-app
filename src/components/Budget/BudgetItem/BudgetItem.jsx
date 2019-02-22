@@ -43,7 +43,7 @@ export default class BudgetItem extends Component {
 
    deleteBudgetItem = async () => {
       const { budget_item_id } = this.props.budget_item;
-      let res = await axios.delete(`/api/budget/${budget_item_id}`);
+      await axios.delete(`/api/budget/${budget_item_id}`);
       this.props.getBudget()
    }
 

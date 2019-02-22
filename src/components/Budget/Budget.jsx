@@ -41,7 +41,7 @@ export default class Budget extends Component {
       } else if (isNaN(item_cost)) {
          alert('Budget item cost must be a number')
       } else {
-         const res = await axios.post('/api/budget', { item_name, item_cost: itemCost, trip_id });
+      await axios.post('/api/budget', { item_name, item_cost: itemCost, trip_id });
          await this.getBudget();
          await this.setState({
             item_name: '',

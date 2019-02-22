@@ -22,7 +22,7 @@ export default class Locations extends Component {
     const { trip_id } = this.props.trip;
     const { locationToAdd } = this.state;
 
-    const result = await axios.post(`/api/locations/${trip_id}`, {
+    await axios.post(`/api/locations/${trip_id}`, {
       location_name: locationToAdd,
       trip_id
     });

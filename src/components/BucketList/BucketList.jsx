@@ -47,7 +47,7 @@ export default class BucketList extends Component {
    render() {
 
       const { items, completedItems, incompleteItems } = this.state;
-      const displayItems = items.map((item, index) => {
+      items.map((item, index) => {
          return (
             <div key={index}>
                <BucketItem item={item} getBucketList={this.getBucketList} />

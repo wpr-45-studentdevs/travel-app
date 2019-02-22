@@ -19,12 +19,11 @@ class AddTrip extends Component {
 
   handleChange = (prop, val) => {
     this.setState({ [prop]: val });
-    // console.log(this.state);
   };
 
   addTripDetails = async () => {
-    const {user_id} = this.props.user
-    const tripDetails = await Axios.post("/api/add-trip", {
+    const {user_id} = this.props.user;
+    await Axios.post("/api/add-trip", {
       tripName: this.state.tripName,
       date: this.state.date,
       completed: this.state.completed,
@@ -32,10 +31,8 @@ class AddTrip extends Component {
       tripLength: this.state.tripLength,
       trip_owner: user_id
     }).then(async response => {
-      // console.log(response.data[0]);
       const tripID = response.data[0].trip_id;
       await Axios.post(`/api/add-user-to-trip/${tripID}`).then(res => {
-        // console.log(res);
         return res;
       });
     });

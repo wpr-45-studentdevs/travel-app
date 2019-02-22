@@ -25,7 +25,7 @@ export default class Activities extends Component {
     addActivity = async () => {
         const { trip_id } = this.props.trip;
         const { newActivity } = this.state;
-        const res = await axios.post(`/api/activities/${trip_id}`, {
+        await axios.post(`/api/activities/${trip_id}`, {
             activity_name: newActivity
         })
         await this.getActivities();

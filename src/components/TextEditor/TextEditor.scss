@@ -61,3 +61,26 @@
 .RichEditor-activeButton {
    color: #5890ff;
 }
+
+.ql-toolbar.ql-snow {
+   box-sizing: border-box;
+   border-top: none;
+   border-left: none;
+   border-right: none;
+   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+   padding: 8px;
+   width: 100%;
+   height: 65px;
+   display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.ql-container.ql-snow {
+   overflow: auto;
+   border: none;
+   height: calc(98% - 65px);
+}

@@ -8,14 +8,13 @@ import PublicTripCard from "../PublicTripCard/PublicTripCard";
 export default class Dashboard extends Component {
    state = {
       publicTrips: [],
-      search: ""
+      search: '',
    };
 
    handleSearchTripsInput = value => {
       this.setState({ search: value });
    };
 
-   //DO NOT DELETE!! THIS IS THE FUNCTION TO GET TRIPS FROM DATABASE!!!!
    async componentDidMount() {
       try {
          const res = await axios.get("/trips/getAllPublic");

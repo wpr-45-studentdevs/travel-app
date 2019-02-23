@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./AddTrip.scss";
 import Axios from "axios";
 import {Link} from 'react-router-dom'
+import '../../../styles.scss'
+import addTripBackground from '../../../images/add-trips-background.png'
 
 
 export default class AddTrip extends Component {
@@ -51,20 +53,24 @@ export default class AddTrip extends Component {
         {this.state.toggleModal === true ? (
           <div className="modalFullPage">
             <div className="modalAddTrip">
+            <img src={addTripBackground} className='add-trip-background'/>
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{zIndex: 2}}
                 onChange={e => this.handleChange("tripName", e.target.value)}
                 type="text"
                 placeholder="Trip Name"
               />
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{zIndex: 2}}
                 onChange={e => this.handleChange("date", e.target.value)}
                 type="text"
                 placeholder="Trip Date"
               />
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{zIndex: 2}}
                 onChange={e => this.handleChange("tripLength", e.target.value)}
                 type="number"
                 placeholder="Trip Length"
@@ -72,6 +78,7 @@ export default class AddTrip extends Component {
               <div className="checkboxes">
                 <span>Trip Completed?</span>
                 <input
+                style={{zIndex: 2}}
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
@@ -83,6 +90,7 @@ export default class AddTrip extends Component {
               <div className="checkboxes">
                 <span>Trip Public?</span>
                 <input
+                style={{zIndex: 2}}
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
@@ -91,6 +99,7 @@ export default class AddTrip extends Component {
               </div>
               <div>
                 <Link
+                style={{zIndex: 3}}
                   className="Links"
                   to = 'my-trips'
                   onClick={() => {
@@ -101,7 +110,9 @@ export default class AddTrip extends Component {
                   Save
                 </Link>
                 <button
-                  className="addTripButtons"
+                style={{zIndex: 3}}
+                  className="default-button"
+                  
                   onClick={() => this.setState({ toggleModal: false })}
                 >
                   Close

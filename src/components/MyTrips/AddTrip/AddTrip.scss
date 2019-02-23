@@ -1,3 +1,5 @@
+
+
 .modalFullPage {
   top: 0;
   position: fixed;
@@ -18,14 +20,25 @@
 .modalAddTrip {
   position: absolute;
   height: 40vh;
-  width: 30vw;
-  background: rgb(168, 168, 168);
+  width: 25vw;
+background: rgba(214, 214, 214, 0.774);  
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
   justify-content: center;
   padding-bottom: 5%;
+}
+
+.add-trip-background{
+  position: fixed;
+  z-index: -1;
+  bottom: 30vh;
+  height: 40vh;
+  overflow: hidden;
+  width: 25vw;
+  border-radius: 8px;
+
 }
 
 .add-trip-button{
@@ -42,20 +55,20 @@
   align-content: center;
   padding-bottom: 35%;
   border: none;
+  transition: .5s;
+  font-weight: 600;
+
+}
+
+.add-trip-button:hover{
+  background: rgb(153, 153, 153)
 }
 
 .checkboxes {
   color: rgb(58, 58, 58);
   display: flex;
-  margin-top: 10rem;
+  margin-top: 1rem;
   border-radius: 2px;
-  #checkboxStyle {
-    width: 10px;
-    height: 10px;
-    color: black;
-    margin: 0;
-    margin-left: 15px;
-  }
 }
 
 .addTripButtons:hover {

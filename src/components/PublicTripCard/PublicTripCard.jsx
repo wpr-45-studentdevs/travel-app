@@ -4,6 +4,7 @@ import './PublicTripCard.scss';
 import placeholderImage from '../../images/placeholderImage.jpg';
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
 import Slider from 'react-slick'
+import {calculateTotal} from '../../Logic/Logic'
 
 class PublicTripCard extends Component {
 
@@ -77,12 +78,15 @@ class PublicTripCard extends Component {
     await this.setState({
       budget: res.data
     })
-    let budgetTotal = this.state.budget.reduce((acc, item) => {
-      return acc + item.item_cost / 100
-    }, 0)
-    this.setState({
-      budgetTotal: budgetTotal
-    })
+    // let budgetTotal = this.state.budget.reduce((acc, item) => {
+    //   return acc + item.item_cost / 100
+    // }, 0)
+    let budgetTotal = calculateTotal(this.state.budget)
+    if(budgetTotal !== '$0'){
+      this.setState({
+        budgetTotal: budgetTotal
+      })
+    }
   }
 
   getUsers = async () => {
@@ -95,7 +99,7 @@ class PublicTripCard extends Component {
 
   render() {
     const { trip } = this.props;
-    const { activities, locations, budget, budgetTotal, mainPhoto, users } = this.state;
+    const { activities, locations, budgetTotal, mainPhoto, users } = this.state;
     const displayActivities = activities.map((activity, i) => {
       return (
         <li key={i}>{activity.activity_name}</li>
@@ -119,6 +123,7 @@ class PublicTripCard extends Component {
           <div className='user' style={{ backgroundImage: `url(${userImg})` }}>
             {/* <img src={user.profile_pic} alt=""/> */}
           </div>
+          <label htmlFor="">{user.user_display_name}</label>
         </div>
       )
     })
@@ -160,7 +165,7 @@ class PublicTripCard extends Component {
 
         <div>
           <h3>{trip.trip_name}</h3>
-          <p><span>Date:</span>{trip.date}</p>
+          <p><span>Date: </span>{trip.date}</p>
 
           {
             displayActivities[0] || locationsToDisplay[0] ?
@@ -196,7 +201,7 @@ class PublicTripCard extends Component {
           {
             budgetTotal ?
               <div>
-                <h4>Budget: ${budgetTotal}</h4>
+                <h4>Budget: {budgetTotal}</h4>
               </div>
               :
               null

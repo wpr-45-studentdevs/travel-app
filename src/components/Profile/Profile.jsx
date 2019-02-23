@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
@@ -8,7 +7,7 @@ import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
-import { array } from 'prop-types';
+import swal from 'sweetalert';
 
 
 class Profile extends Component {
@@ -19,7 +18,9 @@ class Profile extends Component {
     bio: '',
     img: '',
     edit: false,
-    friends: []
+    friends: [],
+    friend: '',
+    showAdd: false
   }
 
   async componentDidMount() {
@@ -87,9 +88,33 @@ class Profile extends Component {
     })
   }
 
+  showFriendsToAdd = () => {
+    this.setState({
+      showAdd: toggle(this.state.showAdd)
+    })
+  }
+
+  addFriend = async () => {
+    const {user_id} = this.props.user
+    const {friend: user_email} = this.state
+    const res = await axios.post(`/api/friend/${user_id}`, {user_email})
+    if(res.data.friendAdded){
+      this.getFriends()
+      this.showFriendsToAdd()
+    } else {
+      swal(res.data.message)
+    }
+  }
+
+  removeFriend = async (friend_id) => {
+    const {user_id} = this.props.user
+    await axios.delete(`/api/friend/${user_id}/${friend_id}`)
+    this.getFriends()
+  }
+
 
   render() {
-    const { userInfo, email, name, bio, img, edit, friends } = this.state
+    const { userInfo, email, name, bio, img, edit, friends, showAdd } = this.state
     const friendDisplay = friends.map((friend, i) => {
       let backgroundImg;
       if (friend.profile_pic) {
@@ -99,8 +124,9 @@ class Profile extends Component {
       }
       return (
         <div key={i} className='friend-container' style={{ width: 'fit-content' }}>
-          <div className='friend-img' style={{ backgroundImage: `url(${backgroundImg})` }}></div>
-          {/* <img src={friend.profile_pic ? friend.profile_pic : UserImgPlaceholder} alt="" /> */}
+          <div className='friend-img' style={{ backgroundImage: `url(${backgroundImg})` }}>
+          <i onClick={()=>this.removeFriend(friend.friend_id)} class="fas fa-trash-alt"></i>
+          </div>
           <label htmlFor="">{friend.user_display_name}</label>
         </div>
       )
@@ -112,7 +138,7 @@ class Profile extends Component {
       friendLength = 5
     }
     let scrollAmount = 1;
-    if(friendLength > 1) {
+    if (friendLength > 1) {
       scrollAmount = friendLength - 1
     }
 
@@ -126,8 +152,6 @@ class Profile extends Component {
 
     return (
       <div>
-        <Header
-          img={userInfo.profile_pic} />
         <div className='body'>
           <div className='side-nav'>
             <SideNav />
@@ -178,7 +202,7 @@ class Profile extends Component {
                         value={bio} type="text" cols="35" rows="6"></textarea>
                       :
                       <p>{userInfo.user_bio}</p>
-                      }
+                  }
                 </div>
 
                 {edit &&
@@ -197,6 +221,18 @@ class Profile extends Component {
                 <Slider {...settings} className='profile-slider'>
                   {friendDisplay}
                 </Slider>
+                {
+                  showAdd ?
+
+                    <div>
+                      <input type="text" placeholder="Your friend's email" 
+                      onChange={e=>this.handleChange('friend', e.target.value)}/>
+                      <button onClick={this.addFriend}><i className="fas fa-plus"></i></button>
+                      <button onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
+                    </div>
+                    :
+                    <button onClick={this.showFriendsToAdd}>Add Friend</button>
+                }
               </div>
 
             </div>

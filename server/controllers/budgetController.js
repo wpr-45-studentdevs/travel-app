@@ -2,7 +2,7 @@ module.exports = {
    getBudget: async (req, res) => {
       const db = req.app.get('db');
       const { trip_id } = req.params;
-      const budget = await db.budget.get_budget({ trip_id });
+      const budget = await db.budget.get_budget_items({ trip_id });
       res.status(200).send(budget);
    },
    addBudgetItem: async (req, res) => {
@@ -21,9 +21,6 @@ module.exports = {
       const db = req.app.get('db');
       const { budget_item_id } = req.params;
       const deletedItem = await db.budget.delete_budget_item({ budget_item_id });
-      res.status(200).send({
-         message: 'Item deleted',
-         deletedItem: deletedItem
-      })
+      res.status(200).send(deletedItem[0])
    },
 };

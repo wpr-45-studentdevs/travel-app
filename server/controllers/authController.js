@@ -7,9 +7,7 @@ module.exports = {
 
     const userArray = await db.find_user({ email });
     if (userArray.length >= 1) {
-      return res
-        .status(200)
-        .send({
+      return res.status(200).send({
           message:
             "A user with this email already exists. Please enter a different email.",
           loggedIn: false
@@ -26,9 +24,7 @@ module.exports = {
       user_display_name: newUser[0].user_display_name,
       user_bio: newUser[0].user_email
     };
-    res
-      .status(200)
-      .send({
+    res.status(200).send({
         message: "New user created and logged in",
         userData: req.session.user,
         loggedIn: true
@@ -41,11 +37,11 @@ module.exports = {
 
     const userArray = await db.find_user({ email });
     if (!userArray[0]) {
-      return res.status(401).send({ message: "User not found." });
+      return res.status(200).send({ message: "User not found." });
     }
     const match = bcrypt.compareSync(password, userArray[0].hash);
     if (!match) {
-      return res.status(401).send({ message: "Incorrect password" });
+      return res.status(200).send({ message: "Incorrect password" });
     }
     req.session.user = {
       user_id: userArray[0].user_id,
@@ -53,9 +49,7 @@ module.exports = {
       user_display_name: userArray[0].user_display_name,
       user_bio: userArray[0].user_email
     };
-    res
-      .status(200)
-      .send({
+    res.status(200).send({
         message: `${req.session.user.user_display_name} is logged in`,
         userData: req.session.user,
         loggedIn: true

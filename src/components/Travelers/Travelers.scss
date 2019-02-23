@@ -1,12 +1,43 @@
+.user-friend {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 15px black;
+  transition: .4s;
+  i {
+    // opacity: 0;
+    color: #00000000;
+    transition: .3s;
+  }
+}
+
+.user-friend:hover {
+  box-shadow: none;
+  transition: .4s;
+  i {
+    color: #000000;
+    transition: .3s;
+    text-shadow: 0 0 5px #fff;
+  }
+}
+
 .travelers-outer-box {
   width: 100%;
   display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: stretch;
   align-content: center;
   overflow: auto;
+  height: 100%;
+  padding-bottom: 20px;
 }
 
 .travelers-container {
@@ -16,14 +47,11 @@
   flex-wrap: wrap;
 }
 
-.add-container i {
-  transition: .5s;
-  text-shadow: 1px 1px 3px #212121;
+.friend-adder-slider {
+  width: 80%;
+  margin: 0 auto;
 }
 
-.add-container i:hover{
-  // text-shadow: 0 0 10px #000;
-  color: #dedede;
-  transition: .5s;
+.slick-next:before, .slick-prev:before {
+  color: #000;
 }
-

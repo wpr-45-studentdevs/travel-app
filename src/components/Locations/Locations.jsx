@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Location from './Location';
+import '../../styles/detail.scss';
 import './Locations.scss';
 
 export default class Locations extends Component {
@@ -21,7 +22,7 @@ export default class Locations extends Component {
     const { trip_id } = this.props.trip;
     const { locationToAdd } = this.state;
 
-    const result = await axios.post(`/api/locations/${trip_id}`, {
+    await axios.post(`/api/locations/${trip_id}`, {
       location_name: locationToAdd,
       trip_id
     });
@@ -51,22 +52,24 @@ export default class Locations extends Component {
     
 
         return (
-            <div>
-                <h2>Locations</h2>
-                <input
-                    type="text"
-                    value={locationToAdd}
-                    onChange={(e) => this.handleInput(e.target.value)} />
-                <button onClick={() => {
-                    this.addLocation();
-                    this.setState({
-                        locationToAdd: ''
-                    })
-                }}><i className="fas fa-plus"></i></button>
-                <ul className='locations-list'>
+            <>
+                <div className="detail-header">
+                    <h2>Locations</h2>
+                    <input
+                        type="text"
+                        value={locationToAdd}
+                        onChange={(e) => this.handleInput(e.target.value)} />
+                    <button onClick={() => {
+                        this.addLocation();
+                        this.setState({
+                            locationToAdd: ''
+                        })
+                    }}><i className="fas fa-plus"></i></button>
+                </div>
+                <div className='detail-list'>
                     {displayLocations}
-                </ul>
-            </div>
+                </div>
+            </>
         )
     }
 }

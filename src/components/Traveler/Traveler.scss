@@ -20,15 +20,15 @@
   color: #fff;
   text-shadow: 0 0 10px #000;
   i {
-    display: none;
+    opacity: 0;
     margin: .5em;
-    transition: .5s;
+    transition: .3s;
   }
 }
 
 .travelerImg:hover i {
-  display: block;
-  transition: .5s;
+  opacity: 100;
+  transition: .3s;
 }
 
 .travelerImg i:hover {

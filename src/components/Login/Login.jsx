@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.scss';
 import LandingNav from '../LandingNav/LandingNav';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class Login extends Component {
 
@@ -15,10 +16,24 @@ export default class Login extends Component {
     const { email, password } = this.state;
     const res = await axios.post(`/auth/login`, { email, password })
     if (res.data.loggedIn) {
-      console.log(res.data.message)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      
+      Toast.fire({
+        type: 'success',
+        title: `Welcome back, ${res.data.userData.user_display_name}!`,
+      })
       this.props.history.push('/dashboard')
     } else {
-      console.log(res.data.message)
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: res.data.message
+      })
     }
   }
 

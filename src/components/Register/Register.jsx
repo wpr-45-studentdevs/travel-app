@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Register.scss';
 import LandingNav from '../LandingNav/LandingNav';
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 export default class Register extends Component {
   state = {
@@ -16,17 +18,36 @@ export default class Register extends Component {
   register = async () => {
     const { email, password, confirm, displayName, bio } = this.state;
     if (password !== confirm) {
-      alert('Passwords do not match. Please re-enter password')
+      swal('Passwords do not match. Please re-enter password')
     } else if (email.length < 1) {
-      alert('Please enter your email.')
+      swal('Please enter your email.')
     } else if (password.length < 1) {
-      alert('Please enter a password')
+      swal('Please enter a password')
     } else if (confirm.length < 1) {
-      alert('Please confirm your password')
+      swal('Please confirm your password')
     } else {
-      const res = await axios.post(`/auth/register`, { email, password, displayName, bio })
-      alert(res.data.message)
-      this.props.history.push('/dashboard')
+      const res = await axios.post(`/auth/register`, { email, password, displayName, bio });
+      if (res.data.loggedIn) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'center',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        Toast.fire({
+          type: 'success',
+          title: `Welcome, ${displayName}!`,
+          text: 'You have successfully created an account',
+        })
+        
+        this.props.history.push('/dashboard')
+      } else {
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: res.data.message,
+        })
+      }
     }
   }
 

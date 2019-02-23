@@ -1,3 +1,69 @@
+// import React, { Component } from 'react'
+// import axios from 'axios';
+// import './BucketItem.scss';
+
+// export default class BucketItem extends Component {
+//     state = {
+//         edit: false,
+//         userInput: ''
+//     }
+
+//     toggleCompleted = async (item) => {
+//         await axios.put(`/bucketlist/${item.bucket_list_id}`, {
+//             title: item.title,
+//             completed: !item.completed
+//         })
+//         await this.props.getBucketList();
+//     }
+
+//     handleInput = (userInput) => {
+//         this.setState({
+//             userInput
+//         })
+//     }
+
+//     editItem = async (item) => {
+//         await axios.put(`/bucketlist/${item.bucket_list_id}`, {
+//             title: this.state.userInput,
+//             completed: item.completed
+//         })
+//         this.setState({
+//             userInput: '',
+//             edit: false
+//         })
+//         this.props.getBucketList();
+//     }
+
+//     deleteItem = async (item) => {
+//         await axios.delete(`/bucketlist/${item.bucket_list_id}`);
+//         this.props.getBucketList();
+//     }
+
+//     render() {
+//         const { item } = this.props;
+//         const { edit } = this.state;
+//         return (
+//             <>
+//                 <li className={item.completed ? 'bucket-item-complete' : 'bucket-item-incomplete'}>{item.title}</li>
+//                 <button onClick={() => this.toggleCompleted(item)}>Done</button>
+//                 <button onClick={() => this.setState({ edit: !this.state.edit })}>
+//                 {edit ? <>Cancel</> : <>Edit</>}
+//                 </button>
+//                 {edit ?
+//                     <>
+//                         <input type="text" value={this.state.userInput} onChange={(e) => this.handleInput(e.target.value)} />
+//                         <button onClick={() => { this.editItem(item) }
+//                         }>Save</button>
+//                     </>
+//                     :
+//                     <>
+//                         <button onClick={() => this.deleteItem(item)}>Delete</button>
+//                     </>}
+//             </>
+//         )
+//     }
+// }
+
 import React, { Component } from 'react'
 import axios from 'axios';
 import './BucketItem.scss';
@@ -5,7 +71,7 @@ import './BucketItem.scss';
 export default class BucketItem extends Component {
     state = {
         edit: false,
-        userInput: ''
+        userInput: this.props.item.title
     }
 
     toggleCompleted = async (item) => {
@@ -28,7 +94,6 @@ export default class BucketItem extends Component {
             completed: item.completed
         })
         this.setState({
-            userInput: '',
             edit: false
         })
         this.props.getBucketList();
@@ -43,23 +108,34 @@ export default class BucketItem extends Component {
         const { item } = this.props;
         const { edit } = this.state;
         return (
-            <>
-                <li className={item.completed ? 'bucket-item-complete' : 'bucket-item-incomplete'}>{item.title}</li>
-                <button onClick={() => this.toggleCompleted(item)}>Done</button>
-                <button onClick={() => this.setState({ edit: !this.state.edit })}>
-                {edit ? <>Cancel</> : <>Edit</>}
-                </button>
-                {edit ?
-                    <>
-                        <input type="text" value={this.state.userInput} onChange={(e) => this.handleInput(e.target.value)} />
-                        <button onClick={() => { this.editItem(item) }
-                        }>Save</button>
-                    </>
-                    :
-                    <>
-                        <button onClick={() => this.deleteItem(item)}>Delete</button>
-                    </>}
-            </>
+            <div className="bucket-item-container">
+                {/* <h2>{item.title}</h2> */}
+                <h2>
+                {
+                    edit ? 
+                    <><input 
+                    type="text" 
+                    defaultValue={this.state.userInput} 
+                    onChange={(e) => this.handleInput(e.target.value)}/></> 
+                    : <div className="bucket-item-title">{item.title}</div>
+                }
+                </h2>
+                <div>
+                    <button onClick={() => this.toggleCompleted(item)}>Done</button>
+                    <button onClick={() => this.setState({ edit: !this.state.edit })}>
+                        {edit ? <>Cancel</> : <>Edit</>}
+                    </button>
+                    {edit ?
+                        <>
+                            <button onClick={() => { this.editItem(item) }
+                            }>Save</button>
+                        </>
+                        :
+                        <>
+                            <button onClick={() => this.deleteItem(item)}>Delete</button>
+                        </>}
+                </div>
+            </div>
         )
     }
 }

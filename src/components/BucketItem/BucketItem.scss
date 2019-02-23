@@ -1,3 +1,27 @@
-.bucket-item-complete {
-    text-decoration: line-through;
+.bucket-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+
+    h2 {
+        margin: 0;
+        font-size: 2em;
+    }
+    button {
+        margin: 0;
+    }
+}
+
+.bucket-item-title {
+    width: 20vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid black;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
 }

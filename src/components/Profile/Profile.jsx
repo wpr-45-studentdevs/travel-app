@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserData } from '../../ducks/reducer'
@@ -8,6 +7,7 @@ import './Profile.scss'
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import swal from 'sweetalert';
 
 
 class Profile extends Component {
@@ -102,7 +102,7 @@ class Profile extends Component {
       this.getFriends()
       this.showFriendsToAdd()
     } else {
-      alert(res.data.message)
+      swal(res.data.message)
     }
   }
 
@@ -152,8 +152,6 @@ class Profile extends Component {
 
     return (
       <div>
-        <Header
-          img={userInfo.profile_pic} />
         <div className='body'>
           <div className='side-nav'>
             <SideNav />

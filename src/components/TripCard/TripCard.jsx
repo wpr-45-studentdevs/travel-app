@@ -7,12 +7,13 @@ import TextEditor from '../TextEditor/TextEditor';
 import Travelers from '../Travelers/Travelers';
 import Locations from '../Locations/Locations';
 import Activities from '../Activities/Activities';
+import OptionsMenu from '../TripCard/OptionsMenu/OptionsMenu';
 
 class TripCard extends Component {
-
   state = {
     mainPhoto: placeholderImage,
     showDetails: false,
+    text: '',
   }
 
   componentDidMount = async () => {
@@ -42,11 +43,37 @@ class TripCard extends Component {
       })
     }
   }
+  
+  getNotes = async () => {
+    const { trip_id } = this.props.trip
+    let res = await axios.get(`/api/notes/${trip_id}`);
+    this.setState({ text: res.data.trip_notes });
+  }
+
+  handleNotesChange = async (value) => {
+    await this.setState({ text: value })
+  }
+
+  saveNotes = async () => {
+    const { trip_id } = this.props.trip
+    const { text } = this.state;
+    await axios.put('/api/notes', { trip_id, trip_notes: text })
+  }
+
+  handleClose = async () => {
+    await this.saveNotes();
+    this.setState({ showDetails: false });
+  }
+
+  closeModal = () => {
+    this.setState({ showDetails: false })
+  }
 
 
   render() {
     const { trip } = this.props;
-    const { activities, locations, budget, budgetTotal, mainPhoto } = this.state;
+    const { mainPhoto } = this.state;
+    const { getTrips } = this.props;
 
     return (
       <div className='tripCard'>
@@ -66,6 +93,14 @@ class TripCard extends Component {
         {
           this.state.showDetails === true ?
             <div className='trip-modal-wrapper'>
+              <div className='detail-button-container'>
+                < OptionsMenu
+                  trip={trip}
+                  closeModal={this.closeModal}
+                  getTrips={getTrips}
+                />
+                <i className="fas fa-times fa-2x trip-details-close-button" onClick={() => this.handleClose()}></i>
+              </div>
               <div className='trip-modal'>
                 <div className='detail-box locations-box'>
                   < Locations
@@ -86,18 +121,17 @@ class TripCard extends Component {
                 <div className='detail-box'>
                   < Travelers
                     trip={trip}
-                  
                   />
                 </div>
                 <div className="text-editor-box">
                   < TextEditor
                     trip_id={trip.trip_id}
+                    getNotes={this.getNotes}
+                    saveNotes={this.saveNotes}
+                    handleNotesChange={this.handleNotesChange}
+                    text={this.state.text}
                   />
                 </div>
-                <button onClick={() => this.setState({ showDetails: false })} className='trip-modal-close-button'>Back</button>
-                <Locations trip = {trip}/>
-                <Travelers trip = {trip}/>
-                <Activities trip = {trip}/>
               </div>
             </div>
 

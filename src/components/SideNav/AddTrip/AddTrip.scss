@@ -9,11 +9,11 @@
   justify-content: center;
   align-items: center;
   right: 0px;
+    button {
+      margin-top: 1rem;
+    }
+  z-index: 2;  
 }
-
-  button {
-    margin-top: 1rem;
-  }
 
 .modalAddTrip {
   position: absolute;

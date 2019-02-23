@@ -99,7 +99,7 @@ class PublicTripCard extends Component {
 
   render() {
     const { trip } = this.props;
-    const { activities, locations, budget, budgetTotal, mainPhoto, users } = this.state;
+    const { activities, locations, budgetTotal, mainPhoto, users } = this.state;
     const displayActivities = activities.map((activity, i) => {
       return (
         <li key={i}>{activity.activity_name}</li>
@@ -165,7 +165,7 @@ class PublicTripCard extends Component {
 
         <div>
           <h3>{trip.trip_name}</h3>
-          <p><span>Date:</span>{trip.date}</p>
+          <p><span>Date: </span>{trip.date}</p>
 
           {
             displayActivities[0] || locationsToDisplay[0] ?

@@ -70,6 +70,11 @@ app.post('/api/add-trip', tripCtrl.addTrips)
 app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 
 //individual user's trips
+app.delete('/api/trip/:trip_id', tripCtrl.deleteTrip)
+app.put('/api/trip/public', tripCtrl.updateTripPublic)
+app.put('/api/trip/completed', tripCtrl.updateTripCompleted)
+app.post('/api/add-trip', tripCtrl.addTrips)
+app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 app.get('/api/trips/completed/:user_id', tripCtrl.getCompletedTrips)
@@ -90,7 +95,8 @@ app.put('/api/budget', budgetController.updateBudgetItem);
 app.delete('/api/budget/:budget_item_id', budgetController.deleteBudgetItem)
 
 //Trip Notes Endpoints
-app.post('/api/notes', notesController.addNotes)
+app.get(`/api/notes/:trip_id`, notesController.getNotes)
+app.put('/api/notes', notesController.addNotes);
 
 //Travelers
 app.post('/api/travelers/:trip_id/:user_id', travelerCtrl.addTravelers)

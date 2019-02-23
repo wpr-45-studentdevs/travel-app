@@ -3,7 +3,7 @@
 
 
 .profileBody {
-  width: 100%;
+  width: calc(100% - 185px);
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/map-background.jpg);
   background-size: cover;
   background-position: center;
@@ -15,16 +15,29 @@
   overflow: hidden;
   background-color: #fffffff0;
   width: 70%;
-  height: 90%;
+  height: 95%;
   box-shadow: 3px 3px 20px;
   padding: 1em;
-  margin: 2em auto;
-  // font-family: 'Raleway', sans-serif;
+  margin: 1.5em auto;
+  box-sizing: border-box;
+  overflow: scroll;
   h1 {
     margin: 0.3em;
     font-size: 1.6rem;
   }
 }
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  height: 92%;
+  justify-content: center;
+  >div {
+    margin: 1.13em 0;
+  }
+}
+
+
 
 .profile-img-container {
   padding: 1em;
@@ -76,7 +89,7 @@
 
 
 .profile-slider {
-  width: 760px;
+  width: 90%;
   margin: 2em auto;
   .slick-next::before, .slick-prev::before {
     color: black;
@@ -109,4 +122,43 @@
 .friend-img i:hover {
   color: #fff;
   text-shadow: 0 0 3px black;
+}
+
+
+@media (max-height:868px) {
+  .profile-box-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1338px) {
+  .profile-container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 1226px) {
+  .profile-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1081px) {
+  .profile-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1041px){
+  .profile-box-container {
+    flex-direction: column;
+  }
+  .friend-img {
+    height: 75px;
+    width: 75px;
+  }
 }

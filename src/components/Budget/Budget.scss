@@ -1,19 +1,68 @@
 @import '../../styles.scss';
 
-.budget-inputs {
+.budget-main-container {
+   height: 100%;
    display: flex;
 	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-   align-content: stretch;
-      h3 {
-         margin-top: 2em;
-      }
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.budget-box-header {
+   height: 15%;
+   margin-top: 10px;
+   h2 {
+      margin: 0;
+   }
+}
+
+.budget-item-list {
+   height: 60%;
+   overflow: auto;
+   border-top: 1px solid black;
+   border-bottom: 1px solid black;
+   margin-top: 0;
 }
 
 .budget-total {
-   h2 {
-      margin-top: 3em;
+   height: 10%;
+   display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+   align-content: center;
+}
+
+.add-budget-modal {
+   height: 100%;
+   width: 100%;
+   background-color: green;
+}
+
+.budget-category-container {
+   display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+   align-content: stretch;
+   padding: 7px;
+   div {
+      font-weight: 700;
    }
+}
+
+.budget-item-category {
+   width: 33.33%;
+   display: flex;
+   justify-content: flex-start;
+}
+
+.budget-cost-category {
+   width: 33.33%;
+   display: flex;
+   justify-content: center;
 }

@@ -1,13 +1,57 @@
 @import '../../styles.scss';
 
+.landing-nav-container  {
+    width: 100vw;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: baseline;
+    align-content: stretch;
+    overflow: hidden;
+}
+
 .landing-nav {
+    width: 95vw;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 85px;
-    background-color: $primary-background-color;
+    background-color: rgba(37, 36, 36, 0);
+    position: fixed;
+    z-index: 3;
+    border-bottom: 1px solid white;
 }
 
 .landing-nav-title {
     color: white;
+}
+
+.landing-nav-register-button {
+    padding: 11px 25px;
+    margin-left: 25px;
+    border: 1.5px white solid;
+    color: white;
+    border-radius: 50px;
+    transition: .33s;
+}
+
+.landing-nav-register-button:hover {
+    background-color: rgba(247, 240, 240, 0.459);
+    transition: .33s;
+}
+
+.landing-nav-login-button {
+    color: white;
+    transition: .33s;
+}
+
+.landing-nav-login-button:hover {
+    color: rgb(202, 201, 201);
+    transition: .33s;
+}
+
+.landing-nav > img {
+    height: 75px;
 }

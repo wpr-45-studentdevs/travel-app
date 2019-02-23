@@ -29,6 +29,7 @@ class UserMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const {profile_pic} = this.props
 
     return (
       <div>
@@ -37,13 +38,13 @@ class UserMenu extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
           id='menuButton'
-        >
-        User
-        </Button>
+          style={{
+            backgroundImage: `url(${profile_pic})`
+          }}
+        />
         <div id='menu'>
             <Menu id='Menu'  anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
-              <MenuItem id='menuItem' onClick={this.handleClose}>Profile</MenuItem>
-              <MenuItem id='menuItem' onClick={this.handleClose}>Change Profile Picture</MenuItem>
+            <Link to='/profile'><MenuItem id='menuItem' onClick={this.handleClose}>Profile</MenuItem> </Link>
               <Link to='/' style={{textDecoration: 'none'}}>
                 <MenuItem id='menuItem' onClick={this.logout} >Logout</MenuItem>
               </Link>

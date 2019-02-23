@@ -1,0 +1,112 @@
+@import '../../styles.scss';
+
+.tripCard {
+  background-color: $secondary-background-color;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 300px;
+  width: 350px;
+  box-sizing: border-box;
+  color: black;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5 );
+  margin-top: 30px;
+  border-radius: 7px;
+}
+
+
+.trip-details-body {
+  height: 100%;
+  widows: 100%;
+  cursor: pointer;
+}
+
+img {
+  height: 300px;
+  margin: auto;
+}
+
+.listFlex {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+ul {
+  text-align: start;
+}
+
+.card-image-container {
+  width: 100%;
+  height: 85%;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.trip-name-date {
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+
+// MODAL
+.trip-modal-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(37, 37, 37, 0.712);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.trip-modal {
+  height: 90%;
+  width: 95%;
+  background-color: white;
+  z-index: 2;
+  border-radius: 10px;
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.trip-modal-close-button {
+  position: absolute;
+  top: 6%;
+  left: 94%;
+}
+
+.detail-box {
+  width: 33.33%;
+  height: 50%;
+  border: 1px solid black;
+}
+
+.text-editor-box {
+  height: 100%;
+  width: 33.33%;
+  background-color: lightgray;
+}
+
+.locations-box {
+  background-image: url('../../images/london.jpg');
+  background-size: cover;
+}
+
+.activities-box {
+  background-image: url('../../images/tourist.jpg');
+  background-size: cover;
+}

@@ -1,0 +1,202 @@
+ <div className="bucket-list-container">
+            {/* <div className='header'>
+               <Header />
+            </div> */}
+            {/* <div className="bucket-list-header"> */}
+               {/* <h2>Completed</h2> */}
+               {/* <h2>In Progress</h2> */}
+            {/* </div> */}
+            {/* <div className="body"> */}
+               {/* <div className='side-nav'> */}
+                  {/* < SideNav /> */}
+               {/* </div> */}
+               {/* <div className='bucket-list-bg'> */}
+                  {/* <div className="bucket-list-content"> */}
+                     {/* <div className="bucket-list"> */}
+                        {/* <div>{displayCompleted}</div> */}
+                     {/* </div> */}
+                     {/* <div className="bucket-list"> */}
+                        {/* <div>{displayIncomplete}</div> */}
+                     {/* </div> */}
+                     {/* <div className='bucket-list-content'>
+                        <h2>Bucket List</h2>
+                        <input type="text" value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)} />
+                        <button onClick={() => {
+                           this.addItem(this.state.itemToAdd);
+                           this.setState({ itemToAdd: '' });
+                        }
+                        }>Add item</button>
+                        <div>
+                           Completed
+                           {displayCompleted}
+                        </div>
+                        <div>
+                           Incomplete
+                           {displayIncomplete}
+                        </div>
+                     </div> */}
+                  {/* </div> */}
+               {/* </div> */}
+            {/* </div> */}
+         {/* </div> */}
+
+
+         /////BUCKET LIST SCSS//////
+         @import '../../styles.scss';
+
+.bucket-list-content {
+   display: flex;
+   height: 90vh;
+//    width: calc(100vh - #{$side-nav-width});
+}
+
+.bucket-list-container {
+    border: 3px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.bucket-list-header {
+    height: 10vh;
+    display: flex;
+    width: calc(100vw - #{$side-nav-width});
+    // border: 1px solid black;
+    background-color: rgb(97, 96, 96);
+    margin-left: $side-nav-width;
+    justify-content: space-around;
+    align-items: center;
+    // float: right;
+    h2 {
+        margin: 0;
+        color: white;
+    }
+}
+
+.bucket-list {
+    height: 100%;
+    border: 1px solid rgb(97, 96, 96);
+    flex-basis: 50%;
+}
+
+.bucket-list-bg {
+    width: calc(100vw - #{$side-nav-width});
+    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../images/newzealand.jpg');
+    background-size: cover;
+}
+
+.bucket-item {
+    list-style-type: none;
+    color: white;
+    font-size: .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    border-bottom: 1px solid rgb(54, 54, 54);
+}
+
+////BUCKET ITEM////
+import React, { Component } from 'react'
+import axios from 'axios';
+import './BucketItem.scss';
+
+export default class BucketItem extends Component {
+    state = {
+        edit: false,
+        userInput: this.props.item.title
+    }
+
+    toggleCompleted = async (item) => {
+        await axios.put(`/bucketlist/${item.bucket_list_id}`, {
+            title: item.title,
+            completed: !item.completed
+        })
+        await this.props.getBucketList();
+    }
+
+    handleInput = (userInput) => {
+        this.setState({
+            userInput
+        })
+    }
+
+    editItem = async (item) => {
+        await axios.put(`/bucketlist/${item.bucket_list_id}`, {
+            title: this.state.userInput,
+            completed: item.completed
+        })
+        this.setState({
+            edit: false
+        })
+        this.props.getBucketList();
+    }
+
+    deleteItem = async (item) => {
+        await axios.delete(`/bucketlist/${item.bucket_list_id}`);
+        this.props.getBucketList();
+    }
+
+    render() {
+        const { item } = this.props;
+        const { edit } = this.state;
+        return (
+            <div className="bucket-item-container">
+                {/* <h2>{item.title}</h2> */}
+                <h2>
+                {
+                    edit ? 
+                    <><input 
+                    type="text" 
+                    defaultValue={this.state.userInput} 
+                    onChange={(e) => this.handleInput(e.target.value)}/></> 
+                    : <div className="bucket-item-title">{item.title}</div>
+                }
+                </h2>
+                <div>
+                    <button onClick={() => this.toggleCompleted(item)}>Done</button>
+                    <button onClick={() => this.setState({ edit: !this.state.edit })}>
+                        {edit ? <>Cancel</> : <>Edit</>}
+                    </button>
+                    {edit ?
+                        <>
+                            <button onClick={() => { this.editItem(item) }
+                            }>Save</button>
+                        </>
+                        :
+                        <>
+                            <button onClick={() => this.deleteItem(item)}>Delete</button>
+                        </>}
+                </div>
+            </div>
+        )
+    }
+}
+
+///BUCKET ITEM SCSS///
+.bucket-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+
+    h2 {
+        margin: 0;
+        font-size: 2em;
+    }
+    button {
+        margin: 0;
+    }
+}
+
+.bucket-item-title {
+    width: 20vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid black;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+}

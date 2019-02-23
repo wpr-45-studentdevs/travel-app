@@ -1,0 +1,90 @@
+.publicTripCard {
+  background-color: #eaeaea;
+  margin: 1.7em 0;
+  padding: 1em;
+  box-shadow: 3px 3px 15px black;
+}
+
+.public-users-slider {
+  width: 300px;
+  margin: 0 1em;
+  margin-bottom: 0.5em;
+  z-index: 0;
+}
+
+.traveler-container label {
+    font-size: 0.7em;
+    opacity: 0;
+    transition: .4s;
+}
+
+.traveler-container:hover label {
+  opacity: 100;
+  transition: .4s;
+}
+
+.user {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+}
+
+.public-main-img {
+  height: 200px;
+  width: 300px;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+}
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+  overflow: scroll;
+  width: 300px;
+}
+
+.public-trip-info {
+  display: flex;
+  justify-content: space-around;
+  width: 95%;
+  margin: auto;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  .list-box {
+    margin: 1em 0;
+    height: 150px;
+    width: 150px;
+    margin: 0 .5em;
+    h4 {
+      margin: 0.7em;
+    }
+  }
+}
+
+.list {
+  overflow: scroll;
+  height: 90px;
+  
+  ul {
+    margin-top: 0;
+  }
+}
+
+
+@media (min-width: 1240px) {
+  .publicTripCard {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .publicTripCard > div {
+    width: 330px;
+  }
+  
+}

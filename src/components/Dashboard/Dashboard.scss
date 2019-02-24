@@ -23,19 +23,6 @@
   background-position: center;
 }
 
-.dash-search-container {
-  width: 90%;
-  display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-  align-content: center;
-    div {
-      width: 33%;
-    }
-}
-
 
 .content-window {
   height: 80vh;
@@ -48,3 +35,10 @@
   overflow: scroll;
 }
 
+.dashboard-search-container {
+  width: 90%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+  justify-content: flex-start;
+}

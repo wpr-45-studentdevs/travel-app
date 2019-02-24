@@ -34,7 +34,6 @@ class OptionsMenu extends React.Component {
          completed: this.props.trip.completed,
          isPublic: this.props.trip.public,
       })
-      console.log(this.state)
    }
 
    handleClick = event => {
@@ -68,6 +67,7 @@ class OptionsMenu extends React.Component {
             )
          }
       })
+      await this.handleClose();
    }
 
    handleCompletedToggle = async () => {
@@ -87,7 +87,7 @@ class OptionsMenu extends React.Component {
    updatePublic = async () => {
       const { trip_id } = this.props.trip;
       const { isPublic } = this.state;
-      axios.put('/api/trip/public', { trip_id, public: isPublic })
+      await axios.put('/api/trip/public', { trip_id, public: isPublic });
    }
 
 

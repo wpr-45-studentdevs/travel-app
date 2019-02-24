@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.scss';
 import LandingNav from '../LandingNav/LandingNav';
 import Slider from 'react-slick';
@@ -22,11 +23,11 @@ export default class LandingPage extends Component {
       var settings = {
          dots: false,
          infinite: true,
-         speed: 1200,
+         speed: 2500,
          slidesToShow: 1,
          slidesToScroll: 1,
          autoplay: true,
-         autoplaySpeed: 4500,
+         autoplaySpeed: 5500,
          pauseOnHover: false,
          initialSlide: 8,
          fade: true
@@ -99,6 +100,12 @@ export default class LandingPage extends Component {
                   </div> */}
                </Slider>
             </div> 
+            <div className="landing-page-text">
+               <h3>Travel planning made easy.</h3>
+               <Link to='/register' className='landing-page-register-button'>
+                  Get Started
+               </Link>
+            </div>
          </>
       )
    }

@@ -25,7 +25,7 @@ class SideNav extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.img !== this.props.img) {
       if (this.props.img) {
-        this.getprofileImg()
+        this.getProfileImg()
       } else {
         this.setState({
           profileImg: UserImgPlaceholder
@@ -55,7 +55,7 @@ class SideNav extends Component {
       <div className="side-navbar">
         <Link to='/dashboard'>
           <div>
-            <img src={kanooLogo} alt="" />
+            <img src={kanooLogo} alt="kanoo logo" />
             <h2
               style={{ margin: '5px' }}
               className='kanoo-text'
@@ -65,19 +65,19 @@ class SideNav extends Component {
         <div>
           <Link onClick={() => this.handleToggle()} to="/dashboard">
             <div className='side-nav-icon-container'>
-              <i class="fas fa-home side-nav-icon"></i>
+              <i className="fas fa-home side-nav-icon"></i>
               <p>Dashboard</p>
             </div>
           </Link>
           <Link onClick={() => this.handleToggle()} to="my-trips">
             <div className='side-nav-icon-container'>
-              <i class="fas fa-suitcase side-nav-icon"></i>
+              <i className="fas fa-suitcase side-nav-icon"></i>
               <p>My Trips</p>
             </div>
           </Link>
           <Link onClick={() => this.handleToggle()} to="/bucket-list">
             <div className='side-nav-icon-container'>
-              <i class="fas fa-list-ul side-nav-icon"></i>
+              <i className="fas fa-list-ul side-nav-icon"></i>
               <p>Bucket List</p>
             </div>
           </Link>

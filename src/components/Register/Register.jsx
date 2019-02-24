@@ -39,7 +39,7 @@ export default class Register extends Component {
           title: `Welcome, ${displayName}!`,
           text: 'You have successfully created an account',
         })
-        
+
         this.props.history.push('/dashboard')
       } else {
         Swal.fire({
@@ -51,59 +51,73 @@ export default class Register extends Component {
     }
   }
 
+  onKeyPress = (e) => {
+    if (e.which === 13) {
+      this.register();
+    }
+  }
+
   render() {
     return (
       <div className='auth-register-page'>
         <LandingNav />
-        <div className='auth-box'>
+        <div className='auth-box register-auth-box'>
           <h2>Register</h2>
-          <div>
-            Email:
-              <input
+          <div className='auth-input-container'>
+            <p>Email:</p>
+            <input
               type="text"
-              placeholder='email'
+              placeholder='Your email address'
               onChange={(e) => this.setState({ email: e.target.value })}
-              className='auth-menu-item'
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
+              autoFocus='true'
             />
           </div>
-          <div>
-            Password:
-              <input
+          <div className='auth-input-container'>
+            <p>Password:</p>
+            <input
               type="password"
-              placeholder='password'
+              placeholder='Enter a password'
               onChange={(e) => this.setState({ password: e.target.value })}
-              className='auth-menu-item'
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
             />
           </div>
-          <div>
-            Confirm Password:
-              <input
+          <div className='auth-input-container'>
+            <p>Confirm Password:</p>
+            <input
               type="password"
-              placeholder='confirm password'
+              placeholder='Confirm password'
               onChange={(e) => this.setState({ confirm: e.target.value })}
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
             />
           </div>
-          <div>
-            Display Name:
-              <input
+          <div className='auth-input-container'>
+            <p>Display Name:</p>
+            <input
               type="text"
               placeholder='Display Name'
               onChange={(e) => this.setState({ displayName: e.target.value })}
-              className='auth-menu-item'
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
             />
           </div>
-          <div>
-            Bio:
-              <textarea
+          <div className='auth-input-container'>
+            <p>Bio:</p>
+            <textarea
               type="text"
               placeholder='What do you want people to know about you?'
               onChange={(e) => this.setState({ bio: e.target.value })}
-              className='auth-menu-item'
+              onKeyPress={this.onKeyPress}
               cols="30" rows="10"
             />
           </div>
-          <Link to='/' className='auth-menu-item'><button>Back</button></Link>
-          <button onClick={this.register} className='auth-menu-item'>Register</button>
+          <div>
+            <Link to='/'><button className='default-button'>Back</button></Link>
+            <button onClick={this.register} className='default-button'>Register</button>
+          </div>
         </div>
       </div>
     )

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./AddTrip.scss";
 import Axios from "axios";
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import "../../../styles.scss";
+import addTripBackground from "../../../images/add-trips-background.png";
 
 class AddTrip extends Component {
   state = {
@@ -13,8 +14,7 @@ class AddTrip extends Component {
     completed: false,
     public: false,
     tripLength: 0,
-    activities: [],
-    locations: []
+    image: ""
   };
 
   handleChange = (prop, val) => {
@@ -22,60 +22,84 @@ class AddTrip extends Component {
   };
 
   addTripDetails = async () => {
-    const {user_id} = this.props.user;
-    await Axios.post("/api/add-trip", {
+    const { user_id } = this.props.user;
+    const res = await Axios.post("/api/add-trip", {
       tripName: this.state.tripName,
       date: this.state.date,
       completed: this.state.completed,
       public: this.state.public,
       tripLength: this.state.tripLength,
       trip_owner: user_id
-    }).then(async response => {
-      const tripID = response.data[0].trip_id;
-      await Axios.post(`/api/add-user-to-trip/${tripID}`).then(res => {
-        return res;
-      });
     });
+    console.log(res.data);
+    const tripID = res.data[0].trip_id;
+    await Axios.post(`/api/add-user-to-trip/${tripID}`);
+    await Axios.post(`/api/addPhoto/${tripID}`, {
+      photo_url: this.state.image
+    });
+    // .then(async () => {
+    //   const tripID = res.data[0].trip_id;
+    //   await Axios.post(`/api/add-user-to-trip/${tripID}`)
+    //   (async () => {
+    //     await Axios.post(`/api/addPhoto/${tripID}`, {
+    //       image: this.state.image
+    //     }).then(response => {
+    //       return response.data;
+    //     });
+    //   });
+    // });
   };
 
   render() {
     return (
       <>
-        <li
-          className="add-trip-button"
+        <button
+          className="default-button"
           onClick={() => this.setState({ toggleModal: true })}
         >
           Add Trip
-        </li>
+        </button>
         {/* MODAL */}
         {this.state.toggleModal === true ? (
           <div className="modalFullPage">
             <div className="modalAddTrip">
+              <img src={addTripBackground} className="add-trip-background" />
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{ zIndex: 2 }}
                 onChange={e => this.handleChange("tripName", e.target.value)}
                 type="text"
                 placeholder="Trip Name"
               />
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{ zIndex: 2 }}
                 onChange={e => this.handleChange("date", e.target.value)}
                 type="text"
                 placeholder="Trip Date"
               />
               <input
-                className="addTripInputs"
+                className="default-input"
+                style={{ zIndex: 2 }}
                 onChange={e => this.handleChange("tripLength", e.target.value)}
                 type="number"
                 placeholder="Trip Length"
               />
+              <input
+                className="default-input"
+                style={{ zIndex: 2 }}
+                onChange={e => this.handleChange("image", e.target.value)}
+                type="url"
+                placeholder="Image URL"
+              />
               <div className="checkboxes">
                 <span>Trip Completed?</span>
                 <input
+                  style={{ zIndex: 2 }}
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
-                  onChange={() =>
+                  onClick={() =>
                     this.setState({ completed: !this.state.completed })
                   }
                 />
@@ -83,31 +107,32 @@ class AddTrip extends Component {
               <div className="checkboxes">
                 <span>Trip Public?</span>
                 <input
+                  style={{ zIndex: 2 }}
                   id="checkboxStyle"
                   type="checkbox"
                   placeholder="trip name"
-                  onChange={() => this.setState({ public: !this.state.public })}
+                  onClick={() => this.setState({ public: !this.state.public })}
                 />
               </div>
               <div>
-                <Link
+                <button
+                  style={{ zIndex: 3 }}
                   className="Links"
-                  to = 'my-trips'
+                  onClick={() => this.setState({ toggleModal: false })}
+                >
+                  Close
+                </button>
+                <button
+                  style={{ zIndex: 3 }}
+                  className="default-button"
                   onClick={() => {
                     this.addTripDetails();
                     this.setState({ toggleModal: false });
                   }}
                 >
                   Save
-                </Link>
-                <button
-                  className="addTripButtons"
-                  onClick={() => this.setState({ toggleModal: false })}
-                >
-                  Close
                 </button>
               </div>
-              
             </div>
           </div>
         ) : null}
@@ -116,6 +141,6 @@ class AddTrip extends Component {
   }
 }
 
-const mapStateToProps = reduxState => reduxState
+const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(AddTrip)
+export default connect(mapStateToProps)(AddTrip);

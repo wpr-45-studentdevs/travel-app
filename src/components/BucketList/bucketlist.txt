@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import SideNav from '../SideNav/SideNav';
 import './BucketList.scss';
+import Header from '../Header/Header';
 import axios from 'axios';
 import BucketItem from '../BucketItem/BucketItem';
+import newZealand from '../../images/newzealand.jpg';
 import { filterItems } from '../../Logic/Logic';
 
 export default class BucketList extends Component {
@@ -63,32 +65,42 @@ export default class BucketList extends Component {
 
       return (
          <div>
+            {/* <div className='header'>
+               <Header />
+            </div> */}
+            <div className="bucket-list-header">
+               <h2>Completed</h2>
+               <h2>In Progress</h2>
+            </div>
             <div className="body">
                <div className='side-nav'>
                   < SideNav />
                </div>
                <div className='bucket-list-bg'>
                   <div className="bucket-list-content">
-                     <div className="bucket-list-header">
-                        <h2>Completed</h2>
-                        <h2>In Progress</h2>
+                     <div className="bucket-list">
+                        <div>{displayCompleted}</div>
                      </div>
-                     <div className="bucket-add">
-                        <input type="text" placeholder='Add a new item' value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)}/>
+                     <div className="bucket-list">
+                        <div>{displayIncomplete}</div>
+                     </div>
+                     {/* <div className='bucket-list-content'>
+                        <h2>Bucket List</h2>
+                        <input type="text" value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)} />
                         <button onClick={() => {
                            this.addItem(this.state.itemToAdd);
-                           this.setState({itemToAdd: ''})
-                        }}>+</button>
-                     </div>
-                     <div className="bucket-lists">
-                        <div className="bucket-list">
-                           <div>{displayCompleted}</div>
+                           this.setState({ itemToAdd: '' });
+                        }
+                        }>Add item</button>
+                        <div>
+                           Completed
+                           {displayCompleted}
                         </div>
-
-                        <div className="bucket-list">
-                           <div>{displayIncomplete}</div>
+                        <div>
+                           Incomplete
+                           {displayIncomplete}
                         </div>
-                     </div>
+                     </div> */}
                   </div>
                </div>
             </div>
@@ -96,4 +108,3 @@ export default class BucketList extends Component {
       )
    }
 }
-

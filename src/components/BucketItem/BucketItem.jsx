@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './BucketItem.scss';
+import { Spring } from 'react-spring/renderprops';
 
 export default class BucketItem extends Component {
     state = {
         edit: false,
-        userInput: ''
+        userInput: this.props.item.title
     }
 
     toggleCompleted = async (item) => {
@@ -28,7 +29,6 @@ export default class BucketItem extends Component {
             completed: item.completed
         })
         this.setState({
-            userInput: '',
             edit: false
         })
         this.props.getBucketList();
@@ -43,23 +43,44 @@ export default class BucketItem extends Component {
         const { item } = this.props;
         const { edit } = this.state;
         return (
-            <>
-                <li className={item.completed ? 'bucket-item-complete' : 'bucket-item-incomplete'}>{item.title}</li>
-                <button onClick={() => this.toggleCompleted(item)}>Done</button>
-                <button onClick={() => this.setState({ edit: !this.state.edit })}>
-                {edit ? <>Cancel</> : <>Edit</>}
-                </button>
-                {edit ?
-                    <>
-                        <input type="text" value={this.state.userInput} onChange={(e) => this.handleInput(e.target.value)} />
-                        <button onClick={() => { this.editItem(item) }
-                        }>Save</button>
-                    </>
-                    :
-                    <>
-                        <button onClick={() => this.deleteItem(item)}>Delete</button>
-                    </>}
-            </>
+            <Spring
+                delay={250}
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}>
+                {({ opacity }) => (
+                    <div style={{opacity}} className="bucket-item-container">
+                        <h2>
+                            {
+                                edit ?
+                                    <><input
+                                        type="text"
+                                        defaultValue={this.state.userInput}
+                                        onChange={(e) => this.handleInput(e.target.value)} /></>
+                                    : <div className="bucket-item-title">{item.title}</div>
+                            }
+                        </h2>
+                        <div className="bucket-item-options">
+                            <i
+                            className={item.completed ? "fas fa-times" : "fas fa-check"}
+                            onClick={() => this.toggleCompleted(item)}>
+                            </i>
+                            <i
+                            className="fas fa-edit"
+                            onClick={() => {
+                                if (edit) {this.editItem(item)}
+                                this.setState({edit: !this.state.edit});
+                                }}>
+                            </i>
+                            <i
+                            className="fas fa-trash"
+                            onClick={() => {
+                                this.deleteItem(item)
+                            }}>
+                            </i>
+                        </div>
+                    </div>
+                )}
+            </Spring>
         )
     }
 }

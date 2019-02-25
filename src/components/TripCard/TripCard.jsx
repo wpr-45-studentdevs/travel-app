@@ -43,7 +43,7 @@ class TripCard extends Component {
       })
     }
   }
-  
+
   getNotes = async () => {
     const { trip_id } = this.props.trip
     let res = await axios.get(`/api/notes/${trip_id}`);
@@ -93,6 +93,9 @@ class TripCard extends Component {
         {
           this.state.showDetails === true ?
             <div className='trip-modal-wrapper'>
+              <div className='trip-title-container'>
+                <h3 style={{margin: '0px'}}>{trip.trip_name}</h3>
+              </div>
               <div className='detail-button-container'>
                 < OptionsMenu
                   trip={trip}

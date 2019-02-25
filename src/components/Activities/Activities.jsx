@@ -52,7 +52,7 @@ export default class Activities extends Component {
                         type="text"
                         value={newActivity}
                         onChange={(e) => this.handleInput(e.target.value)} />
-                    <button onClick={() => {
+                    <button className='add-button' onClick={() => {
                         this.addActivity();
                         this.setState({ newActivity: '' })
                     }}><i className="fas fa-plus"></i></button>

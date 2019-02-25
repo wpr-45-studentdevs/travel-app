@@ -208,8 +208,8 @@ class Profile extends Component {
 
                     {edit &&
                       <div className='profile-buttons'>
-                        <button onClick={this.handleCancel}>Cancel</button>
-                        <button onClick={this.updateUserInfo}>Save</button>
+                        <button className='add-button profile-button' onClick={this.handleCancel}><i className="far fa-window-close"></i></button>
+                        <button className='add-button profile-button' onClick={this.updateUserInfo}><i className="far fa-save"></i></button>
                       </div>
                     }
 
@@ -228,11 +228,11 @@ class Profile extends Component {
                       <div>
                         <input type="text" placeholder="Your friend's email"
                           onChange={e => this.handleChange('friend', e.target.value)} />
-                        <button onClick={this.addFriend}><i className="fas fa-plus"></i></button>
-                        <button onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
+                        <button className='add-button' onClick={this.addFriend}><i className="fas fa-plus"></i></button>
+                        <button className='add-button' onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
                       </div>
                       :
-                      <button onClick={this.showFriendsToAdd}>Add Friend</button>
+                      <button className='add-friends-button' onClick={this.showFriendsToAdd}>Add Friend</button>
                   }
                 </div>
 

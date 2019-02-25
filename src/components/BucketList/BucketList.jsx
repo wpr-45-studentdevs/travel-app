@@ -74,11 +74,11 @@ export default class BucketList extends Component {
                         <h2>In Progress</h2>
                      </div>
                      <div className="bucket-add">
-                        <input type="text" placeholder='Add a new item' value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)}/>
-                        <button onClick={() => {
+                        <input className='default-input add-bucket-item-input' type="text" placeholder='Add a new item' value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)}/>
+                        <button className='add-button' onClick={() => {
                            this.addItem(this.state.itemToAdd);
                            this.setState({itemToAdd: ''})
-                        }}>+</button>
+                        }}><i className="fas fa-plus"></i></button>
                      </div>
                      <div className="bucket-lists">
                         <div className="bucket-list">

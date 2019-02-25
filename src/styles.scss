@@ -101,3 +101,21 @@ $side-nav-width: 155px;
 .auth-input {
    margin-top: 0;
 }
+
+.add-button {
+      background: linear-gradient(#e9e6e6, #fff, #e9e6e6);
+      border: none;
+}
+
+.add-friends-button {
+      background: none;
+      border: 1px solid black;
+      border-radius: 10px;
+      transition: .7s;
+      padding: 3px 15px;
+      &:hover {
+            background-color: #fff;
+            transition: .7s;
+      }
+}
+

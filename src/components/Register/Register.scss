@@ -30,3 +30,14 @@
 .register-auth-box {
   height: 550px;
 }
+
+.auth-input-container textarea {
+  background: transparent;
+  color: white;
+  border: none;
+  border: 1px solid #aaa6a6;
+  padding: 6px;
+  font-size: 0.9rem;
+  width: 200px;
+  height: 150px;
+}

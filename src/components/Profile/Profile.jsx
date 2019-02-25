@@ -95,10 +95,10 @@ class Profile extends Component {
   }
 
   addFriend = async () => {
-    const {user_id} = this.props.user
-    const {friend: user_email} = this.state
-    const res = await axios.post(`/api/friend/${user_id}`, {user_email})
-    if(res.data.friendAdded){
+    const { user_id } = this.props.user
+    const { friend: user_email } = this.state
+    const res = await axios.post(`/api/friend/${user_id}`, { user_email })
+    if (res.data.friendAdded) {
       this.getFriends()
       this.showFriendsToAdd()
     } else {
@@ -107,7 +107,7 @@ class Profile extends Component {
   }
 
   removeFriend = async (friend_id) => {
-    const {user_id} = this.props.user
+    const { user_id } = this.props.user
     await axios.delete(`/api/friend/${user_id}/${friend_id}`)
     this.getFriends()
   }
@@ -125,7 +125,7 @@ class Profile extends Component {
       return (
         <div key={i} className='friend-container' style={{ width: 'fit-content' }}>
           <div className='friend-img' style={{ backgroundImage: `url(${backgroundImg})` }}>
-          <i onClick={()=>this.removeFriend(friend.friend_id)} class="fas fa-trash-alt"></i>
+            <i onClick={() => this.removeFriend(friend.friend_id)} class="fas fa-trash-alt"></i>
           </div>
           <label htmlFor="">{friend.user_display_name}</label>
         </div>
@@ -159,82 +159,84 @@ class Profile extends Component {
           <div className='profileBody'>
             <div className='profile-container'>
               <h1>Profile</h1>
-
-              <div className='profile-img-container'>
-                <img src={userInfo.profile_pic ? userInfo.profile_pic : UserImgPlaceholder} alt="" />
-              </div>
-
-
-              <div className='profile-info-container'>
-                {!edit &&
-                  <i className="fas fa-edit"
-                    onClick={this.showEdit}></i>
-                }
-
-                {
-                  edit &&
-                  <div className={edit && 'edit'}>
-                    <span>Image Url: </span>
-                    <input onChange={e => this.handleChange('img', e.target.value)}
-                      value={img} type="text" />
+              <div className='profile-content'>
+                <div className='profile-box-container'>
+                  <div className='profile-img-container'>
+                    <img src={userInfo.profile_pic ? userInfo.profile_pic : UserImgPlaceholder} alt="" />
                   </div>
-                }
+
+
+                  <div className='profile-info-container'>
+                    {!edit &&
+                      <i className="fas fa-edit"
+                        onClick={this.showEdit}></i>
+                    }
+
+                    {
+                      edit &&
+                      <div className={edit && 'edit'}>
+                        <span>Image Url: </span>
+                        <input onChange={e => this.handleChange('img', e.target.value)}
+                          value={img} type="text" />
+                      </div>
+                    }
 
 
 
-                <div className={edit && 'edit'}>
-                  <span>Email: </span>
-                  {edit ? <input onChange={e => this.handleChange('email', e.target.value)}
-                    value={email} type="text" /> : userInfo.user_email}
+                    <div className={edit && 'edit'}>
+                      <span>Email: </span>
+                      {edit ? <input onChange={e => this.handleChange('email', e.target.value)}
+                        value={email} type="text" /> : userInfo.user_email}
+                    </div>
+
+                    <div className={edit && 'edit'}>
+                      <span>Display Name: </span>
+                      {edit ? <input onChange={e => this.handleChange('name', e.target.value)}
+                        value={name} type="text" /> : userInfo.user_display_name}
+                    </div>
+
+                    <div className={edit ? 'edit' : 'bio-box'}>
+                      <span>Bio: </span>
+                      {
+                        edit ?
+                          <textarea onChange={e => this.handleChange('bio', e.target.value)}
+                            value={bio} type="text" cols="35" rows="6"></textarea>
+                          :
+                          <p>{userInfo.user_bio}</p>
+                      }
+                    </div>
+
+                    {edit &&
+                      <div className='profile-buttons'>
+                        <button onClick={this.handleCancel}>Cancel</button>
+                        <button onClick={this.updateUserInfo}>Save</button>
+                      </div>
+                    }
+
+
+                  </div>
                 </div>
+                <div>
+                  <h3>Friends:</h3>
 
-                <div className={edit && 'edit'}>
-                  <span>Display Name: </span>
-                  {edit ? <input onChange={e => this.handleChange('name', e.target.value)}
-                    value={name} type="text" /> : userInfo.user_display_name}
-                </div>
-
-                <div className={edit ? 'edit' : 'bio-box'}>
-                  <span>Bio: </span>
+                  <Slider {...settings} className='profile-slider'>
+                    {friendDisplay}
+                  </Slider>
                   {
-                    edit ?
-                      <textarea onChange={e => this.handleChange('bio', e.target.value)}
-                        value={bio} type="text" cols="35" rows="6"></textarea>
+                    showAdd ?
+
+                      <div>
+                        <input type="text" placeholder="Your friend's email"
+                          onChange={e => this.handleChange('friend', e.target.value)} />
+                        <button onClick={this.addFriend}><i className="fas fa-plus"></i></button>
+                        <button onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
+                      </div>
                       :
-                      <p>{userInfo.user_bio}</p>
+                      <button onClick={this.showFriendsToAdd}>Add Friend</button>
                   }
                 </div>
 
-                {edit &&
-                  <div className='profile-buttons'>
-                    <button onClick={this.handleCancel}>Cancel</button>
-                    <button onClick={this.updateUserInfo}>Save</button>
-                  </div>
-                }
-
-
               </div>
-
-              <div>
-                <h3>Friends:</h3>
-
-                <Slider {...settings} className='profile-slider'>
-                  {friendDisplay}
-                </Slider>
-                {
-                  showAdd ?
-
-                    <div>
-                      <input type="text" placeholder="Your friend's email" 
-                      onChange={e=>this.handleChange('friend', e.target.value)}/>
-                      <button onClick={this.addFriend}><i className="fas fa-plus"></i></button>
-                      <button onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
-                    </div>
-                    :
-                    <button onClick={this.showFriendsToAdd}>Add Friend</button>
-                }
-              </div>
-
             </div>
           </div>
         </div>

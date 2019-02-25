@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .auth-page {
    height: 100vh;
    width: 100vw;
@@ -9,24 +11,4 @@
 	flex-wrap: nowrap;
 	align-items: center;
    align-content: center;
-}
-
-.auth-box {
-   height: 500px;
-   width: 500px;
-   background-color: rgba(131, 130, 130, 0.856);
-   color: white;
-   position: relative;
-   top: 200px;
-   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	align-items: center;
-   align-content: center;
-   justify-content: center;
-   border-radius: 10px;
-}
-
-.auth-menu-item {
-   margin: 10px 0;
 }

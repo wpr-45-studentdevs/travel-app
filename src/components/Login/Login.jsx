@@ -22,7 +22,7 @@ export default class Login extends Component {
         showConfirmButton: false,
         timer: 3000
       });
-      
+
       Toast.fire({
         type: 'success',
         title: `Welcome back, ${res.data.userData.user_display_name}!`,
@@ -37,32 +37,43 @@ export default class Login extends Component {
     }
   }
 
+  onKeyPress = (e) => {
+    if (e.which === 13) {
+      this.login();
+    }
+  }
+
   render() {
     return (
       <div className='auth-page'>
         <LandingNav />
         <div className='auth-box'>
           <h2>Login</h2>
-          <div>
-            Email:
-              <input
-              placeholder='email'
+          <div className='auth-input-container' >
+            <p>Email:</p>
+            <input
+              placeholder='Email'
               type="text"
               onChange={(e) => this.setState({ email: e.target.value })}
-              
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
+              autoFocus='true'
             />
           </div>
-          <div>
-            Password:
-              <input
-              placeholder='password'
+          <div className='auth-input-container' >
+            <p>Password:</p>
+            <input
+              placeholder='Password'
               type="password"
               onChange={(e) => this.setState({ password: e.target.value })}
-              className='auth-menu-item'
+              onKeyPress={this.onKeyPress}
+              className='default-input auth-input'
             />
           </div>
-          <Link to='/' className='auth-menu-item'><button>Back</button></Link>
-          <button onClick={this.login} className='auth-menu-item'>Login</button>
+          <div className='auth-button-container'>
+            <Link to='/'><button className='default-button'>Back</button></Link>
+            <button onClick={this.login} className='default-button'>Login</button>
+          </div>
         </div>
       </div>
     )

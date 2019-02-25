@@ -116,6 +116,7 @@ import axios from 'axios';
 import BucketItem from '../BucketItem/BucketItem';
 import newZealand from '../../images/newzealand.jpg';
 import { filterItems } from '../../Logic/Logic';
+import { Spring } from 'react-spring/renderprops';
 
 export default class BucketList extends Component {
    state = {
@@ -189,14 +190,29 @@ export default class BucketList extends Component {
                         <h2>Completed</h2>
                         <h2>In Progress</h2>
                      </div>
+                     <div className="bucket-add">
+                        <input type="text" placeholder='Add a new item' value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)}/>
+                        <button onClick={() => {
+                           this.addItem(this.state.itemToAdd);
+                           this.setState({itemToAdd: ''})
+                        }}>+</button>
+                     </div>
                      <div className="bucket-lists">
                         <div className="bucket-list">
                            <div>{displayCompleted}</div>
                         </div>
+
                         <div className="bucket-list">
                            <div>{displayIncomplete}</div>
                         </div>
                      </div>
+                     {/* <div>
+                        <input type="text" value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)}/>
+                        <button onClick={() => {
+                           this.addItem(this.state.itemToAdd);
+                           this.setState({itemToAdd: ''})
+                        }}>+</button>
+                     </div> */}
                      {/* <div className='bucket-list-content'>
                         <h2>Bucket List</h2>
                         <input type="text" value={this.state.itemToAdd} onChange={(e) => this.handleInput(e.target.value)} />

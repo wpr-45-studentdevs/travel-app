@@ -67,6 +67,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './BucketItem.scss';
+import { Spring } from 'react-spring/renderprops';
 
 export default class BucketItem extends Component {
     state = {
@@ -108,34 +109,59 @@ export default class BucketItem extends Component {
         const { item } = this.props;
         const { edit } = this.state;
         return (
-            <div className="bucket-item-container">
-                {/* <h2>{item.title}</h2> */}
-                <h2>
-                {
-                    edit ? 
-                    <><input 
-                    type="text" 
-                    defaultValue={this.state.userInput} 
-                    onChange={(e) => this.handleInput(e.target.value)}/></> 
-                    : <div className="bucket-item-title">{item.title}</div>
-                }
-                </h2>
-                <div>
-                    <button onClick={() => this.toggleCompleted(item)}>Done</button>
-                    <button onClick={() => this.setState({ edit: !this.state.edit })}>
-                        {edit ? <>Cancel</> : <>Edit</>}
-                    </button>
-                    {edit ?
-                        <>
-                            <button onClick={() => { this.editItem(item) }
-                            }>Save</button>
-                        </>
-                        :
-                        <>
-                            <button onClick={() => this.deleteItem(item)}>Delete</button>
-                        </>}
-                </div>
-            </div>
+            <Spring
+                delay={250}
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}>
+                {({ opacity }) => (
+                    <div style={{opacity}} className="bucket-item-container">
+                        {/* <h2>{item.title}</h2> */}
+                        <h2>
+                            {
+                                edit ?
+                                    <><input
+                                        type="text"
+                                        defaultValue={this.state.userInput}
+                                        onChange={(e) => this.handleInput(e.target.value)} /></>
+                                    : <div className="bucket-item-title">{item.title}</div>
+                            }
+                        </h2>
+                        <div className="bucket-item-options">
+                            <i
+                            className={item.completed ? "fas fa-times" : "fas fa-check"}
+                            onClick={() => this.toggleCompleted(item)}>
+                            </i>
+                            <i
+                            className="fas fa-edit"
+                            onClick={() => {
+                                if (edit) {this.editItem(item)}
+                                this.setState({edit: !this.state.edit});
+                                }}>
+                            </i>
+                            <i
+                            className="fas fa-trash"
+                            onClick={() => {
+                                this.deleteItem(item)
+                            }}>
+                            </i>
+                            {/* <button onClick={() => this.toggleCompleted(item)}>Done</button>
+
+                            <button onClick={() => this.setState({ edit: !this.state.edit })}>
+                                {edit ? <i></i> : <>Edit</>}
+                            </button>
+                            {edit ?
+                                <>
+                                    <button onClick={() => { this.editItem(item) }
+                                    }>Save</button>
+                                </>
+                                :
+                                <>
+                                    <button onClick={() => this.deleteItem(item)}>Delete</button>
+                                </>} */}
+                        </div>
+                    </div>
+                )}
+            </Spring>
         )
     }
 }

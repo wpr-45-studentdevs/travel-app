@@ -9,7 +9,7 @@ module.exports = {
     addBucketListItem: async (req, res) => {
         const {user_id} = req.session.user;
         const {title, completed} = req.body;
-        if (!title || !completed) {
+        if (!title) {
             res.status(400).send({message: 'Could not add item to bucket list'})
         }
         const db = req.app.get('db');

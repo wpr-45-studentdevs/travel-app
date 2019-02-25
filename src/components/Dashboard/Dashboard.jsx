@@ -62,24 +62,20 @@ export default class Dashboard extends Component {
                   <SideNav />
                </div>
                <div className="content">
-                  <div className='dash-search-container'>
-                     <div>
-                        <input
-                           onChange={e => this.handleSearchTripsInput(e.target.value)}
-                           type="text"
-                           className='default-input'
-                           placeholder='Search'
-                        />
-                     </div>
-                     <div>
-                        <h2 style={{
-                           color: 'white',
-                           textShadow: '1px 1px 10px black'
-                           }}
-                        >Community Trips</h2>
-                     </div>
-                     <div>
-                     </div>
+                  <div className='dashboard-search-container'>
+                     <input
+                        onChange={e => this.handleSearchTripsInput(e.target.value)}
+                        type="text"
+                        className='default-input'
+                        placeholder='Search'
+                     />
+                  </div>
+                  <div className='dash-title-container'>
+                     <h2 style={{
+                        color: 'white',
+                        textShadow: '1px 1px 10px black'
+                     }}
+                     >Community Trips</h2>
                   </div>
                   <div className="content-window">
                      {/* {tripToDisplay} */}

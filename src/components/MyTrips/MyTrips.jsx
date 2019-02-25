@@ -92,6 +92,7 @@ class MyTrips extends Component {
           trip={trip}
           key={trip.trip_id}
           getTrips={this.getTrips}
+          trips={this.state.trips}
         />
       )
     });
@@ -101,9 +102,6 @@ class MyTrips extends Component {
 
     return (
       <div>
-        {/* <div>
-          <Header />
-        </div> */}
         <div className="body">
           <div className="side-nav">
             <SideNav />
@@ -111,14 +109,14 @@ class MyTrips extends Component {
           <div className='trips-container'>
             <div className='trip-search-list-container'>
               <div className='input-toggle-container'>
-                  <input
-                    type="text"
-                    placeholder='Search'
-                    className='default-input'
-                    onChange={(e) => this.handleSearch(e.target.value)}
-                  />
+                <input
+                  type="text"
+                  placeholder='Search'
+                  className='default-input'
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                />
                 <div className='my-trips-toggle'>
-                  <label>Upcoming Trips</label>
+                  <label>Show Upcoming Trips</label>
                   <Switch
                     checked={this.state.checkedB}
                     onChange={this.handleChange}
@@ -134,6 +132,11 @@ class MyTrips extends Component {
                   />
                   <label>Show Completed Trips</label>
                 </div>
+              </div>
+              <div style={{ color: 'white' }}>
+                {
+                  this.state.showCompleted ? <h2>Completed Trips</h2> : <h2>Upcoming Trips</h2>
+                }
               </div>
               <div className="trip-card-display">
                 {displayTrips}

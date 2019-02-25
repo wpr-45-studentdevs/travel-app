@@ -12,5 +12,42 @@
     overflow: hidden;
 }
 
+.landing-page-text {
+    position: fixed;
+    width: 800px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    /* Negative half of height. */
+    margin-left: -400px;
+    /* Negative half of width. */
+    font-size: 36px;
+    animation: fadeIn 1s linear;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    color: white;
+    opacity: 0;
 
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
 
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+.landing-page-register-button {
+    padding: 11px 25px;
+    border: 1.5px white solid;
+    color: white;
+    border-radius: 50px;
+    transition: .33s;
+    &:hover {
+        background-color: rgba(247, 240, 240, 0.459);
+        transition: .33s;
+    }
+}

@@ -44,6 +44,7 @@ class MyTrips extends Component {
   }
 
 
+
   getTrips = async () => {
     const { user_id } = this.props.user
     const { showCompleted } = this.state
@@ -119,6 +120,7 @@ class MyTrips extends Component {
                     className='default-input'
                     onChange={(e) => this.handleSearch(e.target.value)}
                   />
+                  <AddTrip/>
                 <div className='my-trips-toggle'>
                   <label>Upcoming Trips</label>
                   <Switch
@@ -137,8 +139,10 @@ class MyTrips extends Component {
                   <label>Show Completed Trips</label>
                 </div>
               </div>
-              <div className="trip-card-display">
-                {displayTrips}
+              <div id='trips-display'>
+                <div className="trip-card-display">
+                  {displayTrips}
+                </div>
               </div>
             </div>
           </div>

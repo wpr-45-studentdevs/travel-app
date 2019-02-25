@@ -21,7 +21,7 @@
   position: absolute;
   height: 40vh;
   width: 25vw;
-background: rgba(214, 214, 214, 0.774);  
+  background: rgba(214, 214, 214, 0.774);  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,26 +41,27 @@ background: rgba(214, 214, 214, 0.774);
 
 }
 
-.add-trip-button{
+#add-trip-button{
   background: rgb(190, 190, 190);
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
-  margin-left: 25px;
+  margin-left: 27%;
   margin-top: 15px;
   margin-right: 100px;
-  font-size: 350%;
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-content: center;
-  padding-bottom: 35%;
   border: none;
   transition: .5s;
-  font-weight: 600;
-
+  font-size: 250%;
+  font-weight: 700;
+  padding-bottom: .4%;
+  padding-left: .4%; 
 }
 
-.add-trip-button:hover{
+#add-trip-button:hover{
   background: rgb(153, 153, 153)
 }
 
@@ -78,9 +79,12 @@ background: rgba(214, 214, 214, 0.774);
 .Links{
   // text-decoration: none;
   transition: .3s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .Links:hover{
-color: black;
-font-size: 23px;
+  color: rgb(71, 71, 71)
 }
+

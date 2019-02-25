@@ -1,12 +1,19 @@
-@import '../../styles.scss';
+@import "../../styles.scss";
 
 .trips-container {
   // height: calc(100vh - #{($navbar-height)});
   height: 100vh;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/map-background.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../images/map-background.jpg);
   background-size: cover;
   background-position: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
 }
 
 .trip-search-list-container {
@@ -14,28 +21,35 @@
   height: 100vh;
   width: 100%;
   display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: baseline;
-	align-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-content: center;
+
 }
 
 .input-toggle-container {
-  width: 90%;
+
+  width: 100%;
   display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 45px;
+  padding-top: 40px;
+  height: 3vh;
 }
 
 .my-trips-toggle {
   margin-top: 1rem;
 }
 
-.my-trips-toggle label{
+.my-trips-toggle label {
   color: #cdcdcd;
   z-index: 1;
 }
@@ -44,20 +58,31 @@
   z-index: 1;
 }
 
-.trip-card-display {
-  // height: calc(100vh - #{($navbar-height)});
-  height: 100vh;
-  width: 100%;
-  display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	align-content: center;
+#trips-display{
+  height: 95vh;
   overflow-y: auto;
-  padding: 30px 0px;
 }
 
-.button-and-search{
+.trip-card-display {
+  // height: calc(100vh - #{($navbar-height)});
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  // align-items: center;
+  // align-content: center;
+  // padding-bottom: 10px; 
+  // margin-top: 3%;
+  // margin-bottom: 50px;
+  // overflow-y: auto  // padding: 30px 0px; 
+}
+
+.trip-card-display > :last-child{
+  margin-bottom: 3rem;
+}
+
+.button-and-search {
   display: flex;
 }

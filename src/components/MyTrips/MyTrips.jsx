@@ -1,31 +1,29 @@
 import React, { Component } from "react";
 import "./MyTrips.scss";
 import SideNav from "../SideNav/SideNav";
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { getUserData } from '../../ducks/reducer';
+import axios from "axios";
+import { connect } from "react-redux";
+import { getUserData } from "../../ducks/reducer";
 import TripCard from "../TripCard/TripCard";
-import AddTrip from './AddTrip/AddTrip'
+import AddTrip from "./AddTrip/AddTrip";
 import { ButtonBase } from "@material-ui/core";
-import Switch from '@material-ui/core/Switch';
-import { withStyles } from '@material-ui/core';
-import { toggle } from '../../Logic/Logic';
+import Switch from "@material-ui/core/Switch";
+import { withStyles } from "@material-ui/core";
+import { toggle } from "../../Logic/Logic";
 
 const styles = theme => ({
   colorSwitchBase: {
-    color: 'teal',
-    '&$colorChecked': {
-      color: 'teal',
-      '& + $colorBar': {
-        backgroundColor: 'teal',
-      },
-    },
+    color: "teal",
+    "&$colorChecked": {
+      color: "teal",
+      "& + $colorBar": {
+        backgroundColor: "teal"
+      }
+    }
   },
   colorBar: {},
-  colorChecked: {},
+  colorChecked: {}
 });
-
-
 
 class MyTrips extends Component {
   state = {
@@ -35,42 +33,39 @@ class MyTrips extends Component {
   };
 
   componentDidMount = async () => {
-    const res = await axios.get('/auth/userData')
+    const res = await axios.get("/auth/userData");
     if (res.data) {
-      if (!this.s)
-        await this.props.getUserData(res.data)
-      await this.getTrips()
+      if (!this.s) await this.props.getUserData(res.data);
+      await this.getTrips();
     }
-  }
-
-
+  };
 
   getTrips = async () => {
-    const { user_id } = this.props.user
-    const { showCompleted } = this.state
+    const { user_id } = this.props.user;
+    const { showCompleted } = this.state;
     if (!showCompleted) {
-      const res = await axios.get(`/api/userTrips/${user_id}`)
+      const res = await axios.get(`/api/userTrips/${user_id}`);
       await this.setState({
         trips: res.data
-      })
+      });
     } else {
-      const res = await axios.get(`/api/trips/completed/${user_id}`)
+      const res = await axios.get(`/api/trips/completed/${user_id}`);
       await this.setState({
         trips: res.data
-      })
+      });
     }
-  }
+  };
 
-  handleSearch = async (userInput) => {
+  handleSearch = async userInput => {
     await this.setState({ search: userInput });
   };
 
   handleChange = async () => {
     await this.setState({
       showCompleted: toggle(this.state.showCompleted)
-    })
-    await this.getTrips()
-  }
+    });
+    await this.getTrips();
+  };
 
   render() {
     //SEARCH
@@ -79,17 +74,17 @@ class MyTrips extends Component {
     if (search) {
       filteredTrips = trips.filter((trip, index) => {
         for (let property in trip) {
-          if (typeof (trip[property]) === 'string') {
+          if (typeof trip[property] === "string") {
             if (trip[property].toLowerCase().includes(search.toLowerCase())) {
-              return true
+              return true;
             }
           }
         }
-        return false
-      })
+        return false;
+      });
     }
 
-    let displayTrips = filteredTrips.map((trip) => {
+    let displayTrips = filteredTrips.map(trip => {
       return (
         <TripCard
           trip={trip}
@@ -97,11 +92,10 @@ class MyTrips extends Component {
           getTrips={this.getTrips}
           trips={this.state.trips}
         />
-      )
+      );
     });
 
     const { classes } = this.props;
-
 
     return (
       <div>
@@ -109,55 +103,58 @@ class MyTrips extends Component {
           <div className="side-nav">
             <SideNav />
           </div>
-          <div className='trips-container'>
-            <div className='trip-search-list-container'>
-              <div className='input-toggle-container'>
-                  <input
-                    type="text"
-                    placeholder='Search'
-                    className='default-input'
-                    onChange={(e) => this.handleSearch(e.target.value)}
-                  />
-                  <AddTrip/>
-                <div className='my-trips-toggle'>
+          <div className="trips-container">
+            <div className="trip-search-list-container">
+              <div className="input-toggle-container">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="default-input"
+                  style={{ width: "13%" }}
+                  onChange={e => this.handleSearch(e.target.value)}
+                />
+                <AddTrip getTrips={this.getTrips()} />
+                <div className="my-trips-toggle" style={{ width: "30%" }}>
                   <label>Show Upcoming Trips</label>
                   <Switch
                     checked={this.state.checkedB}
                     onChange={this.handleChange}
                     value="checkedB"
                     color="primary"
-                    label='Show Completed Trips'
-                    className='switch'
+                    label="Show Completed Trips"
+                    className="switch"
                     classes={{
                       switchBase: classes.colorSwitchBase,
                       checked: classes.colorChecked,
-                      bar: classes.colorBar,
+                      bar: classes.colorBar
                     }}
                   />
                   <label>Show Completed Trips</label>
                 </div>
               </div>
-              <div id='trips-display'>
-                <div className="trip-card-display">
-                  {displayTrips}
+              <div id="trips-display">
+                <div style={{ color: "white" }}>
+                  {this.state.showCompleted ? (
+                    <h2>Completed Trips</h2>
+                  ) : (
+                    <h2>Upcoming Trips</h2>
+                  )}
                 </div>
-              <div style={{ color: 'white' }}>
-                {
-                  this.state.showCompleted ? <h2>Completed Trips</h2> : <h2>Upcoming Trips</h2>
-                }
+                <div className="trip-card-display">{displayTrips}</div>
               </div>
-              
             </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  return reduxState
-}
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
 
-export default connect(mapStateToProps, { getUserData })(withStyles(styles)(MyTrips))
+export default connect(
+  mapStateToProps,
+  { getUserData }
+)(withStyles(styles)(MyTrips));

@@ -31,6 +31,7 @@ class TripCard extends Component {
   }
 
   getPhotos = async () => {
+    console.log(this.props.trip)
     const { trip_id } = this.props.trip
     let res = await axios.get(`/api/trip-photos/${trip_id}`);
     if (res.data.length === 0) {

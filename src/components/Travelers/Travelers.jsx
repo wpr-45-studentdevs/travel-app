@@ -155,7 +155,7 @@ export default class Travelers extends Component {
           !showAdd &&
           <div className='add-container'>
             {/* <i onClick={this.showAddFn} className="fas fa-plus"></i> */}
-            <button className='add-friends-button' onClick={this.showAddFn}>Add friends to your trip</button>
+            <button className='add-friends-button travelers-add-button' onClick={this.showAddFn}>Add friends to your trip</button>
           </div>
         }
 

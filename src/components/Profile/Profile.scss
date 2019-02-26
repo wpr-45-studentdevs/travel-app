@@ -67,8 +67,14 @@
 
 }
 
+.profile-input {
+  padding: 4px 5px;
+}
+
 .profile-button {
-  font-size: 1rem;
+  i {
+    font-size: 1rem;
+  }
 }
 
 .edit {

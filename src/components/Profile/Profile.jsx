@@ -176,7 +176,7 @@ class Profile extends Component {
                       edit &&
                       <div className={edit && 'edit'}>
                         <span>Image Url: </span>
-                        <input onChange={e => this.handleChange('img', e.target.value)}
+                        <input className='profile-input' onChange={e => this.handleChange('img', e.target.value)}
                           value={img} type="text" />
                       </div>
                     }
@@ -185,13 +185,13 @@ class Profile extends Component {
 
                     <div className={edit && 'edit'}>
                       <span>Email: </span>
-                      {edit ? <input onChange={e => this.handleChange('email', e.target.value)}
+                      {edit ? <input className='profile-input' onChange={e => this.handleChange('email', e.target.value)}
                         value={email} type="text" /> : userInfo.user_email}
                     </div>
 
                     <div className={edit && 'edit'}>
                       <span>Display Name: </span>
-                      {edit ? <input onChange={e => this.handleChange('name', e.target.value)}
+                      {edit ? <input className='profile-input' onChange={e => this.handleChange('name', e.target.value)}
                         value={name} type="text" /> : userInfo.user_display_name}
                     </div>
 
@@ -199,7 +199,7 @@ class Profile extends Component {
                       <span>Bio: </span>
                       {
                         edit ?
-                          <textarea onChange={e => this.handleChange('bio', e.target.value)}
+                          <textarea className='profile-input' onChange={e => this.handleChange('bio', e.target.value)}
                             value={bio} type="text" cols="35" rows="6"></textarea>
                           :
                           <p>{userInfo.user_bio}</p>
@@ -208,8 +208,8 @@ class Profile extends Component {
 
                     {edit &&
                       <div className='profile-buttons'>
-                        <button className='add-button profile-button' onClick={this.handleCancel}><i className="far fa-window-close"></i></button>
-                        <button className='add-button profile-button' onClick={this.updateUserInfo}><i className="far fa-save"></i></button>
+                        <button className='add-button profile-button' onClick={this.handleCancel}><i className="far fa-window-close"></i> Cancel</button>
+                        <button className='add-button profile-button' onClick={this.updateUserInfo}><i className="far fa-save"></i> Save</button>
                       </div>
                     }
 
@@ -232,7 +232,7 @@ class Profile extends Component {
                         <button className='add-button' onClick={this.showFriendsToAdd}><i class="fas fa-window-close"></i></button>
                       </div>
                       :
-                      <button className='add-friends-button' onClick={this.showFriendsToAdd}>Add Friend</button>
+                      <button className='default-button add-friends-button' onClick={this.showFriendsToAdd}>Add Friend</button>
                   }
                 </div>
 

@@ -108,14 +108,13 @@ $side-nav-width: 155px;
 }
 
 .add-friends-button {
-      background: none;
-      border: 1px solid black;
-      border-radius: 10px;
-      transition: .7s;
-      padding: 3px 15px;
+      background-color: #cfcfcf;
+      transition: .5s;
+      border: none;
+      border-bottom: 1px solid;
       &:hover {
-            background-color: #fff;
-            transition: .7s;
+            background-color: #cfcfcf6f;
+            transition: .5s;
       }
 }
 

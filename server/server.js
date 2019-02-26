@@ -78,7 +78,10 @@ app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
 app.get('/api/userTrips/:user_id', tripCtrl.getUserTrips)
 app.get('/api/trip-photos/:trip_id', tripCtrl.getPhotos)
 app.get('/api/trips/completed/:user_id', tripCtrl.getCompletedTrips)
+
+//photo Stuff for trips
 app.post('/api/addPhoto/:trip_id', tripCtrl.addPhoto)
+app.put('/api/updatePhoto/:trip_id', tripCtrl.updatePhoto)
 
 
 // User Profile Info

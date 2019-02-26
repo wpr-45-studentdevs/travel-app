@@ -105,7 +105,7 @@ export default class Travelers extends Component {
       scrollAmount = friendLength - 1
     }
 
-    console.log(friendsToDisplay.length, friendLength, scrollAmount)
+    // console.log(friendsToDisplay.length, friendLength, scrollAmount)
 
     const settings = {
       dots: false,

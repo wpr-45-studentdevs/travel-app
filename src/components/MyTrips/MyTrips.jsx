@@ -5,11 +5,10 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserData } from '../../ducks/reducer';
 import TripCard from "../TripCard/TripCard";
-import AddTrip from './AddTrip/AddTrip'
-import { ButtonBase } from "@material-ui/core";
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core';
 import { toggle } from '../../Logic/Logic';
+import AddTrip from '../MyTrips/AddTrip/AddTrip';
 
 const styles = theme => ({
   colorSwitchBase: {
@@ -42,7 +41,6 @@ class MyTrips extends Component {
       await this.getTrips()
     }
   }
-
 
 
   getTrips = async () => {
@@ -95,7 +93,6 @@ class MyTrips extends Component {
           trip={trip}
           key={trip.trip_id}
           getTrips={this.getTrips}
-          trips={this.state.trips}
         />
       )
     });
@@ -104,53 +101,47 @@ class MyTrips extends Component {
 
 
     return (
-      <div>
-        <div className="body">
-          <div className="side-nav">
-            <SideNav />
-          </div>
-          <div className='trips-container'>
-            <div className='trip-search-list-container'>
-              <div className='input-toggle-container'>
-                  <input
-                    type="text"
-                    placeholder='Search'
-                    className='default-input'
-                    onChange={(e) => this.handleSearch(e.target.value)}
-                  />
-                  <AddTrip/>
-                <div className='my-trips-toggle'>
-                  <label>Show Upcoming Trips</label>
-                  <Switch
-                    checked={this.state.checkedB}
-                    onChange={this.handleChange}
-                    value="checkedB"
-                    color="primary"
-                    label='Show Completed Trips'
-                    className='switch'
-                    classes={{
-                      switchBase: classes.colorSwitchBase,
-                      checked: classes.colorChecked,
-                      bar: classes.colorBar,
-                    }}
-                  />
-                  <label>Show Completed Trips</label>
-                </div>
+      <div className="body">
+        <div className="side-nav">
+          <SideNav />
+        </div>
+        <div className='trips-container'>
+          <div className='trip-header-list-container'>
+            <div className='header-item-container'>
+              <div>
+                <input
+                  type="text"
+                  placeholder='Search'
+                  className='default-input'
+                  onChange={(e) => this.handleSearch(e.target.value)}
+                />
               </div>
-              <div id='trips-display'>
-                <div className="trip-card-display">
-                  {displayTrips}
-                </div>
-              <div style={{ color: 'white' }}>
-                {
-                  this.state.showCompleted ? <h2>Completed Trips</h2> : <h2>Upcoming Trips</h2>
-                }
+              <div>
+                < AddTrip />
               </div>
-              
+              <div className='my-trips-toggle'>
+                <label>Upcoming</label>
+                <Switch
+                  checked={this.state.checkedB}
+                  onChange={this.handleChange}
+                  value="checkedB"
+                  color="primary"
+                  label='Show Completed Trips'
+                  className='switch'
+                  classes={{
+                    switchBase: classes.colorSwitchBase,
+                    checked: classes.colorChecked,
+                    bar: classes.colorBar,
+                  }}
+                />
+                <label>Completed</label>
+              </div>
+            </div>
+            <div className="trip-card-display">
+              {displayTrips}
             </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

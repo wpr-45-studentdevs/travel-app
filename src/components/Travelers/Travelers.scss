@@ -47,6 +47,10 @@
   flex-wrap: wrap;
 }
 
+.add-container p{
+  color: #000;
+}
+
 .friend-adder-slider {
   width: 80%;
   margin: 0 auto;
@@ -54,4 +58,9 @@
 
 .slick-next:before, .slick-prev:before {
   color: #000;
+}
+
+.travelers-add-button {
+  border-radius: 15px;
+  padding: 10px;
 }

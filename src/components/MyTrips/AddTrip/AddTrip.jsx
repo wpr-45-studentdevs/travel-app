@@ -37,28 +37,20 @@ class AddTrip extends Component {
     await Axios.post(`/api/addPhoto/${tripID}`, {
       photo_url: this.state.image
     });
-    // .then(async () => {
-    //   const tripID = res.data[0].trip_id;
-    //   await Axios.post(`/api/add-user-to-trip/${tripID}`)
-    //   (async () => {
-    //     await Axios.post(`/api/addPhoto/${tripID}`, {
-    //       image: this.state.image
-    //     }).then(response => {
-    //       return response.data;
-    //     });
-    //   });
-    // });
+    await this.props.getTrips
   };
 
   render() {
     return (
       <>
-        <button
-          className="default-button"
-          onClick={() => this.setState({ toggleModal: true })}
-        >
-          Add Trip
-        </button>
+        <div className='buttonBack'>
+          <button
+            className="default-button"
+            onClick={() => this.setState({ toggleModal: true })}
+          >
+            Add Trip
+          </button>
+        </div>
         {/* MODAL */}
         {this.state.toggleModal === true ? (
           <div className="modalFullPage">
@@ -66,28 +58,28 @@ class AddTrip extends Component {
               <img src={addTripBackground} className="add-trip-background" />
               <input
                 className="default-input"
-                style={{ zIndex: 2 }}
+                style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("tripName", e.target.value)}
                 type="text"
                 placeholder="Trip Name"
               />
               <input
                 className="default-input"
-                style={{ zIndex: 2 }}
+                style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("date", e.target.value)}
                 type="text"
                 placeholder="Trip Date"
               />
               <input
                 className="default-input"
-                style={{ zIndex: 2 }}
+                style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("tripLength", e.target.value)}
                 type="number"
                 placeholder="Trip Length"
               />
               <input
                 className="default-input"
-                style={{ zIndex: 2 }}
+                style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("image", e.target.value)}
                 type="url"
                 placeholder="Image URL"

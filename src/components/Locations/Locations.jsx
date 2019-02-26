@@ -59,7 +59,7 @@ export default class Locations extends Component {
                         type="text"
                         value={locationToAdd}
                         onChange={(e) => this.handleInput(e.target.value)} />
-                    <button onClick={() => {
+                    <button className='add-button' onClick={() => {
                         this.addLocation();
                         this.setState({
                             locationToAdd: ''

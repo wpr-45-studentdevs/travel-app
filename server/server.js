@@ -20,6 +20,8 @@ const {
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 //MIDDLEWARE
 app.use(express.json());
 app.use(

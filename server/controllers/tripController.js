@@ -117,15 +117,26 @@ module.exports = {
     });
     res.status(200).send(updatedTripCompleted);
   },
-
+  
   addPhoto: async (req, res) => {
     const db = req.app.get("db");
     const { trip_id } = req.params;
     const { photo_url } = req.body;
-    const tripPics = await db.trip.add_photo_trip({
+    const tripPic = await db.trip.add_photo_trip({
       photo_url,
       trip_id
     });
-      res.status(200).send(tripPics);
+    res.status(200).send(tripPic);
+  },
+
+  updatePhoto: async (req, res) => {
+    const db = req.app.get("db");
+    const { trip_id } = req.params;
+    const { photo_url } = req.body;
+    const newPhoto = await db.trip.update_photo({
+      photo_url,
+      trip_id
+    })
+   res.status(200).send(newPhoto)
   }
 };

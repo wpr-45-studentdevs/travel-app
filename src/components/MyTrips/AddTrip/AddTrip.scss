@@ -45,10 +45,6 @@
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  margin-left: 27%;
-  margin-top: 15px;
-  margin-right: 100px;
-  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -58,6 +54,11 @@
   font-weight: 700;
   padding-bottom: .4%;
   padding-left: .4%; 
+}
+
+.buttonBack{
+  width: 67%;
+  padding-left: 15%;
 }
 
 #add-trip-button:hover{

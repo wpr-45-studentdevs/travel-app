@@ -1,0 +1,90 @@
+
+
+.modalFullPage {
+  top: 0;
+  position: fixed;
+  //   filter: blur(8px);
+  background: rgba(49, 48, 48, 0.945);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0px;
+    button {
+      margin-top: 1rem;
+    }
+  z-index: 2;  
+}
+
+.modalAddTrip {
+  position: absolute;
+  height: 40vh;
+  width: 25vw;
+  background: rgba(214, 214, 214, 0.774);  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  justify-content: center;
+  padding-bottom: 5%;
+}
+
+.add-trip-background{
+  position: fixed;
+  z-index: -1;
+  bottom: 30vh;
+  height: 40vh;
+  overflow: hidden;
+  width: 25vw;
+  border-radius: 8px;
+
+}
+
+#add-trip-button{
+  background: rgb(190, 190, 190);
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-left: 27%;
+  margin-top: 15px;
+  margin-right: 100px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: none;
+  transition: .5s;
+  font-size: 250%;
+  font-weight: 700;
+  padding-bottom: .4%;
+  padding-left: .4%; 
+}
+
+#add-trip-button:hover{
+  background: rgb(153, 153, 153)
+}
+
+.checkboxes {
+  color: rgb(58, 58, 58);
+  display: flex;
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+.addTripButtons:hover {
+  background: rgb(117, 117, 117);
+}
+
+.Links{
+  // text-decoration: none;
+  transition: .3s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.Links:hover{
+  color: rgb(71, 71, 71)
+}
+

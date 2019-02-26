@@ -31,7 +31,7 @@ export class UpdatePhoto extends Component {
             />
             <button onClick={() => this.UpdatePhoto()}>Save</button>
           </>
-        ) : null}
+        ) : 'Change main photo'}
       </div>
     );
   }

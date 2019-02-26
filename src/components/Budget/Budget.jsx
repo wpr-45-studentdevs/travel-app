@@ -93,7 +93,7 @@ export default class Budget extends Component {
                   ref='cost'
                   onChange={(e) => this.setState({ item_cost: e.target.value })}
                />
-               <button onClick={() => this.addBudgetItem()}>
+               <button className='add-button' onClick={() => this.addBudgetItem()}>
                   <i className="fas fa-plus"></i>
                </button>
             </div>

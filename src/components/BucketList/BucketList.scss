@@ -14,20 +14,30 @@
 
 .bucket-list-header {
     height: 10vh;
+    display: -webkit-flex;
     display: flex;
+    margin: 0 auto;
     margin-bottom: 3.5vh;
-    width: calc(100vw - #{$side-nav-width});
-    background-color: rgb(97, 96, 96);
+    width: calc(98vw - 155px);
+    border-bottom: 1px solid #ffffff4d;
+    -webkit-justify-content: space-around;
     justify-content: space-around;
+    -webkit-align-items: center;
     align-items: center;
     h2 {
         margin: 0;
         color: white;
+        text-shadow: 2px 2px 10px #252424;
     }
 }
 
 .bucket-add {
     margin-bottom: 3.5vh;
+}
+
+.add-bucket-item-input::placeholder {
+    color: white;
+    text-shadow: 1px 1px 6px black;
 }
 
 .bucket-list {

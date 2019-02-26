@@ -5,6 +5,7 @@ import Traveler from '../Traveler/Traveler';
 import { toggle } from '../../Logic/Logic'
 import Slider from 'react-slick'
 import UserImgPlaceholder from '../../images/userImgPlaceholder.jpg'
+import {Link} from 'react-router-dom'
 
 export default class Travelers extends Component {
 
@@ -144,6 +145,7 @@ export default class Travelers extends Component {
               :
               <>
                 <h4>All of your friends are on this trip</h4>
+                <p>Connect with more friends <Link to='/profile'><button><i className="fas fa-user-friends"></i></button></Link></p>
                 <i onClick={this.showAddFn} className="fas fa-undo"></i>
               </>
             }
@@ -153,7 +155,7 @@ export default class Travelers extends Component {
           !showAdd &&
           <div className='add-container'>
             {/* <i onClick={this.showAddFn} className="fas fa-plus"></i> */}
-            <button onClick={this.showAddFn}>Add friends to your trip</button>
+            <button className='add-friends-button travelers-add-button' onClick={this.showAddFn}>Add friends to your trip</button>
           </div>
         }
 

@@ -70,13 +70,13 @@ class AddTrip extends Component {
                 type="text"
                 placeholder="Trip Date"
               />
-              <input
+              {/* <input
                 className="default-input"
                 style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("tripLength", e.target.value)}
                 type="number"
                 placeholder="Trip Length"
-              />
+              /> */}
               <input
                 className="default-input"
                 style={{ zIndex: 2, color: "dark gray" }}

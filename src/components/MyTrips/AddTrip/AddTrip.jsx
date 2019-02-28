@@ -27,22 +27,30 @@ class AddTrip extends Component {
     const { user_id } = this.props.user;
     const {tripName, date} = this.state;
     if(tripName && date){
-      const res = await Axios.post("/api/add-trip", {
-        tripName: this.state.tripName,
-        date: this.state.date,
-        completed: this.state.completed,
-        public: this.state.public,
-        // tripLength: this.state.tripLength,
-        trip_owner: user_id
-      });
-      console.log(res.data);
-      const tripID = res.data[0].trip_id;
-      await Axios.post(`/api/add-user-to-trip/${tripID}`);
-      await Axios.post(`/api/addPhoto/${tripID}`, {
-        photo_url: this.state.image
-      });
-      this.handleReset()
-      this.props.getTrips()
+      if(tripName.length > 20){
+        Swal('Please shorten your trip name to 20 characters or less.')
+        return
+      } else if(date.length > 30) {
+        Swal('Please shorten your date to 30 characters or less')
+        return
+      } else {
+        const res = await Axios.post("/api/add-trip", {
+          tripName: this.state.tripName,
+          date: this.state.date,
+          completed: this.state.completed,
+          public: this.state.public,
+          // tripLength: this.state.tripLength,
+          trip_owner: user_id
+        });
+        console.log(res.data);
+        const tripID = res.data[0].trip_id;
+        await Axios.post(`/api/add-user-to-trip/${tripID}`);
+        await Axios.post(`/api/addPhoto/${tripID}`, {
+          photo_url: this.state.image
+        });
+        this.handleReset()
+        this.props.getTrips()
+      }
     } else {
       Swal('Please enter a name and date for your trip')
     }

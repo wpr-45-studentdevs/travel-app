@@ -85,15 +85,12 @@ app.get('/api/trips/completed/:user_id', tripCtrl.getCompletedTrips)
 app.post('/api/addPhoto/:trip_id', tripCtrl.addPhoto)
 app.put('/api/updatePhoto/:trip_id', tripCtrl.updatePhoto)
 
-
 // User Profile Info
 app.get('/api/userInfo/:user_id', userCtrl.getUserInfo)
 app.put('/api/userInfo/:user_id', userCtrl.editUserInfo)
-
 app.post('/api/add-user-to-trip/:trip_id', tripCtrl.addUserToTrip)
-
-// user's profile info
 app.get("/api/userInfo/:user_id", userCtrl.getUserInfo);
+
 //Budget
 app.get('/api/budget/:trip_id', budgetController.getBudget);
 app.post('/api/budget/', budgetController.addBudgetItem);

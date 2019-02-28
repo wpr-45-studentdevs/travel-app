@@ -63,6 +63,7 @@ class TripCard extends Component {
 
   handleClose = async () => {
     await this.saveNotes();
+    await this.getPhotos();
     this.setState({ showDetails: false });
   }
 

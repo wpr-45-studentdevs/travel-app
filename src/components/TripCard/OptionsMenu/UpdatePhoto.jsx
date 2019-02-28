@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./updatePhotoModal.scss";
 import Axios from "axios";
+import Swal from 'sweetalert2'
 
 export class UpdatePhoto extends Component {
   state = { image: "" };
@@ -17,6 +18,9 @@ export class UpdatePhoto extends Component {
     await Axios.put(`/api/updatePhoto/${trip_id}`, {
       photo_url: this.state.image
     });
+    this.props.toggleFn()
+    this.props.handleClose()
+    Swal.fire('Your photo has been updated!')
   };
 
   render() {

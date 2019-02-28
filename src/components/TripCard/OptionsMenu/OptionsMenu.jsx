@@ -7,6 +7,7 @@ import axios from "axios";
 import { withStyles } from "@material-ui/core";
 import Swal from "sweetalert2";
 import UpdatePhoto from "./UpdatePhoto";
+import {toggle} from '../../../Logic/Logic'
 
 const styles = theme => ({
   colorSwitchBase: {
@@ -91,6 +92,12 @@ class OptionsMenu extends React.Component {
     await axios.put("/api/trip/public", { trip_id, public: isPublic });
   };
 
+  handleToggle = () => {
+    this.setState({
+      toggle: toggle(this.state.toggle)
+    })
+  }
+
   render() {
     const { anchorEl } = this.state;
     const { classes } = this.props;
@@ -142,7 +149,11 @@ class OptionsMenu extends React.Component {
             />
           </MenuItem>
           <MenuItem onClick={() => this.setState({ toggle: true })}>
-            <UpdatePhoto toggle={this.state.toggle} trip={trip} />
+            <UpdatePhoto 
+            handleClose={this.handleClose}
+            toggle={this.state.toggle} 
+            toggleFn={this.handleToggle} 
+            trip={trip} />
           </MenuItem>
           <MenuItem
             onClick={() => this.deleteTrip()}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Activity from './Activity';
+import Swal from 'sweetalert'
 
 export default class Activities extends Component {
     state = {
@@ -25,10 +26,14 @@ export default class Activities extends Component {
     addActivity = async () => {
         const { trip_id } = this.props.trip;
         const { newActivity } = this.state;
-        await axios.post(`/api/activities/${trip_id}`, {
-            activity_name: newActivity
-        })
-        await this.getActivities();
+        if(newActivity){
+            await axios.post(`/api/activities/${trip_id}`, {
+                activity_name: newActivity
+            })
+            await this.getActivities();
+        } else {
+            Swal('Please enter an activity to add')
+        }
     }
 
     async componentDidMount() {

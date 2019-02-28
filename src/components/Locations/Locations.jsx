@@ -3,6 +3,7 @@ import axios from 'axios';
 import Location from './Location';
 import '../../styles/detail.scss';
 import './Locations.scss';
+import Swal from 'sweetalert'
 
 export default class Locations extends Component {
   state = {
@@ -22,11 +23,15 @@ export default class Locations extends Component {
     const { trip_id } = this.props.trip;
     const { locationToAdd } = this.state;
 
-    await axios.post(`/api/locations/${trip_id}`, {
-      location_name: locationToAdd,
-      trip_id
-    });
-    await this.getLocations();
+    if(locationToAdd){
+      await axios.post(`/api/locations/${trip_id}`, {
+        location_name: locationToAdd,
+        trip_id
+      });
+      await this.getLocations();
+    } else {
+      Swal('Please enter an location to add')
+    }
   };
 
   handleInput = locationToAdd => {

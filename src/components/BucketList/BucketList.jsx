@@ -44,7 +44,16 @@ export default class BucketList extends Component {
    }
 
    async componentDidMount() {
-      await this.getBucketList();
+     try {
+       const res = await axios.get('/auth/userData')
+       if(res) {
+         await this.getBucketList();
+       }
+     } catch (e) {
+       console.log(e)
+       Swal('Please log in')
+       this.props.history.push('/login')
+     }
    }
 
    render() {

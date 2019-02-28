@@ -9,6 +9,7 @@ import Switch from '@material-ui/core/Switch';
 import { withStyles } from '@material-ui/core';
 import { toggle } from '../../Logic/Logic';
 import AddTrip from '../MyTrips/AddTrip/AddTrip';
+import swal from 'sweetalert'
 
 const styles = theme => ({
   colorSwitchBase: {
@@ -32,10 +33,16 @@ class MyTrips extends Component {
   };
 
   componentDidMount = async () => {
-    const res = await axios.get("/auth/userData");
-    if (res.data) {
-      if (!this.s) await this.props.getUserData(res.data);
-      await this.getTrips();
+    try {
+      const res = await axios.get("/auth/userData");
+      if (res.data) {
+        if (!this.s) await this.props.getUserData(res.data);
+        await this.getTrips();
+      }
+    } catch (e) {
+      console.log(e)
+      swal('Please log in')
+      this.props.history.push('/login')
     }
   }
 

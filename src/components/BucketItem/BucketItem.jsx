@@ -48,7 +48,7 @@ export default class BucketItem extends Component {
                 from={{ opacity: 0 }}
                 to={{ opacity: 1 }}>
                 {({ opacity }) => (
-                    <div style={{opacity}} className="bucket-item-container">
+                    <div style={{ opacity }} className="bucket-item-container">
                         <h2>
                             {
                                 edit ?
@@ -60,22 +60,24 @@ export default class BucketItem extends Component {
                             }
                         </h2>
                         <div className="bucket-item-options">
+                            {
+                                edit ? null : <><i
+                                className={item.completed ? "fas fa-times" : "fas fa-check"}
+                                onClick={() => this.toggleCompleted(item)}></i></>  
+                            }
+                            
                             <i
-                            className={item.completed ? "fas fa-times" : "fas fa-check"}
-                            onClick={() => this.toggleCompleted(item)}>
-                            </i>
-                            <i
-                            className="fas fa-edit"
-                            onClick={() => {
-                                if (edit) {this.editItem(item)}
-                                this.setState({edit: !this.state.edit});
+                                className="fas fa-edit"
+                                onClick={() => {
+                                    if (edit) { this.editItem(item) }
+                                    this.setState({ edit: !this.state.edit });
                                 }}>
                             </i>
                             <i
-                            className="fas fa-trash"
-                            onClick={() => {
-                                this.deleteItem(item)
-                            }}>
+                                className="fas fa-trash"
+                                onClick={() => {
+                                    this.deleteItem(item)
+                                }}>
                             </i>
                         </div>
                     </div>

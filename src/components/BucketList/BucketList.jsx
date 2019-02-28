@@ -4,6 +4,7 @@ import './BucketList.scss';
 import axios from 'axios';
 import BucketItem from '../BucketItem/BucketItem';
 import { filterItems } from '../../Logic/Logic';
+import Swal from 'sweetalert'
 
 export default class BucketList extends Component {
    state = {
@@ -31,11 +32,15 @@ export default class BucketList extends Component {
    }
 
    addItem = async () => {
-      await axios.post('/bucketlist', {
-         title: this.state.itemToAdd,
-         completed: false
-      })
-      this.getBucketList();
+     if(this.state.itemToAdd){
+       await axios.post('/bucketlist', {
+          title: this.state.itemToAdd,
+          completed: false
+       })
+       this.getBucketList();
+     } else {
+      Swal('Please enter an item or event to add to your bucket list')
+     }
    }
 
    async componentDidMount() {

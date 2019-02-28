@@ -7,7 +7,6 @@ import Login from './components/Login/Login';
 import MyTrips from './components/MyTrips/MyTrips';
 import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
-import Budget from './components/Budget/Budget';
 
 
 
@@ -20,6 +19,5 @@ export default (
       <Route component={Profile} path='/profile' ></Route>
       <Route component={MyTrips} path='/my-trips' ></Route>
       <Route component={BucketList} path='/bucket-list' ></Route>
-      <Route component={Budget} path='/budget/' ></Route>
    </Switch>
 )

@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../../styles.scss";
 import addTripBackground from "../../../images/add-trips-background.png";
+import placeholder from '../../../images/placeholderImage.jpg'
+import Swal from 'sweetalert'
 
 class AddTrip extends Component {
   state = {
@@ -13,8 +15,8 @@ class AddTrip extends Component {
     date: "",
     completed: false,
     public: false,
-    tripLength: 0,
-    image: ""
+    // tripLength: 0,
+    image: placeholder
   };
 
   handleChange = (prop, val) => {
@@ -23,29 +25,45 @@ class AddTrip extends Component {
 
   addTripDetails = async () => {
     const { user_id } = this.props.user;
-    const res = await Axios.post("/api/add-trip", {
-      tripName: this.state.tripName,
-      date: this.state.date,
-      completed: this.state.completed,
-      public: this.state.public,
-      tripLength: this.state.tripLength,
-      trip_owner: user_id
-    });
-    console.log(res.data);
-    const tripID = res.data[0].trip_id;
-    await Axios.post(`/api/add-user-to-trip/${tripID}`);
-    await Axios.post(`/api/addPhoto/${tripID}`, {
-      photo_url: this.state.image
-    });
-    await this.props.getTrips
+    const {tripName, date} = this.state;
+    if(tripName && date){
+      const res = await Axios.post("/api/add-trip", {
+        tripName: this.state.tripName,
+        date: this.state.date,
+        completed: this.state.completed,
+        public: this.state.public,
+        // tripLength: this.state.tripLength,
+        trip_owner: user_id
+      });
+      console.log(res.data);
+      const tripID = res.data[0].trip_id;
+      await Axios.post(`/api/add-user-to-trip/${tripID}`);
+      await Axios.post(`/api/addPhoto/${tripID}`, {
+        photo_url: this.state.image
+      });
+      this.handleReset()
+    } else {
+      Swal('Please enter a name and date for your trip')
+    }
   };
+
+  handleReset = () => {
+    this.setState({
+      toggleModal: false,
+      tripName: "",
+      date: "",
+      completed: false,
+      public: false,
+      image: placeholder
+    })
+  }
 
   render() {
     return (
       <>
         <div className='buttonBack'>
           <button
-            className="default-button"
+            className="default-button add-trip-button"
             onClick={() => this.setState({ toggleModal: true })}
           >
             Add Trip
@@ -57,14 +75,14 @@ class AddTrip extends Component {
             <div className="modalAddTrip">
               <img src={addTripBackground} className="add-trip-background" />
               <input
-                className="default-input"
+                className="default-input add-trip-input"
                 style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("tripName", e.target.value)}
                 type="text"
                 placeholder="Trip Name"
               />
               <input
-                className="default-input"
+                className="default-input add-trip-input"
                 style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("date", e.target.value)}
                 type="text"
@@ -78,7 +96,7 @@ class AddTrip extends Component {
                 placeholder="Trip Length"
               /> */}
               <input
-                className="default-input"
+                className="default-input add-trip-input"
                 style={{ zIndex: 2, color: "dark gray" }}
                 onChange={e => this.handleChange("image", e.target.value)}
                 type="url"
@@ -119,7 +137,6 @@ class AddTrip extends Component {
                   className="default-button"
                   onClick={() => {
                     this.addTripDetails();
-                    this.setState({ toggleModal: false });
                   }}
                 >
                   Save

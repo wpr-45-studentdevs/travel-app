@@ -40,20 +40,14 @@
 
 }
 
-#add-trip-button{
-  background: rgb(190, 190, 190);
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  border: none;
-  transition: .5s;
-  font-size: 250%;
-  font-weight: 700;
-  padding-bottom: .4%;
-  padding-left: .4%; 
+
+.add-trip-input {
+  color: #525151 !important;
+}
+
+.add-trip-button{
+  color: #fff !important;
+  font-size: 1rem !important;
 }
 
 .buttonBack{

@@ -113,7 +113,8 @@ class MyTrips extends Component {
                 />
               </div>
               <div>
-                < AddTrip />
+                < AddTrip 
+                getTrips={this.getTrips}/>
               </div>
               <div className='my-trips-toggle'>
                 <label>Upcoming</label>

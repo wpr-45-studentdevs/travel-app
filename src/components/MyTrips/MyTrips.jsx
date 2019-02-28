@@ -5,11 +5,10 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { getUserData } from "../../ducks/reducer";
 import TripCard from "../TripCard/TripCard";
-import AddTrip from "./AddTrip/AddTrip";
-import { ButtonBase } from "@material-ui/core";
-import Switch from "@material-ui/core/Switch";
-import { withStyles } from "@material-ui/core";
-import { toggle } from "../../Logic/Logic";
+import Switch from '@material-ui/core/Switch';
+import { withStyles } from '@material-ui/core';
+import { toggle } from '../../Logic/Logic';
+import AddTrip from '../MyTrips/AddTrip/AddTrip';
 
 const styles = theme => ({
   colorSwitchBase: {
@@ -38,7 +37,8 @@ class MyTrips extends Component {
       if (!this.s) await this.props.getUserData(res.data);
       await this.getTrips();
     }
-  };
+  }
+
 
   getTrips = async () => {
     const { user_id } = this.props.user;
@@ -90,7 +90,6 @@ class MyTrips extends Component {
           trip={trip}
           key={trip.trip_id}
           getTrips={this.getTrips}
-          trips={this.state.trips}
         />
       );
     });
@@ -98,50 +97,44 @@ class MyTrips extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <div className="body">
-          <div className="side-nav">
-            <SideNav />
-          </div>
-          <div className="trips-container">
-            <div className="trip-search-list-container">
-              <div className="input-toggle-container">
+      <div className="body">
+        <div className="side-nav">
+          <SideNav />
+        </div>
+        <div className='trips-container'>
+          <div className='trip-header-list-container'>
+            <div className='header-item-container'>
+              <div>
                 <input
                   type="text"
-                  placeholder="Search"
-                  className="default-input"
-                  style={{ width: "13%" }}
-                  onChange={e => this.handleSearch(e.target.value)}
+                  placeholder='Search'
+                  className='default-input'
+                  onChange={(e) => this.handleSearch(e.target.value)}
                 />
-                <AddTrip getTrips={this.getTrips()} />
-                <div className="my-trips-toggle" style={{ width: "30%" }}>
-                  <label>Show Upcoming Trips</label>
-                  <Switch
-                    checked={this.state.checkedB}
-                    onChange={this.handleChange}
-                    value="checkedB"
-                    color="primary"
-                    label="Show Completed Trips"
-                    className="switch"
-                    classes={{
-                      switchBase: classes.colorSwitchBase,
-                      checked: classes.colorChecked,
-                      bar: classes.colorBar
-                    }}
-                  />
-                  <label>Show Completed Trips</label>
-                </div>
               </div>
-              <div id="trips-display">
-                <div style={{ color: "white" }}>
-                  {this.state.showCompleted ? (
-                    <h2>Completed Trips</h2>
-                  ) : (
-                    <h2>Upcoming Trips</h2>
-                  )}
-                </div>
-                <div className="trip-card-display">{displayTrips}</div>
+              <div>
+                < AddTrip />
               </div>
+              <div className='my-trips-toggle'>
+                <label>Upcoming</label>
+                <Switch
+                  checked={this.state.checkedB}
+                  onChange={this.handleChange}
+                  value="checkedB"
+                  color="primary"
+                  label='Show Completed Trips'
+                  className='switch'
+                  classes={{
+                    switchBase: classes.colorSwitchBase,
+                    checked: classes.colorChecked,
+                    bar: classes.colorBar,
+                  }}
+                />
+                <label>Completed</label>
+              </div>
+            </div>
+            <div className="trip-card-display">
+              {displayTrips}
             </div>
           </div>
         </div>

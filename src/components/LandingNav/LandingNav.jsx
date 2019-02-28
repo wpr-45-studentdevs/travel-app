@@ -22,7 +22,7 @@ export default function LandingNav(props) {
                   Login
                </Link>
                <Link to='/register' className='landing-nav-register-button'>
-                  Register
+                  Sign Up
                </Link>
             </div>
          </nav>

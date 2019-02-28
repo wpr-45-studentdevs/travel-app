@@ -16,6 +16,9 @@
     button {
         margin: 0;
     }
+    input {
+        width: 20vw;
+    }
 }
 
 .bucket-item-title {
@@ -52,4 +55,17 @@
         transition: 0.1s ease-in;
     }
 
+}
+
+
+@media (max-width: 1000px) {
+    .bucket-item-container {
+        display: none;
+    }
+    .bucket-item-options {
+        display: none;
+    }
+    .bucket-item-title {
+        display: none;
+    }
 }

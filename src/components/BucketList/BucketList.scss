@@ -47,6 +47,7 @@
 
 .bucket-lists {
     display: flex;
+    overflow-y: scroll;
 }
 
 .bucket-list-bg {
@@ -63,4 +64,10 @@
     justify-content: center;
     align-items: center;
     height: 8vh;
+}
+
+@media (max-width: 1000px) {
+    .bucket-list-header {
+        display: none;
+    }
 }

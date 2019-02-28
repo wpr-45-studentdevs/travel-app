@@ -24,11 +24,17 @@ class Profile extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get('/auth/userData')
-    if (res.data) {
-      // await this.props.getUserData(res.data)
-      this.getUserInfo()
-      this.getFriends()
+    try {
+      const res = await axios.get('/auth/userData')
+      if (res.data) {
+        // await this.props.getUserData(res.data)
+        this.getUserInfo()
+        this.getFriends()
+      }
+    } catch (e) {
+      console.log(e)
+      swal('Please log in')
+      this.props.history.push('/login')
     }
   }
 

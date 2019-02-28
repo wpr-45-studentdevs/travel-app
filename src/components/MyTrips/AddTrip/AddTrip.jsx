@@ -42,6 +42,7 @@ class AddTrip extends Component {
         photo_url: this.state.image
       });
       this.handleReset()
+      this.props.getTrips()
     } else {
       Swal('Please enter a name and date for your trip')
     }

@@ -3,7 +3,6 @@ import "./Dashboard.scss";
 import SideNav from "../SideNav/SideNav";
 import axios from "axios";
 import PublicTripCard from "../PublicTripCard/PublicTripCard";
-import Swal from 'sweetalert'
 
 export default class Dashboard extends Component {
    state = {
@@ -16,17 +15,11 @@ export default class Dashboard extends Component {
    };
 
    async componentDidMount() {
-         const res = axios.get('/auth/userData')
-         console.log(res)
       try {
-            if(res.data){
-                  const res = await axios.get("/trips/getAllPublic");
-                  this.setState({ publicTrips: res.data });
-            }
+         const res = await axios.get("/trips/getAllPublic");
+         this.setState({ publicTrips: res.data });
       } catch (e) {
          console.log("problems");
-         Swal('Please log in.')
-         this.props.history.push('/')
       }
    }
 
@@ -53,6 +46,7 @@ export default class Dashboard extends Component {
             }
          });
       }
+      console.log(filteredArr)
       const showPublicTrips = filteredArr.map((trip, i) => {
          return (
             <PublicTripCard
